@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineFront", "CineFront\CineFront.csproj", "{F3067E42-BAC1-41B6-98E7-78B495AC3C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineBack", "CineBack\CineBack.csproj", "{58A93D3F-6C8B-49B4-B7B0-2AE88FAF8830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineApi", "CineApi\CineApi.csproj", "{97BBE781-69FB-45D5-8077-08526AA50387}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3067E42-BAC1-41B6-98E7-78B495AC3C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3067E42-BAC1-41B6-98E7-78B495AC3C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3067E42-BAC1-41B6-98E7-78B495AC3C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3067E42-BAC1-41B6-98E7-78B495AC3C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A93D3F-6C8B-49B4-B7B0-2AE88FAF8830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A93D3F-6C8B-49B4-B7B0-2AE88FAF8830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A93D3F-6C8B-49B4-B7B0-2AE88FAF8830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A93D3F-6C8B-49B4-B7B0-2AE88FAF8830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97BBE781-69FB-45D5-8077-08526AA50387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BBE781-69FB-45D5-8077-08526AA50387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BBE781-69FB-45D5-8077-08526AA50387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BBE781-69FB-45D5-8077-08526AA50387}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B7FA0C6-F07E-4A19-9DDD-E8F011A607A4}
+	EndGlobalSection
+EndGlobal

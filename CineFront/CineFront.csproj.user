@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Formularios\frmCrear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmAltaDeCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmAltaTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmPaginaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmQuienesSomos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmIngresar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
