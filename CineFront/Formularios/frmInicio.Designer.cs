@@ -52,15 +52,16 @@
             BtnCrear.UseVisualStyleBackColor = true;
             BtnCrear.Click += BtnCrear_Click;
             // 
-            // Inicio
+            // frmInicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(BtnCrear);
             Controls.Add(BtnIngresar);
-            Name = "Inicio";
+            Name = "frmInicio";
             Text = "Inicio";
+            Load += frmInicio_Load;
             ResumeLayout(false);
         }
 

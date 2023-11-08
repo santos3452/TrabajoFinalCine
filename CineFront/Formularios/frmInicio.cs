@@ -28,5 +28,10 @@ namespace CineFront
             frmCrear frm = new frmCrear();
             frm.Show();
         }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

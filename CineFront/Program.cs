@@ -1,3 +1,5 @@
+using Front.Formularios;
+
 namespace CineFront
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace CineFront
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmInicio());
+            Application.Run(new PaginaPrincipal());
         }
     }
 }
