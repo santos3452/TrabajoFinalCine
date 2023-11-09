@@ -44,6 +44,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(172, 58);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
@@ -53,6 +54,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(164, 112);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
@@ -62,6 +64,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(143, 162);
             label3.Name = "label3";
             label3.Size = new Size(107, 15);
@@ -71,6 +74,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.ForeColor = SystemColors.ButtonFace;
             label4.Location = new Point(172, 216);
             label4.Name = "label4";
             label4.Size = new Size(30, 15);
@@ -134,10 +138,11 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // Crear
+            // frmCrear
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(417, 451);
             Controls.Add(btnCancelar);
             Controls.Add(btnVolver);
@@ -150,7 +155,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Crear";
+            Name = "frmCrear";
             Text = "Crear";
             ResumeLayout(false);
             PerformLayout();

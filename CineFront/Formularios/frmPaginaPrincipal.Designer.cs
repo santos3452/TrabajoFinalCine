@@ -37,6 +37,7 @@
             label2 = new Label();
             PanelTitulo = new Panel();
             label1 = new Label();
+            lstNostros = new ListBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             PanelTitulo.SuspendLayout();
@@ -65,6 +66,7 @@
             button4.TabIndex = 7;
             button4.Text = "NOSOTROS";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -111,7 +113,7 @@
             panel2.Controls.Add(label2);
             panel2.Location = new Point(197, -1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(602, 78);
+            panel2.Size = new Size(745, 78);
             panel2.TabIndex = 1;
             // 
             // label2
@@ -119,7 +121,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(236, 24);
+            label2.Location = new Point(325, 21);
             label2.Name = "label2";
             label2.Size = new Size(68, 35);
             label2.TabIndex = 3;
@@ -146,16 +148,30 @@
             label1.TabIndex = 2;
             label1.Text = "CINES UTN";
             // 
+            // lstNostros
+            // 
+            lstNostros.BackColor = Color.White;
+            lstNostros.Font = new Font("Tahoma", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lstNostros.FormattingEnabled = true;
+            lstNostros.ItemHeight = 45;
+            lstNostros.Location = new Point(206, 76);
+            lstNostros.Name = "lstNostros";
+            lstNostros.Size = new Size(742, 364);
+            lstNostros.TabIndex = 2;
+            lstNostros.SelectedIndexChanged += lstNostros_SelectedIndexChanged;
+            // 
             // PaginaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(941, 450);
+            Controls.Add(lstNostros);
             Controls.Add(PanelTitulo);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "PaginaPrincipal";
             Text = "PaginaPrincipal";
+            Load += PaginaPrincipal_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -175,5 +191,6 @@
         private Label label2;
         private Panel PanelTitulo;
         private Label label1;
+        private ListBox lstNostros;
     }
 }

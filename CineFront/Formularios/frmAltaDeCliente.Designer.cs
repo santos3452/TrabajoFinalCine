@@ -43,14 +43,16 @@
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 238);
+            dataGridView1.Location = new Point(12, 240);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(776, 220);
@@ -58,7 +60,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(495, 200);
+            button1.Location = new Point(479, 200);
             button1.Name = "button1";
             button1.Size = new Size(108, 32);
             button1.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(643, 200);
+            button2.Location = new Point(643, 202);
             button2.Name = "button2";
             button2.Size = new Size(108, 32);
             button2.TabIndex = 4;
@@ -110,7 +112,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlLight;
-            label3.Location = new Point(139, 151);
+            label3.Location = new Point(23, 147);
             label3.Name = "label3";
             label3.Size = new Size(54, 21);
             label3.TabIndex = 8;
@@ -121,7 +123,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlLight;
-            label4.Location = new Point(391, 151);
+            label4.Location = new Point(259, 147);
             label4.Name = "label4";
             label4.Size = new Size(37, 21);
             label4.TabIndex = 9;
@@ -132,7 +134,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ControlLight;
-            label5.Location = new Point(474, 83);
+            label5.Location = new Point(457, 83);
             label5.Name = "label5";
             label5.Size = new Size(86, 21);
             label5.TabIndex = 10;
@@ -143,7 +145,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(235, 9);
+            label6.Location = new Point(221, 19);
             label6.Name = "label6";
             label6.Size = new Size(322, 35);
             label6.TabIndex = 11;
@@ -158,7 +160,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(221, 149);
+            textBox2.Location = new Point(114, 145);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 13;
@@ -172,17 +174,27 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(460, 149);
+            textBox4.Location = new Point(341, 145);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 15;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(566, 81);
+            textBox5.Location = new Point(563, 83);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(100, 23);
             textBox5.TabIndex = 16;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(0, 150, 136);
+            panel1.Controls.Add(label6);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(800, 67);
+            panel1.TabIndex = 17;
             // 
             // frmAltaDeCliente
             // 
@@ -190,12 +202,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(800, 517);
+            Controls.Add(panel1);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -208,6 +220,8 @@
             Name = "frmAltaDeCliente";
             Text = "frmAltaDeCliente";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -229,5 +243,6 @@
         private TextBox textBox3;
         private TextBox textBox4;
         private TextBox textBox5;
+        private Panel panel1;
     }
 }

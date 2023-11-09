@@ -16,7 +16,7 @@ namespace CineBack.Datos.Implementacion
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(Properties.Resources.CadenaConexion); // Inicializa la conexión utilizando la cadena de conexión del proyecto
+            conexion = new SqlConnection(Properties.Resources.CadenaConexion); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao

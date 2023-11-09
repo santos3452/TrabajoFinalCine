@@ -40,7 +40,8 @@
             // Usuario
             // 
             Usuario.AutoSize = true;
-            Usuario.Location = new Point(153, 59);
+            Usuario.ForeColor = SystemColors.ButtonFace;
+            Usuario.Location = new Point(153, 34);
             Usuario.Name = "Usuario";
             Usuario.Size = new Size(47, 15);
             Usuario.TabIndex = 0;
@@ -49,7 +50,8 @@
             // Contraseña
             // 
             Contraseña.AutoSize = true;
-            Contraseña.Location = new Point(143, 119);
+            Contraseña.ForeColor = SystemColors.ControlLightLight;
+            Contraseña.Location = new Point(144, 133);
             Contraseña.Name = "Contraseña";
             Contraseña.Size = new Size(67, 15);
             Contraseña.TabIndex = 1;
@@ -57,21 +59,21 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(130, 77);
+            txtUsuario.Location = new Point(130, 79);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(100, 23);
             txtUsuario.TabIndex = 2;
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(130, 137);
+            txtContraseña.Location = new Point(130, 167);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(100, 23);
             txtContraseña.TabIndex = 3;
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(102, 189);
+            btnIngresar.Location = new Point(63, 220);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(75, 23);
             btnIngresar.TabIndex = 4;
@@ -81,7 +83,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(256, 272);
+            btnVolver.Location = new Point(290, 293);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(75, 23);
             btnVolver.TabIndex = 5;
@@ -91,7 +93,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(183, 189);
+            btnCancelar.Location = new Point(250, 220);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 6;
@@ -99,10 +101,11 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += BtnCancelar_Click;
             // 
-            // Ingresar
+            // frmIngresar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(377, 328);
             Controls.Add(btnCancelar);
             Controls.Add(btnVolver);
@@ -111,7 +114,7 @@
             Controls.Add(txtUsuario);
             Controls.Add(Contraseña);
             Controls.Add(Usuario);
-            Name = "Ingresar";
+            Name = "frmIngresar";
             Text = "Ingresar";
             ResumeLayout(false);
             PerformLayout();

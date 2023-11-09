@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Front.Formularios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,6 +31,10 @@ namespace CineFront
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            this.Close();
+            PaginaPrincipal frm = new PaginaPrincipal();
+            frm.Show();
+
 
         }
     }
