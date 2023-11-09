@@ -1,0 +1,326 @@
+
+-- Crear la base de datos
+CREATE DATABASE CineDB;
+USE CineDB;
+
+-- Tabla cines
+CREATE TABLE cines (
+    codigo_cine INT PRIMARY KEY,
+    nombre_cine VARCHAR(255),
+    localidad VARCHAR(255)
+);
+
+-- Tabla categorias
+CREATE TABLE categorias (
+    codigo_categoria INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla clasificaciones
+CREATE TABLE clasificaciones (
+    codigo_clasificacion INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla formatos
+CREATE TABLE formatos (
+    id_formato INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla formas_pago
+CREATE TABLE formas_pago (
+    id_forma INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla clientes
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY,
+    nom_cliente VARCHAR(255),
+    apellido_cliente VARCHAR(255),
+    telefono VARCHAR(20),
+    email VARCHAR(255)
+);
+
+-- Tabla facturas
+CREATE TABLE facturas (
+    id_factura INT PRIMARY KEY,
+    fecha DATE,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+
+-- Tabla detalles_facturas
+CREATE TABLE detalles_facturas (
+    id_detalle_factura INT PRIMARY KEY,
+    id_factura INT,
+    id_butaca INT,
+    precio DECIMAL(10, 2),
+    id_descuento INT,
+    FOREIGN KEY (id_factura) REFERENCES facturas(id_factura),
+    FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca),
+    FOREIGN KEY (id_descuento) REFERENCES descuento(id_descuento)
+);
+
+-- Tabla estados
+CREATE TABLE estados (
+    id_estado INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla detalles_pagos
+CREATE TABLE detalles_pagos (
+    id_detalle_pago INT PRIMARY KEY,
+    id_factura INT,
+    id_forma INT,
+    FOREIGN KEY (id_factura) REFERENCES facturas(id_factura),
+    FOREIGN KEY (id_forma) REFERENCES formas_pago(id_forma)
+);
+
+-- Tabla salas
+CREATE TABLE salas (
+    id_sala INT PRIMARY KEY,
+    cantidad_butaca INT,
+    codigo_cine INT,
+    FOREIGN KEY (codigo_cine) REFERENCES cines(codigo_cine)
+);
+
+-- Tabla peliculas
+CREATE TABLE peliculas (
+    codigo_pelicula INT PRIMARY KEY,
+    nombre_pelicula VARCHAR(255),
+    codigo_cine INT,
+    codigo_fecha INT,
+    fecha_inicio DATE,
+    fecha_final DATE,
+    director VARCHAR(255),
+    codigo_categoria INT,
+    codigo_clasificacion INT,
+    codigo_formato INT,
+    FOREIGN KEY (codigo_cine) REFERENCES cines(codigo_cine),
+    FOREIGN KEY (codigo_categoria) REFERENCES categorias(codigo_categoria),
+    FOREIGN KEY (codigo_clasificacion) REFERENCES clasificaciones(codigo_clasificacion),
+    FOREIGN KEY (codigo_formato) REFERENCES formatos(id_formato)
+);
+
+-- Tabla butacas
+CREATE TABLE butacas (
+    id_butaca INT PRIMARY KEY,
+    codigo_funcion INT,
+    id_estado INT,
+    descripcion VARCHAR(255),
+    id_sala INT,
+    FOREIGN KEY (codigo_funcion) REFERENCES funciones(codigo_funcion),
+    FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
+    FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
+);
+
+-- Tabla funciones
+CREATE TABLE funciones (
+    codigo_funcion INT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    codigo_pelicula INT,
+    fecha DATE,
+    hora TIME,
+    precio DECIMAL(10, 2),
+    id_sala INT,
+    FOREIGN KEY (codigo_pelicula) REFERENCES peliculas(codigo_pelicula),
+    FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
+);
+
+-- Tabla fechas
+CREATE TABLE fechas (
+    codigo_fecha INT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    codigo_funcion INT,
+    FOREIGN KEY (codigo_funcion) REFERENCES funciones(codigo_funcion)
+);
+
+-- Tabla reservas
+CREATE TABLE reservas (
+    id_reserva INT PRIMARY KEY,
+    numero_reserva INT,
+    id_butaca INT,
+    FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca)
+);
+
+-- Tabla descuento
+CREATE TABLE descuento (
+    id_descuento INT PRIMARY KEY,
+    id_tipo INT,
+    valor DECIMAL(10, 2),
+    FOREIGN KEY (id_tipo) REFERENCES tipo_descuento(id_tipo)
+);
+
+-- Tabla tipo_descuento
+CREATE TABLE tipo_descuento (
+    id_tipo INT PRIMARY KEY,
+    descripcion VARCHAR(255)
+);
+
+-- Tabla ticket
+CREATE TABLE ticket (
+    id_ticket INT PRIMARY KEY,
+    id_sala INT,
+    codigo_pelicula INT,
+    codigo_funcion INT,
+    FOREIGN KEY (id_sala) REFERENCES salas(id_sala),
+    FOREIGN KEY (codigo_pelicula) REFERENCES peliculas(codigo_pelicula),
+    FOREIGN KEY (codigo_funcion) REFERENCES funciones(codigo_funcion)
+);
+
+-- Tabla butacas_reservadas
+CREATE TABLE butacas_reservadas (
+    id_butaca_reservada INT PRIMARY KEY,
+    id_reserva INT,
+    id_butaca INT,
+    FOREIGN KEY (id_reserva) REFERENCES reservas(id_reserva),
+    FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca)
+);
+
+CREATE TABLE usuarios (
+    nombre_de_usuario VARCHAR(50),
+    contrasena VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Agregar relación entre butacas y salas
+ALTER TABLE butacas
+ADD CONSTRAINT FK_Butacas_Salas
+FOREIGN KEY (id_sala)
+REFERENCES salas (id_sala);
+-- Agregar relación entre butacas y funciones
+ALTER TABLE butacas
+ADD CONSTRAINT FK_Butacas_Funciones
+FOREIGN KEY (codigo_funcion)
+REFERENCES funciones (codigo_funcion);
+-- Agregar relación entre fechas y funciones
+ALTER TABLE fechas
+ADD CONSTRAINT FK_Fechas_Funciones
+FOREIGN KEY (codigo_funcion)
+REFERENCES funciones (codigo_funcion);
+-- Agregar relación entre detalles_facturas y facturas
+ALTER TABLE detalles_facturas
+ADD CONSTRAINT FK_DetallesFacturas_Facturas
+FOREIGN KEY (id_factura)
+REFERENCES facturas (id_factura);
+-- Agregar relación entre detalles_facturas y butacas
+ALTER TABLE detalles_facturas
+ADD CONSTRAINT FK_DetallesFacturas_Butacas
+FOREIGN KEY (id_butaca)
+REFERENCES butacas (id_butaca);
+-- Agregar relación entre detalles_facturas y descuento
+ALTER TABLE detalles_facturas
+ADD CONSTRAINT FK_DetallesFacturas_Descuento
+FOREIGN KEY (id_descuento)
+REFERENCES descuento (id_descuento);
+-- Agregar relación entre butacas_reservadas y reservas
+ALTER TABLE butacas_reservadas
+ADD CONSTRAINT FK_ButacasReservadas_Reservas
+FOREIGN KEY (id_reserva)
+REFERENCES reservas (id_reserva);
+-- Agregar relación entre butacas_reservadas y butacas
+ALTER TABLE butacas_reservadas
+ADD CONSTRAINT FK_ButacasReservadas_Butacas
+FOREIGN KEY (id_butaca)
+REFERENCES butacas (id_butaca);
+-- Agregar relación entre ticket y salas
+ALTER TABLE ticket
+ADD CONSTRAINT FK_Ticket_Salas
+FOREIGN KEY (id_sala)
+REFERENCES salas (id_sala);
+-- Agregar relación entre ticket y funciones
+ALTER TABLE ticket
+ADD CONSTRAINT FK_Ticket_Funciones
+FOREIGN KEY (codigo_funcion)
+REFERENCES funciones (codigo_funcion);
+-- Agregar relación entre ticket y peliculas
+ALTER TABLE ticket
+ADD CONSTRAINT FK_Ticket_Peliculas
+FOREIGN KEY (codigo_pelicula)
+REFERENCES peliculas (codigo_pelicula);
+-- Agregar relación entre funciones y peliculas
+ALTER TABLE funciones
+ADD CONSTRAINT FK_Funciones_Peliculas
+FOREIGN KEY (codigo_pelicula)
+REFERENCES peliculas (codigo_pelicula);
+-- Agregar relación entre funciones y salas
+ALTER TABLE funciones
+ADD CONSTRAINT FK_Funciones_Salas
+FOREIGN KEY (id_sala)
+REFERENCES salas (id_sala);
+
+CREATE TABLE usuarios (
+    nombre_de_usuario VARCHAR(50),
+    contrasena VARCHAR(50)
+);
+
+
+
+INSERT INTO clientes (id_cliente, nom_cliente, apellido_cliente, telefono, email, DNI, activo)
+VALUES 
+    (1, 'Fernando', 'Lopez', '3511234567', 'fernando.lopez@gmail.com', '098765432', 1),
+    (2, 'Martina', 'Gutierrez', '3512345678', 'martina.gutierrez@gmail.com', '987654321', 1),
+    (3, 'Diego', 'Martinez', '3513456789', 'diego.martinez@gmail.com', '876543210', 1),
+    (4, 'Laura', 'Gonzalez', '3514567890', 'laura.gonzalez@gmail.com', '765432109', 1),
+    (5, 'Javier', 'Sanchez', '3515678901', 'javier.sanchez@gmail.com', '654321098', 1),
+    
+    (6, 'Ana', 'Rodriguez', '3516789012', 'ana.rodriguez@gmail.com', '543210987', 1),
+    (7, 'Carlos', 'Hernandez', '3517890123', 'carlos.hernandez@gmail.com', '432109876', 1),
+    (8, 'Sofia', 'Perez', '3518901234', 'sofia.perez@gmail.com', '321098765', 1),
+    (9, 'Luis', 'Gomez', '3519012345', 'luis.gomez@gmail.com', '210987654', 1),
+    (10, 'Valentina', 'Diaz', '3510123456', 'valentina.diaz@gmail.com', '109876543', 1)
+    (11, 'Mariano', 'Fernandez', '3511234567', 'mariano.fernandez@gmail.com', '098765432', 1),
+    (12, 'Camila', 'Lopez', '3512345678', 'camila.lopez@gmail.com', '987654321', 1),
+    (13, 'Agustin', 'Gutierrez', '3513456789', 'agustin.gutierrez@gmail.com', '876543210', 1),
+    (14, 'Lucia', 'Martinez', '3514567890', 'lucia.martinez@gmail.com', '765432109', 1),
+    (15, 'Lucas', 'Gonzalez', '3515678901', 'lucas.gonzalez@gmail.com', '654321098', 1),
+    (16, 'Mateo', 'Sanchez', '3516789012', 'mateo.sanchez@gmail.com', '543210987', 1),
+    (17, 'Santiago', 'Hernandez', '3517890123', 'santiago.hernandez@gmail.com', '432109876', 1),
+    (18, 'Emilia', 'Perez', '3518901234', 'emilia.perez@gmail.com', '321098765', 1),
+    (19, 'Emma', 'Gomez', '3519012345', 'emma.gomez@gmail.com', '210987654', 1),
+    (20, 'Olivia', 'Diaz', '3510123456', 'olivia.diaz@gmail.com', '109876543', 1),
+    (21, 'Thiago', 'Fernandez', '3511234567', 'thiago.fernandez@gmail.com', '098765432', 1),
+    (22, 'Bautista', 'Lopez', '3512345678', 'bautista.lopez@gmail.com', '987654321', 1),
+    (23, 'Mia', 'Gutierrez', '3513456789', 'mia.gutierrez@gmail.com', '876543210', 1),
+    (24, 'Benjamin', 'Martinez', '3514567890', 'benjamin.martinez@gmail.com', '765432109', 1),
+    (25, 'Oliver', 'Gonzalez', '3515678901', 'oliver.gonzalez@gmail.com', '654321098', 1),
+    (26, 'Emma', 'Sanchez', '3516789012', 'emma.sanchez@gmail.com', '543210987', 1),
+    (27, 'Amelia', 'Rodriguez', '3517890123', 'amelia.rodriguez@gmail.com', '432109876', 1),
+    (28, 'Max', 'Hernandez', '3518901234', 'max.hernandez@gmail.com', '321098765', 1),
+    (29, 'Sophia', 'Perez', '3519012345', 'sophia.perez@gmail.com', '210987654', 1),
+    (30, 'Lucas', 'Gomez', '3510123456', 'lucas.gomez@gmail.com', '109876543', 1),
+    (31, 'Isabella', 'Diaz', '3511234567', 'isabella.diaz@gmail.com', '098765432', 1),
+    (32, 'Mia', 'Fernandez', '3512345678', 'mia.fernandez@gmail.com', '987654321', 1),
+    (33, 'Alexander', 'Lopez', '3513456789', 'alexander.lopez@gmail.com', '876543210', 1),
+    (34, 'James', 'Gutierrez', '3514567890', 'james.gutierrez@gmail.com', '765432109', 1),
+    (35, 'Charlotte', 'Martinez', '3515678901', 'charlotte.martinez@gmail.com', '654321098', 1),
+    (36, 'Daniel', 'Sanchez', '3516789012', 'daniel.sanchez@gmail.com', '543210987', 1),
+    (37, 'Liam', 'Rodriguez', '3517890123', 'liam.rodriguez@gmail.com', '432109876', 1),
+    (38, 'Olivia', 'Hernandez', '3518901234', 'olivia.hernandez@gmail.com', '321098765', 1),
+    (39, 'Elijah', 'Perez', '3519012345', 'elijah.perez@gmail.com', '210987654', 1),
+    (40, 'Michael', 'Gomez', '3510123456', 'michael.gomez@gmail.com', '109876543', 1),
+    (41, 'Alexander', 'Diaz', '3511234567', 'alexander.diaz@gmail.com', '098765432', 1),
+    (42, 'Evelyn', 'Fernandez', '3512345678', 'evelyn.fernandez@gmail.com', '987654321', 1),
+    (43, 'Harper', 'Lopez', '3513456789', 'harper.lopez@gmail.com', '876543210', 1),
+    (44, 'Aria', 'Gutierrez', '3514567890', 'aria.gutierrez@gmail.com', '765432109', 1),
+    (45, 'Elena', 'Martinez', '3515678901', 'elena.martinez@gmail.com', '654321098', 1),
+    (46, 'Ella', 'Sanchez', '3516789012', 'ella.sanchez@gmail.com', '543210987', 1),
+    (47, 'Avery', 'Rodriguez', '3517890123', 'avery.rodriguez@gmail.com','41019295',1 )
+
