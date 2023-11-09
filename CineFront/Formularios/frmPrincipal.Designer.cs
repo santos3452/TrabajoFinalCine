@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Principal";
+            menuStrip1 = new MenuStrip();
+            SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Dock = DockStyle.Left;
+            menuStrip1.ImageScalingSize = new Size(200, 377);
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(126, 627);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // frmPrincipal
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(945, 627);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Name = "frmPrincipal";
+            Text = "Principal";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        public MenuStrip menuStrip1;
     }
 }

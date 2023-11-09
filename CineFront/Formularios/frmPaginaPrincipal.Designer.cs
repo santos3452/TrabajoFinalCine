@@ -29,91 +29,179 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnNosotros = new Button();
+            panelsubmenu = new Panel();
+            btnReporte2 = new Button();
+            btnReporte1 = new Button();
+            btnReportes = new Button();
+            btnCliente = new Button();
+            btnTicket = new Button();
+            panel3 = new Panel();
+            label1 = new Label();
             panel2 = new Panel();
             label2 = new Label();
-            PanelTitulo = new Panel();
-            label1 = new Label();
             lstNostros = new ListBox();
             panel1.SuspendLayout();
+            panelsubmenu.SuspendLayout();
+            panel3.SuspendLayout();
             panel2.SuspendLayout();
-            PanelTitulo.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.AutoScroll = true;
             panel1.BackColor = Color.FromArgb(51, 51, 76);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
-            panel1.Location = new Point(0, 73);
+            panel1.Controls.Add(btnNosotros);
+            panel1.Controls.Add(panelsubmenu);
+            panel1.Controls.Add(btnReportes);
+            panel1.Controls.Add(btnCliente);
+            panel1.Controls.Add(btnTicket);
+            panel1.Controls.Add(panel3);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 377);
+            panel1.Size = new Size(200, 450);
             panel1.TabIndex = 0;
             // 
-            // button4
+            // btnNosotros
             // 
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.ForeColor = SystemColors.ButtonFace;
-            button4.Location = new Point(0, 177);
-            button4.Name = "button4";
-            button4.Size = new Size(200, 52);
-            button4.TabIndex = 7;
-            button4.Text = "NOSOTROS";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            btnNosotros.Dock = DockStyle.Top;
+            btnNosotros.FlatAppearance.BorderSize = 0;
+            btnNosotros.FlatStyle = FlatStyle.Flat;
+            btnNosotros.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnNosotros.ForeColor = SystemColors.ButtonHighlight;
+            btnNosotros.Location = new Point(0, 309);
+            btnNosotros.Name = "btnNosotros";
+            btnNosotros.Padding = new Padding(10, 0, 0, 0);
+            btnNosotros.Size = new Size(200, 50);
+            btnNosotros.TabIndex = 8;
+            btnNosotros.Text = "NOSOTROS";
+            btnNosotros.TextAlign = ContentAlignment.TopLeft;
+            btnNosotros.UseVisualStyleBackColor = true;
+            btnNosotros.Click += btnNosotros_Click;
             // 
-            // button3
+            // panelsubmenu
             // 
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = SystemColors.ButtonFace;
-            button3.Location = new Point(-3, 119);
-            button3.Name = "button3";
-            button3.Size = new Size(200, 52);
-            button3.TabIndex = 6;
-            button3.Text = "REPORTES";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            panelsubmenu.BackColor = Color.FromArgb(35, 32, 39);
+            panelsubmenu.Controls.Add(btnReporte2);
+            panelsubmenu.Controls.Add(btnReporte1);
+            panelsubmenu.Dock = DockStyle.Top;
+            panelsubmenu.Location = new Point(0, 228);
+            panelsubmenu.Name = "panelsubmenu";
+            panelsubmenu.Size = new Size(200, 81);
+            panelsubmenu.TabIndex = 7;
             // 
-            // button2
+            // btnReporte2
             // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(-3, 61);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 52);
-            button2.TabIndex = 5;
-            button2.Text = "CLIENTES";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnReporte2.Dock = DockStyle.Top;
+            btnReporte2.FlatAppearance.BorderSize = 0;
+            btnReporte2.FlatStyle = FlatStyle.Flat;
+            btnReporte2.ForeColor = SystemColors.ButtonHighlight;
+            btnReporte2.Location = new Point(0, 32);
+            btnReporte2.Name = "btnReporte2";
+            btnReporte2.Padding = new Padding(25, 0, 0, 0);
+            btnReporte2.Size = new Size(200, 29);
+            btnReporte2.TabIndex = 8;
+            btnReporte2.Text = "reporte 2";
+            btnReporte2.TextAlign = ContentAlignment.TopLeft;
+            btnReporte2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnReporte1
             // 
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(0, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 52);
-            button1.TabIndex = 4;
-            button1.Text = "TICKET";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnReporte1.Dock = DockStyle.Top;
+            btnReporte1.FlatAppearance.BorderSize = 0;
+            btnReporte1.FlatStyle = FlatStyle.Flat;
+            btnReporte1.ForeColor = SystemColors.ButtonHighlight;
+            btnReporte1.Location = new Point(0, 0);
+            btnReporte1.Name = "btnReporte1";
+            btnReporte1.Padding = new Padding(25, 0, 0, 0);
+            btnReporte1.Size = new Size(200, 32);
+            btnReporte1.TabIndex = 7;
+            btnReporte1.Text = "report1 ";
+            btnReporte1.TextAlign = ContentAlignment.TopLeft;
+            btnReporte1.UseVisualStyleBackColor = true;
+            btnReporte1.Click += button5_Click;
+            // 
+            // btnReportes
+            // 
+            btnReportes.Dock = DockStyle.Top;
+            btnReportes.FlatAppearance.BorderSize = 0;
+            btnReportes.FlatStyle = FlatStyle.Flat;
+            btnReportes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReportes.ForeColor = SystemColors.ButtonHighlight;
+            btnReportes.Location = new Point(0, 178);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Padding = new Padding(10, 0, 0, 0);
+            btnReportes.Size = new Size(200, 50);
+            btnReportes.TabIndex = 5;
+            btnReportes.Text = "REPORTES";
+            btnReportes.TextAlign = ContentAlignment.TopLeft;
+            btnReportes.UseVisualStyleBackColor = true;
+            btnReportes.Click += btnReportes_Click;
+            // 
+            // btnCliente
+            // 
+            btnCliente.Dock = DockStyle.Top;
+            btnCliente.FlatAppearance.BorderSize = 0;
+            btnCliente.FlatStyle = FlatStyle.Flat;
+            btnCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCliente.ForeColor = SystemColors.ButtonHighlight;
+            btnCliente.Location = new Point(0, 128);
+            btnCliente.Name = "btnCliente";
+            btnCliente.Padding = new Padding(10, 0, 0, 0);
+            btnCliente.Size = new Size(200, 50);
+            btnCliente.TabIndex = 4;
+            btnCliente.Text = "CLIENTE";
+            btnCliente.TextAlign = ContentAlignment.TopLeft;
+            btnCliente.UseVisualStyleBackColor = true;
+            btnCliente.Click += btnCliente_Click;
+            // 
+            // btnTicket
+            // 
+            btnTicket.Dock = DockStyle.Top;
+            btnTicket.FlatAppearance.BorderSize = 0;
+            btnTicket.FlatStyle = FlatStyle.Flat;
+            btnTicket.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnTicket.ForeColor = SystemColors.ButtonHighlight;
+            btnTicket.Location = new Point(0, 78);
+            btnTicket.Name = "btnTicket";
+            btnTicket.Padding = new Padding(10, 0, 0, 0);
+            btnTicket.Size = new Size(200, 50);
+            btnTicket.TabIndex = 3;
+            btnTicket.Text = "TICKET";
+            btnTicket.TextAlign = ContentAlignment.TopLeft;
+            btnTicket.UseVisualStyleBackColor = true;
+            btnTicket.Click += btnTicket_Click;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(39, 39, 58);
+            panel3.Controls.Add(label1);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(200, 78);
+            panel3.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Black", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ControlLight;
+            label1.Location = new Point(12, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(162, 37);
+            label1.TabIndex = 2;
+            label1.Text = "CINES UTN";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 150, 136);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(197, -1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(200, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(745, 78);
+            panel2.Size = new Size(741, 78);
             panel2.TabIndex = 1;
             // 
             // label2
@@ -128,35 +216,16 @@
             label2.Text = "INICIO";
             label2.Click += label2_Click;
             // 
-            // PanelTitulo
-            // 
-            PanelTitulo.BackColor = Color.FromArgb(39, 39, 58);
-            PanelTitulo.Controls.Add(label1);
-            PanelTitulo.Location = new Point(0, -1);
-            PanelTitulo.Name = "PanelTitulo";
-            PanelTitulo.Size = new Size(200, 78);
-            PanelTitulo.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Black", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(12, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(162, 37);
-            label1.TabIndex = 2;
-            label1.Text = "CINES UTN";
-            // 
             // lstNostros
             // 
             lstNostros.BackColor = Color.White;
+            lstNostros.Dock = DockStyle.Fill;
             lstNostros.Font = new Font("Tahoma", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             lstNostros.FormattingEnabled = true;
             lstNostros.ItemHeight = 45;
-            lstNostros.Location = new Point(206, 76);
+            lstNostros.Location = new Point(200, 78);
             lstNostros.Name = "lstNostros";
-            lstNostros.Size = new Size(742, 364);
+            lstNostros.Size = new Size(741, 372);
             lstNostros.TabIndex = 2;
             lstNostros.SelectedIndexChanged += lstNostros_SelectedIndexChanged;
             // 
@@ -166,31 +235,34 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(941, 450);
             Controls.Add(lstNostros);
-            Controls.Add(PanelTitulo);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "PaginaPrincipal";
             Text = "PaginaPrincipal";
             Load += PaginaPrincipal_Load;
             panel1.ResumeLayout(false);
+            panelsubmenu.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            PanelTitulo.ResumeLayout(false);
-            PanelTitulo.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
         private Panel panel2;
         private Label label2;
-        private Panel PanelTitulo;
         private Label label1;
         private ListBox lstNostros;
+        private Panel panel3;
+        private Button btnTicket;
+        private Button btnReportes;
+        private Button btnCliente;
+        private Button btnNosotros;
+        private Panel panelsubmenu;
+        private Button btnReporte2;
+        private Button btnReporte1;
     }
 }

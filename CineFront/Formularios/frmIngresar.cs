@@ -31,9 +31,10 @@ namespace CineFront
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             PaginaPrincipal frm = new PaginaPrincipal();
             frm.Show();
+            this.Close();   
 
 
         }

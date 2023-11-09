@@ -21,7 +21,7 @@ namespace CineFront
         {
             frmIngresar frm = new frmIngresar();
             frm.Show();
-            this.Close();
+           
         }
 
         private void BtnCrear_Click(object sender, EventArgs e)
