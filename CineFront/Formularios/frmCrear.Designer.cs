@@ -30,22 +30,23 @@
         {
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             txtUsuario = new TextBox();
             txtContraseña = new TextBox();
-            txtRepetirContraseña = new TextBox();
             txtMail = new TextBox();
             btnAceptar = new Button();
             btnVolver = new Button();
             btnCancelar = new Button();
+            panel1 = new Panel();
+            label3 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(172, 58);
+            label1.Location = new Point(138, 117);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 0;
@@ -55,27 +56,18 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(164, 112);
+            label2.Location = new Point(135, 185);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 1;
             label2.Text = "Contraseña";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(143, 162);
-            label3.Name = "label3";
-            label3.Size = new Size(107, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Repetir Contraseña";
+            label2.Click += label2_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ButtonFace;
-            label4.Location = new Point(172, 216);
+            label4.Location = new Point(155, 251);
             label4.Name = "label4";
             label4.Size = new Size(30, 15);
             label4.TabIndex = 3;
@@ -83,35 +75,30 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(143, 76);
+            txtUsuario.Location = new Point(102, 147);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(100, 23);
+            txtUsuario.Size = new Size(139, 23);
             txtUsuario.TabIndex = 4;
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(143, 130);
+            txtContraseña.Location = new Point(102, 215);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(100, 23);
+            txtContraseña.Size = new Size(139, 23);
             txtContraseña.TabIndex = 5;
-            // 
-            // txtRepetirContraseña
-            // 
-            txtRepetirContraseña.Location = new Point(143, 180);
-            txtRepetirContraseña.Name = "txtRepetirContraseña";
-            txtRepetirContraseña.Size = new Size(100, 23);
-            txtRepetirContraseña.TabIndex = 6;
             // 
             // txtMail
             // 
-            txtMail.Location = new Point(143, 234);
+            txtMail.Location = new Point(78, 280);
             txtMail.Name = "txtMail";
-            txtMail.Size = new Size(100, 23);
+            txtMail.Size = new Size(194, 23);
             txtMail.TabIndex = 7;
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(112, 283);
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.ForeColor = SystemColors.ButtonHighlight;
+            btnAceptar.Location = new Point(78, 347);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(75, 23);
             btnAceptar.TabIndex = 8;
@@ -120,7 +107,9 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(282, 383);
+            btnVolver.FlatStyle = FlatStyle.Flat;
+            btnVolver.ForeColor = SystemColors.ButtonHighlight;
+            btnVolver.Location = new Point(289, 416);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(75, 23);
             btnVolver.TabIndex = 9;
@@ -130,7 +119,9 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(202, 283);
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(226, 347);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 10;
@@ -138,25 +129,47 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(39, 39, 58);
+            panel1.Controls.Add(label3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(383, 100);
+            panel1.TabIndex = 11;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Black", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ControlLight;
+            label3.Location = new Point(102, 31);
+            label3.Name = "label3";
+            label3.Size = new Size(162, 37);
+            label3.TabIndex = 3;
+            label3.Text = "CINES UTN";
+            // 
             // frmCrear
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(51, 51, 76);
-            ClientSize = new Size(417, 451);
+            ClientSize = new Size(383, 451);
+            Controls.Add(panel1);
             Controls.Add(btnCancelar);
             Controls.Add(btnVolver);
             Controls.Add(btnAceptar);
             Controls.Add(txtMail);
-            Controls.Add(txtRepetirContraseña);
             Controls.Add(txtContraseña);
             Controls.Add(txtUsuario);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "frmCrear";
             Text = "Crear";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,14 +178,14 @@
 
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private TextBox txtUsuario;
         private TextBox txtContraseña;
-        private TextBox txtRepetirContraseña;
         private TextBox txtMail;
         private Button btnAceptar;
         private Button btnVolver;
         private Button btnCancelar;
+        private Panel panel1;
+        private Label label3;
     }
 }

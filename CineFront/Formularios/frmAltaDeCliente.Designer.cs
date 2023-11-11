@@ -57,6 +57,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(776, 220);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // button1
             // 
@@ -219,6 +220,7 @@
             Controls.Add(dataGridView1);
             Name = "frmAltaDeCliente";
             Text = "frmAltaDeCliente";
+            Load += frmAltaDeCliente_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

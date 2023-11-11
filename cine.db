@@ -326,6 +326,66 @@ VALUES
     (46, 'Ella', 'Sanchez', '3516789012', 'ella.sanchez@gmail.com', '543210987', 1),
     (47, 'Avery', 'Rodriguez', '3517890123', 'avery.rodriguez@gmail.com','41019295',1 )
 
+UPDATE clientes
+SET telefono = NULL;
+
+  ALTER TABLE clientes
+ALTER COLUMN telefono bigINT;
+
+UPDATE clientes
+SET telefono = CASE 
+    WHEN id_cliente = 1 THEN 3511234567
+    WHEN id_cliente = 2 THEN 3512345678
+    WHEN id_cliente = 3 THEN 3513456789
+    WHEN id_cliente = 4 THEN 3514567890
+    WHEN id_cliente = 5 THEN 3515678901
+    WHEN id_cliente = 6 THEN 3516789012
+    WHEN id_cliente = 7 THEN 3517890123
+    WHEN id_cliente = 8 THEN 3518901234
+    WHEN id_cliente = 9 THEN 3519012345
+    WHEN id_cliente = 10 THEN 3510123456
+    WHEN id_cliente = 11 THEN 3511234567
+    WHEN id_cliente = 12 THEN 3512345678
+    WHEN id_cliente = 13 THEN 3513456789
+    WHEN id_cliente = 14 THEN 3514567890
+    WHEN id_cliente = 15 THEN 3515678901
+    WHEN id_cliente = 16 THEN 3516789012
+    WHEN id_cliente = 17 THEN 3517890123
+    WHEN id_cliente = 18 THEN 3518901234
+    WHEN id_cliente = 19 THEN 3519012345
+    WHEN id_cliente = 20 THEN 3510123456
+    WHEN id_cliente = 21 THEN 3511234567
+    WHEN id_cliente = 22 THEN 3512345678
+    WHEN id_cliente = 23 THEN 3513456789
+    WHEN id_cliente = 24 THEN 3514567890
+    WHEN id_cliente = 25 THEN 3515678901
+    WHEN id_cliente = 26 THEN 3516789012
+    WHEN id_cliente = 27 THEN 3517890123
+    WHEN id_cliente = 28 THEN 3518901234
+    WHEN id_cliente = 29 THEN 3519012345
+    WHEN id_cliente = 30 THEN 3510123456
+    WHEN id_cliente = 31 THEN 3511234567
+    WHEN id_cliente = 32 THEN 3512345678
+    WHEN id_cliente = 33 THEN 3513456789
+    WHEN id_cliente = 34 THEN 3514567890
+    WHEN id_cliente = 35 THEN 3515678901
+    WHEN id_cliente = 36 THEN 3516789012
+    WHEN id_cliente = 37 THEN 3517890123
+    WHEN id_cliente = 38 THEN 3518901234
+    WHEN id_cliente = 39 THEN 3519012345
+    WHEN id_cliente = 40 THEN 3510123456
+    WHEN id_cliente = 41 THEN 3511234567
+    WHEN id_cliente = 42 THEN 3512345678
+    WHEN id_cliente = 43 THEN 3513456789
+    WHEN id_cliente = 44 THEN 3514567890
+    WHEN id_cliente = 45 THEN 3515678901
+    WHEN id_cliente = 46 THEN 3516789012
+    WHEN id_cliente = 47 THEN 3517890123
+    -- Continúa con el resto de los casos
+    ELSE 0 -- Puedes poner un valor por defecto o NULL si no estás seguro
+END;
+
+
 
   INSERT INTO formas_pago (id_forma, descripcion) VALUES
 (1, 'Efectivo'),

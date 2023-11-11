@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineBack.Fachada
+namespace CineBack.services.Interfaces
 {
-    internal interface IAplicacion
+    public interface IServicio
     {
+
     }
 }

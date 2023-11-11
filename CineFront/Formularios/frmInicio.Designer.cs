@@ -33,29 +33,33 @@
             BtnCrear = new Button();
             panel1 = new Panel();
             label1 = new Label();
-            label2 = new Label();
             lblTiempo = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // BtnIngresar
             // 
+            BtnIngresar.FlatStyle = FlatStyle.Flat;
+            BtnIngresar.ForeColor = SystemColors.ButtonFace;
             BtnIngresar.Location = new Point(148, 205);
             BtnIngresar.Name = "BtnIngresar";
             BtnIngresar.Size = new Size(144, 23);
             BtnIngresar.TabIndex = 0;
-            BtnIngresar.Text = "Ingresar Cuenta";
+            BtnIngresar.Text = "INGRESAR";
             BtnIngresar.UseVisualStyleBackColor = true;
             BtnIngresar.Click += BtnIngresar_Click;
             // 
             // BtnCrear
             // 
-            BtnCrear.Location = new Point(148, 262);
+            BtnCrear.FlatStyle = FlatStyle.Flat;
+            BtnCrear.ForeColor = SystemColors.ButtonHighlight;
+            BtnCrear.Location = new Point(148, 266);
             BtnCrear.Name = "BtnCrear";
             BtnCrear.Size = new Size(144, 23);
             BtnCrear.TabIndex = 1;
-            BtnCrear.Text = "Crear Cuenta";
+            BtnCrear.Text = "CREAR CUENTA";
             BtnCrear.UseVisualStyleBackColor = true;
             BtnCrear.Click += BtnCrear_Click;
             // 
@@ -74,21 +78,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(121, 53);
+            label1.Location = new Point(115, 53);
             label1.Name = "label1";
             label1.Size = new Size(203, 46);
             label1.TabIndex = 0;
             label1.Text = "CINES UTN";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(148, 320);
-            label2.Name = "label2";
-            label2.Size = new Size(128, 15);
-            label2.TabIndex = 3;
-            label2.Text = "¿Olvido su contraseña?";
             // 
             // lblTiempo
             // 
@@ -104,14 +98,31 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick_1;
             // 
+            // button1
+            // 
+            button1.AllowDrop = true;
+            button1.AutoSize = true;
+            button1.BackgroundImageLayout = ImageLayout.None;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
+            button1.ForeColor = SystemColors.ButtonShadow;
+            button1.Location = new Point(129, 349);
+            button1.Name = "button1";
+            button1.Size = new Size(177, 27);
+            button1.TabIndex = 5;
+            button1.Text = "Olvido su contraseña?";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(439, 425);
+            Controls.Add(button1);
             Controls.Add(lblTiempo);
-            Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(BtnCrear);
             Controls.Add(BtnIngresar);
@@ -130,8 +141,8 @@
         private Button BtnCrear;
         private Panel panel1;
         private Label label1;
-        private Label label2;
         private Label lblTiempo;
         private System.Windows.Forms.Timer timer1;
+        private Button button1;
     }
 }

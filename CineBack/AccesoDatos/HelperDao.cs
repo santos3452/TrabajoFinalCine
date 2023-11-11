@@ -5,8 +5,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CineBack.AccesoDatos;
 
-namespace CineBack.Datos.Implementacion
+namespace CineBack.AccesoDatos
+
 {
     internal class HelperDao
     {
@@ -16,7 +18,7 @@ namespace CineBack.Datos.Implementacion
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(Properties.Resources.CadenaConexion); // ACA PONGAN SU CADENA DE CONEXION
+            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao

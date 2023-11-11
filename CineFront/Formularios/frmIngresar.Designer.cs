@@ -35,45 +35,52 @@
             btnIngresar = new Button();
             btnVolver = new Button();
             btnCancelar = new Button();
+            panel1 = new Panel();
+            label1 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // Usuario
             // 
             Usuario.AutoSize = true;
+            Usuario.FlatStyle = FlatStyle.Flat;
             Usuario.ForeColor = SystemColors.ButtonFace;
-            Usuario.Location = new Point(153, 34);
+            Usuario.Location = new Point(154, 99);
             Usuario.Name = "Usuario";
-            Usuario.Size = new Size(47, 15);
+            Usuario.Size = new Size(56, 15);
             Usuario.TabIndex = 0;
-            Usuario.Text = "Usuario";
+            Usuario.Text = "USUARIO";
+            Usuario.Click += Usuario_Click;
             // 
             // Contraseña
             // 
             Contraseña.AutoSize = true;
             Contraseña.ForeColor = SystemColors.ControlLightLight;
-            Contraseña.Location = new Point(144, 133);
+            Contraseña.Location = new Point(147, 174);
             Contraseña.Name = "Contraseña";
-            Contraseña.Size = new Size(67, 15);
+            Contraseña.Size = new Size(83, 15);
             Contraseña.TabIndex = 1;
-            Contraseña.Text = "Contraseña";
+            Contraseña.Text = "CONTRASEÑA";
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(130, 79);
+            txtUsuario.Location = new Point(130, 132);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(100, 23);
+            txtUsuario.Size = new Size(111, 23);
             txtUsuario.TabIndex = 2;
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(130, 167);
+            txtContraseña.Location = new Point(130, 204);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(100, 23);
+            txtContraseña.Size = new Size(111, 23);
             txtContraseña.TabIndex = 3;
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(63, 220);
+            btnIngresar.FlatStyle = FlatStyle.Flat;
+            btnIngresar.ForeColor = SystemColors.ButtonHighlight;
+            btnIngresar.Location = new Point(63, 248);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(75, 23);
             btnIngresar.TabIndex = 4;
@@ -83,6 +90,8 @@
             // 
             // btnVolver
             // 
+            btnVolver.FlatStyle = FlatStyle.Flat;
+            btnVolver.ForeColor = SystemColors.ButtonHighlight;
             btnVolver.Location = new Point(290, 293);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(75, 23);
@@ -93,7 +102,9 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(250, 220);
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.ForeColor = SystemColors.ButtonHighlight;
+            btnCancelar.Location = new Point(238, 248);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 6;
@@ -101,12 +112,34 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += BtnCancelar_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(39, 39, 58);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(377, 79);
+            panel1.TabIndex = 7;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Black", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ControlLight;
+            label1.Location = new Point(104, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(162, 37);
+            label1.TabIndex = 3;
+            label1.Text = "CINES UTN";
+            // 
             // frmIngresar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(377, 328);
+            Controls.Add(panel1);
             Controls.Add(btnCancelar);
             Controls.Add(btnVolver);
             Controls.Add(btnIngresar);
@@ -116,6 +149,8 @@
             Controls.Add(Usuario);
             Name = "frmIngresar";
             Text = "Ingresar";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,5 +164,7 @@
         private Button btnIngresar;
         private Button btnVolver;
         private Button btnCancelar;
+        private Panel panel1;
+        private Label label1;
     }
 }

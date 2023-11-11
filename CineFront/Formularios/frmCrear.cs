@@ -26,8 +26,13 @@ namespace CineFront
         {
             txtUsuario.Clear();
             txtContraseña.Clear();
-            txtRepetirContraseña.Clear();
+            
             txtMail.Clear();
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }

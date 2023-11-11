@@ -21,7 +21,7 @@ namespace CineFront
         {
             frmIngresar frm = new frmIngresar();
             frm.Show();
-           
+
         }
 
         private void BtnCrear_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace CineFront
         private void frmInicio_Load(object sender, EventArgs e)
         {
             lblTiempo.Text = DateTime.Now.ToString("hh:mm:ss tt");
-            timer1.Interval = 1000; // Configura el intervalo del timer a 1 segundo
+            timer1.Interval = 1000; 
             timer1.Start();
 
         }
@@ -53,5 +53,10 @@ namespace CineFront
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmPrincipal frm = new frmPrincipal();
+            frm.Show();
+        }
     }
 }
