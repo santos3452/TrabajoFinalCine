@@ -179,10 +179,13 @@ CREATE TABLE butacas_reservadas (
     FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca)
 );
 
-CREATE TABLE usuarios (
+CREATE TABLE Usuario (
+    id_usuario INT IDENTITY(1,1) PRIMARY KEY,
     nombre_de_usuario VARCHAR(50),
-    contrasena VARCHAR(50)
+    contrasena VARCHAR(50),
+    email VARCHAR(50)
 );
+
 
  ALTER TABLE funciones
 DROP COLUMN descripcion;
