@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CineBack.AccesoDatos;
 
 namespace CineBack.Fachada.Implementacion
 {
@@ -14,19 +15,18 @@ namespace CineBack.Fachada.Implementacion
         public List<Clientes> getconsultarClientes()
         {
             List<Clientes> clientes = new List<Clientes>();
-            DataTable dt = HelperDAO.ObtenerInstancia().Consultar("SP_CONSULTAR_CLIENTE");
-            foreach (DataRow r in dt.Rows)
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Clientes");
+            foreach (DataRow r in tabla.Rows)
             {
-                Cliente n = new Cliente();
-                n.Id_Cliente = Convert.ToInt32(r["id_cliente"]);
-                n.Nombre = (r["nom_cliente"]).ToString();
-                n.Apellido = (r["ape_cliente"]).ToString();
-                n.Dni = Convert.ToInt64(r["dni_cliente"]);
-                n.Calle = (string)(r["calle"]);
-                n.Email = (string)(r["email"]);
-                n.Telefono = (long)(r["telefono"]);
-                n.Altura = (int)(r["altura"]);
-                clientes.Add(n);
+                //mapeo
+                Clientes cliente = new Clientes();
+                cliente.id_cliente = Convert.ToInt32(r["id_cliente"].ToString());
+                cliente.nom_cliente = (r["nom_cliente"]).ToString();
+                cliente.apellido_cliente = (r["apellido_cliente"]).ToString();
+                cliente.DNI = Convert.ToInt32(r["DNI"].ToString()); ;
+                cliente.telefono = Convert.ToInt32(r["telefono"].ToString());
+                cliente.email = (r["email"]).ToString();
+                clientes.Add(cliente);
             }
             return clientes;
         }

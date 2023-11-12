@@ -71,27 +71,27 @@ namespace CineBack.AccesoDatos
         }
 
         // Método para ejecutar un procedimiento almacenado que toma una lista de parámetros y devuelve un conjunto de resultados (DataTable)
-        public DataTable Consultar(string nombreSP, List<Parametro> lstParametros)
-        {
-            conexion.Open(); // Abre la conexión a la base de datos
-            SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
-            comando.Connection = conexion; // Establece la conexión para el comando
-            comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
-            comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
-            comando.Parameters.Clear(); // Limpia los parámetros del comando
+        //public DataTable Consultar(string nombreSP, List<Parametro> lstParametros)
+        //{
+        //    conexion.Open(); // Abre la conexión a la base de datos
+        //    SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
+        //    comando.Connection = conexion; // Establece la conexión para el comando
+        //    comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
+        //    comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
+        //    comando.Parameters.Clear(); // Limpia los parámetros del comando
 
-            foreach (Parametro p in lstParametros) // Recorre la lista de parámetros proporcionados
-            {
-                comando.Parameters.AddWithValue(p.Nombre, p.Valor); // Agrega los parámetros al comando
-            }
+        //    foreach (Parametro p in lstParametros) // Recorre la lista de parámetros proporcionados
+        //    {
+        //        comando.Parameters.AddWithValue(p.Nombre, p.Valor); // Agrega los parámetros al comando
+        //    }
 
-            DataTable tabla = new DataTable(); // Crea un DataTable para almacenar los resultados
-            tabla.Load(comando.ExecuteReader()); // Carga el resultado del comando en el DataTable
+        //    DataTable tabla = new DataTable(); // Crea un DataTable para almacenar los resultados
+        //    tabla.Load(comando.ExecuteReader()); // Carga el resultado del comando en el DataTable
 
-            conexion.Close(); // Cierra la conexión a la base de datos
+        //    conexion.Close(); // Cierra la conexión a la base de datos
 
-            return tabla; // Devuelve el DataTable con los resultados obtenidos
-        }
+        //    return tabla; // Devuelve el DataTable con los resultados obtenidos
+        //}
 
         // Método para obtener la instancia de la conexión a la base de datos
         public SqlConnection ObtenerConexion()
