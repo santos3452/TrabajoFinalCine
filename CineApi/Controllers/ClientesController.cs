@@ -14,7 +14,7 @@ namespace CineApi.Controllers
 
         public ClientesController()
         {
-           
+
             gestor = new Servicio();
         }
 

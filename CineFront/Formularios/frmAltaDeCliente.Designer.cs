@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            grillaclientes = new DataGridView();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -44,20 +44,20 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             panel1 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)grillaclientes).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // grillaclientes
             // 
-            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 240);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(776, 220);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            grillaclientes.BackgroundColor = SystemColors.ButtonFace;
+            grillaclientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grillaclientes.Location = new Point(12, 240);
+            grillaclientes.Name = "grillaclientes";
+            grillaclientes.RowTemplate.Height = 25;
+            grillaclientes.Size = new Size(776, 220);
+            grillaclientes.TabIndex = 0;
+            grillaclientes.CellContentClick += dataGridView1_CellContentClick;
             // 
             // button1
             // 
@@ -217,11 +217,11 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(dataGridView1);
+            Controls.Add(grillaclientes);
             Name = "frmAltaDeCliente";
             Text = "frmAltaDeCliente";
             Load += frmAltaDeCliente_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)grillaclientes).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -230,7 +230,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView grillaclientes;
         private Button button1;
         private Button button2;
         private Button button3;

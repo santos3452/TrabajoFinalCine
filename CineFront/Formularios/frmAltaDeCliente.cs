@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CineBack.AccesoDatos;
 using CineBack.Entidades;
 using CineBack.services;
 using CineBack.services.implementaciones;
+using Newtonsoft.Json;
 
 namespace Front.Formularios
 {
@@ -27,10 +29,10 @@ namespace Front.Formularios
 
         private async Task cargarlosclientes()
         {
-            string url = "https://localhost:7066/consultaClientes";
+            string url = "https://localhost:7180/consultaClientes";
             var data = await ClientSingleton.GetInstancia().GetAsync(url);
             var lst = JsonConvert.DeserializeObject<List<Clientes>>(data);
-            dataGridView1.DataSource = lst;
+            grillaclientes.DataSource = lst;
         }
 
 
