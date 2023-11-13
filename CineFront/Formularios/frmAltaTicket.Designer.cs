@@ -28,20 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            button1 = new Button();
+            SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(403, 178);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // frmAltaTicket
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "frmAltaTicket";
-            this.Text = "frmAltaTicket";
-            this.Load += new System.EventHandler(this.frmAltaTicket_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 519);
+            Controls.Add(button1);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "frmAltaTicket";
+            Text = "frmAltaTicket";
+            Load += frmAltaTicket_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
     }
 }

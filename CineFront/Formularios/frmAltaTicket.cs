@@ -19,7 +19,7 @@ namespace Front.Formularios
 
         private void frmAltaTicket_Load(object sender, EventArgs e)
         {
-           
+
         }
     }
 }
