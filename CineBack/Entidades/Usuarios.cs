@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CineBack.Entidades
 {
-    internal class Usuarios
+    public class Usuarios
     {
+        public string Usuario { get; set; }
+        public string Contraseña { get; set; }
+        public string mail { get; set; }
     }
 }

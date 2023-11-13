@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             grillaclientes = new DataGridView();
+            ELIMINAR = new DataGridViewButtonColumn();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -38,26 +40,37 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            txtNombre = new TextBox();
+            txtEmail = new TextBox();
+            txtApellido = new TextBox();
+            txtDni = new TextBox();
+            txtTelefono = new TextBox();
             panel1 = new Panel();
+            servicioBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)grillaclientes).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)servicioBindingSource).BeginInit();
             SuspendLayout();
             // 
             // grillaclientes
             // 
             grillaclientes.BackgroundColor = SystemColors.ButtonFace;
             grillaclientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grillaclientes.Columns.AddRange(new DataGridViewColumn[] { ELIMINAR });
             grillaclientes.Location = new Point(12, 240);
             grillaclientes.Name = "grillaclientes";
             grillaclientes.RowTemplate.Height = 25;
             grillaclientes.Size = new Size(776, 220);
             grillaclientes.TabIndex = 0;
             grillaclientes.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // ELIMINAR
+            // 
+            ELIMINAR.FlatStyle = FlatStyle.Flat;
+            ELIMINAR.HeaderText = "ELIMINAR";
+            ELIMINAR.Name = "ELIMINAR";
+            ELIMINAR.Text = "ELIMINAR";
+            ELIMINAR.UseColumnTextForButtonValue = true;
             // 
             // button1
             // 
@@ -67,6 +80,7 @@
             button1.TabIndex = 1;
             button1.Text = "CANCELAR";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -76,6 +90,7 @@
             button2.TabIndex = 4;
             button2.Text = "GRABAR";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -152,40 +167,40 @@
             label6.TabIndex = 11;
             label6.Text = "INGRESE LOS DATOS DEL CLIENTE";
             // 
-            // textBox1
+            // txtNombre
             // 
-            textBox1.Location = new Point(114, 83);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 12;
+            txtNombre.Location = new Point(114, 83);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(100, 23);
+            txtNombre.TabIndex = 12;
             // 
-            // textBox2
+            // txtEmail
             // 
-            textBox2.Location = new Point(114, 145);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 13;
+            txtEmail.Location = new Point(114, 145);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(100, 23);
+            txtEmail.TabIndex = 13;
             // 
-            // textBox3
+            // txtApellido
             // 
-            textBox3.Location = new Point(341, 83);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 14;
+            txtApellido.Location = new Point(341, 83);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(100, 23);
+            txtApellido.TabIndex = 14;
             // 
-            // textBox4
+            // txtDni
             // 
-            textBox4.Location = new Point(341, 145);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 15;
+            txtDni.Location = new Point(341, 145);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(100, 23);
+            txtDni.TabIndex = 15;
             // 
-            // textBox5
+            // txtTelefono
             // 
-            textBox5.Location = new Point(563, 83);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(100, 23);
-            textBox5.TabIndex = 16;
+            txtTelefono.Location = new Point(563, 83);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(100, 23);
+            txtTelefono.TabIndex = 16;
             // 
             // panel1
             // 
@@ -197,6 +212,10 @@
             panel1.Size = new Size(800, 67);
             panel1.TabIndex = 17;
             // 
+            // servicioBindingSource
+            // 
+            servicioBindingSource.DataSource = typeof(CineBack.services.implementaciones.Servicio);
+            // 
             // frmAltaDeCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -204,11 +223,11 @@
             BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(800, 517);
             Controls.Add(panel1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtTelefono);
+            Controls.Add(txtDni);
+            Controls.Add(txtApellido);
+            Controls.Add(txtEmail);
+            Controls.Add(txtNombre);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -224,6 +243,7 @@
             ((System.ComponentModel.ISupportInitialize)grillaclientes).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)servicioBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -240,11 +260,13 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox txtNombre;
+        private TextBox txtEmail;
+        private TextBox txtApellido;
+        private TextBox txtDni;
+        private TextBox txtTelefono;
         private Panel panel1;
+        private BindingSource servicioBindingSource;
+        private DataGridViewButtonColumn ELIMINAR;
     }
 }

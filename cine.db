@@ -881,9 +881,27 @@ DROP TABLE fechas;
 ALTER TABLE butacas
 DROP COLUMN descripcion;
 
+ALTER procedure [dbo].[SP_Consultar_Clientes]
+as
+begin
+	select id_cliente,nom_cliente,apellido_cliente,telefono,email,DNI
+	from clientes
+	where activo = 1
+end
 
 
-
+create proc [dbo].[SP_Insertar_Cliente] --usado en metodo GrabarCliente()
+@nombre varchar(100),
+@apellido varchar(100),
+@telefono bigint,
+@dni bigint,
+@email varchar(100)
+as
+declare @activo bit = 1
+begin
+insert into clientes (DNI,email,telefono,nom_cliente,apellido_cliente,activo)
+values (@dni,@email,@telefono,@nombre,@apellido,@activo)
+end
 
 
 
