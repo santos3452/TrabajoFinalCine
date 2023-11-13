@@ -32,6 +32,9 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
@@ -70,11 +73,39 @@
             button4.Text = "button4";
             button4.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            button5.Location = new Point(191, 97);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 4;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(192, 218);
+            button6.Name = "button6";
+            button6.Size = new Size(75, 23);
+            button6.TabIndex = 5;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(153, 301);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(325, 23);
+            textBox1.TabIndex = 6;
+            // 
             // frmAltaTicket
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
+            Controls.Add(textBox1);
+            Controls.Add(button6);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -84,6 +115,7 @@
             Text = "frmAltaTicket";
             Load += frmAltaTicket_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -92,5 +124,8 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
+        private Button button6;
+        private TextBox textBox1;
     }
 }
