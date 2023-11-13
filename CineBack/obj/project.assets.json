@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
       "projectName": "CineBack",
-      "projectPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
+      "projectPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",

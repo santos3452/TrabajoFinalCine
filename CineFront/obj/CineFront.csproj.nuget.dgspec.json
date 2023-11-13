@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {}
+    "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {}
   },
   "projects": {
-    "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
+    "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
         "projectName": "CineBack",
-        "projectPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
+        "projectPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {
+    "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
         "projectName": "CineFront",
-        "projectPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
+        "projectPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +89,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
-                "projectPath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineBack\\CineBack.csproj"
+              "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
+                "projectPath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineBack\\CineBack.csproj"
               }
             }
           }

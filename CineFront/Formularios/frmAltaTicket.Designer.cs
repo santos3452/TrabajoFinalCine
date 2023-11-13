@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -40,11 +41,21 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            button2.Location = new Point(702, 89);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 1;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // frmAltaTicket
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
+            Controls.Add(button2);
             Controls.Add(button1);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmAltaTicket";
@@ -56,5 +67,6 @@
         #endregion
 
         private Button button1;
+        private Button button2;
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ph63PCYo6st+CdTjzXjl47lpq/9lh70PraC617LwRcA60uL8oQ9d+lkqTcjsA6d0yHGqAU+WevJMLhr82wzxng==",
+  "dgSpecHash": "3oIzPshYNExLefwxXrBEI38h/WKK52W/XZaNgkATbAbEnCY3QZYMZgGCXch0K04IQQIHcc4qLBRczRTrEqYnqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\Desktop\\Trabajo progra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\Documents\\TrabajoFinalDeProgra\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
