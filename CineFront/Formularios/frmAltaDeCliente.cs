@@ -71,7 +71,7 @@ namespace Front.Formularios
             cliente.TELEFONO = Convert.ToInt64(txtTelefono.Text);
 
             string bodyContent = JsonConvert.SerializeObject(cliente);
-            string url = "https://localhost:7066/cliente";
+            string url = "https://localhost:7066/PostCliente";
             var result = await ClientSingleton.GetInstancia().PostAsync(url, bodyContent);
 
             if (result.Equals("1"))
@@ -81,7 +81,7 @@ namespace Front.Formularios
             }
             else
             {
-                MessageBox.Show("Cliente no registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HUBO UN ERROR AL REGISTRAR EL CLIENTE", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

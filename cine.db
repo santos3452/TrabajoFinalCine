@@ -35,7 +35,7 @@ CREATE TABLE formas_pago (
 
 -- Tabla clientes
 CREATE TABLE clientes (
-    id_cliente INT PRIMARY KEY,
+    id_cliente INT IDENTITY(1,1) PRIMARY KEY,
     nom_cliente VARCHAR(255),
     apellido_cliente VARCHAR(255),
     telefono VARCHAR(20),

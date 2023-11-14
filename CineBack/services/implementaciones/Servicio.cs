@@ -18,6 +18,9 @@ namespace CineBack.services.implementaciones
         {
             oDao = new Aplicacion();
         }
+
+        
+
         public List<Clientes> getconsultarClientes()
         {
             return oDao.getconsultarClientes();

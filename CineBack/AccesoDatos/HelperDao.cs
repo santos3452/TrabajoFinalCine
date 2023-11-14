@@ -34,43 +34,34 @@ namespace CineBack.AccesoDatos
 
         public int EjecutarSQL(string strSql, List<Parametro> values)
         {
-            int afectadas = 0;
-            SqlTransaction t = null;
+
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction transaccion = null;
+            int filasAfectadas = 0;
 
             try
             {
-                
                 conexion.Open();
-                SqlCommand cmd = new SqlCommand(strSql, conexion, t);
-                t = conexion.BeginTransaction();
                 cmd.Connection = conexion;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = strSql;
-                cmd.Transaction = t;
-
-                if (values != null)
+                cmd.Parameters.Clear();
+                foreach (Parametro p in values)
                 {
-                    foreach (Parametro param in values)
-                    {
-                        cmd.Parameters.AddWithValue(param.Clave, param.Valor);
-                    }
+                    cmd.Parameters.AddWithValue(p.Clave, p.Valor);
                 }
-
-                afectadas = cmd.ExecuteNonQuery();
-                t.Commit();
+                filasAfectadas = cmd.ExecuteNonQuery();
+                //cnn.Close();
+                return filasAfectadas;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                if (t != null) { t.Rollback(); }
+                throw (ex);
             }
             finally
             {
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                    conexion.Close();
-
+                conexion.Close();
             }
-
-            return afectadas;
         }
 
 
