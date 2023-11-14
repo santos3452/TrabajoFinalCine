@@ -34,10 +34,14 @@ namespace CineFront
         private void btnIngresar_Click(object sender, EventArgs e)
         {
 
+            PaginaPrincipal principal = new PaginaPrincipal();
+            principal.Show();
 
             // Obtener el usuario y la contraseña desde los campos de texto en el formulario
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
+
+            
 
             // Crear una instancia de HttpClient, que se utiliza para realizar solicitudes HTTP
             //using (HttpClient client = new HttpClient())
