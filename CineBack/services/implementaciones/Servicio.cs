@@ -1,4 +1,5 @@
-﻿using CineBack.Fachada;
+﻿using CineBack.Entidades;
+using CineBack.Fachada;
 using CineBack.Fachada.Implementacion;
 using CineBack.services.Interfaces;
 using System;
@@ -11,12 +12,20 @@ namespace CineBack.services.implementaciones
 {
     public class Servicio : IServicio
     {
-        private IAplicacion oDao;
+        private IAplicationRepository oDao;
 
         public Servicio()
         {
-            oDao = new Aplicacion();
+            oDao = new AplicationRepository();
         }
+        public List<Clientes> getconsultarClientes()
+        {
+            return oDao.getconsultarClientes();
+
+        }
+
+        
+
 
 
     }

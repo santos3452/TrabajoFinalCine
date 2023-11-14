@@ -149,6 +149,7 @@
             Controls.Add(Usuario);
             Name = "frmIngresar";
             Text = "Ingresar";
+            Load += frmIngresar_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

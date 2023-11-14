@@ -66,13 +66,14 @@ namespace CineFront
 
                 }
             }
-
-
-
-
         }
 
         private void Usuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmIngresar_Load(object sender, EventArgs e)
         {
 
         }
