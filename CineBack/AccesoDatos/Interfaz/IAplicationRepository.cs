@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CineBack.Fachada
 {
-    internal interface IAplicationRepository
+    public interface IAplicacion
     {
 
         List<Clientes> getconsultarClientes();

@@ -305,7 +305,7 @@ go
 CREATE procedure [dbo].[SP_Consultar_Clientes]
 as
 begin
-	select id_cliente,nom_cliente,apellido_cliente,telefono,email,telefono
+	select id_cliente,nom_cliente,apellido_cliente,telefono,email,DNI
 	from clientes
 end;
 GO

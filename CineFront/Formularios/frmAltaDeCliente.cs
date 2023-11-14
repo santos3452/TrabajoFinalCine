@@ -71,7 +71,7 @@ namespace Front.Formularios
             cliente.TELEFONO = Convert.ToInt64(txtTelefono.Text);
 
             string bodyContent = JsonConvert.SerializeObject(cliente);
-            string url = "https://localhost:7066/PostCliente";
+            string url = "https://localhost:7180/PostCliente";
             var result = await ClientSingleton.GetInstancia().PostAsync(url, bodyContent);
 
             if (result.Equals("1"))
@@ -94,7 +94,7 @@ namespace Front.Formularios
             grillaclientes.DataSource = lst;
             if (lst == null)
             {
-                MessageBox.Show("Sin datos de presupuestos para los filtros ingresados", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sin datos de clientes para los filtros ingresados", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
