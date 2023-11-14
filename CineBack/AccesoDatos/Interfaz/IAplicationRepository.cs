@@ -11,5 +11,7 @@ namespace CineBack.Fachada
     {
 
         List<Clientes> getconsultarClientes();
+        public bool getEliminarCliente(int idCliente);
+        public int  getInsertarCliente(Clientes oCliente);
     }
 }

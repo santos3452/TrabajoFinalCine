@@ -1,8 +1,7 @@
-
--- Crear la base de datos
-CREATE DATABASE CineDB;
-USE CineDB;
-
+Create database CineDB;
+GO
+Use CineDB;
+GO
 -- Tabla cines
 CREATE TABLE cines (
     codigo_cine INT PRIMARY KEY,
@@ -36,7 +35,7 @@ CREATE TABLE formas_pago (
 
 -- Tabla clientes
 CREATE TABLE clientes (
-    id_cliente INT PRIMARY KEY,
+    id_cliente INT IDENTITY(1,1) PRIMARY KEY,
     nom_cliente VARCHAR(255),
     apellido_cliente VARCHAR(255),
     telefono VARCHAR(20),
@@ -44,26 +43,15 @@ CREATE TABLE clientes (
 );
 
 -- Tabla facturas
-CREATE TABLE facturas (
+CREATE TABLE TicketFactura (
     id_factura INT PRIMARY KEY,
     fecha DATE,
     id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
-);
-
--- Tabla detalles_facturas
-CREATE TABLE detalles_facturas (
-    id_detalle_factura INT PRIMARY KEY,
-    id_factura INT,
-    id_butaca INT,
-    precio DECIMAL(10, 2),
-    id_descuento INT,
-    FOREIGN KEY (id_factura) REFERENCES facturas(id_factura),
-    FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca),
-    FOREIGN KEY (id_descuento) REFERENCES descuento(id_descuento)
+    CONSTRAINT FK_Facturas_Clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
 -- Tabla estados
+
 CREATE TABLE estados (
     id_estado INT PRIMARY KEY,
     descripcion VARCHAR(255)
@@ -74,7 +62,7 @@ CREATE TABLE detalles_pagos (
     id_detalle_pago INT PRIMARY KEY,
     id_factura INT,
     id_forma INT,
-    FOREIGN KEY (id_factura) REFERENCES facturas(id_factura),
+    FOREIGN KEY (id_factura) REFERENCES TicketFactura(id_factura),
     FOREIGN KEY (id_forma) REFERENCES formas_pago(id_forma)
 );
 
@@ -83,7 +71,7 @@ CREATE TABLE salas (
     id_sala INT PRIMARY KEY,
     cantidad_butaca INT,
     codigo_cine INT,
-    FOREIGN KEY (codigo_cine) REFERENCES cines(codigo_cine)
+    Constraint FK_Salas_cod_cine FOREIGN KEY (codigo_cine) REFERENCES cines(codigo_cine)
 );
 
 -- Tabla peliculas
@@ -111,9 +99,9 @@ CREATE TABLE butacas (
     id_estado INT,
     descripcion VARCHAR(255),
     id_sala INT,
-    FOREIGN KEY (codigo_funcion) REFERENCES funciones(codigo_funcion),
-    FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
-    FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
+    --FOREIGN KEY (codigo_funcion) REFERENCES funciones(codigo_funcion),
+    --FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
+    --FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
 );
 
 -- Tabla funciones
@@ -124,10 +112,8 @@ CREATE TABLE funciones (
     fecha DATE,
     hora TIME,
     precio DECIMAL(10, 2),
-    id_sala INT,
-    FOREIGN KEY (codigo_pelicula) REFERENCES peliculas(codigo_pelicula),
-    FOREIGN KEY (id_sala) REFERENCES salas(id_sala)
-);
+    id_sala INT
+	);
 
 -- Tabla fechas
 CREATE TABLE fechas (
@@ -150,7 +136,7 @@ CREATE TABLE descuento (
     id_descuento INT PRIMARY KEY,
     id_tipo INT,
     valor DECIMAL(10, 2),
-    FOREIGN KEY (id_tipo) REFERENCES tipo_descuento(id_tipo)
+    --FOREIGN KEY (id_tipo) REFERENCES tipo_descuento(id_tipo)
 );
 
 -- Tabla tipo_descuento
@@ -174,10 +160,8 @@ CREATE TABLE ticket (
 CREATE TABLE butacas_reservadas (
     id_butaca_reservada INT PRIMARY KEY,
     id_reserva INT,
-    id_butaca INT,
-    FOREIGN KEY (id_reserva) REFERENCES reservas(id_reserva),
-    FOREIGN KEY (id_butaca) REFERENCES butacas(id_butaca)
-);
+    id_butaca INT
+	);
 
 CREATE TABLE Usuario (
     id_usuario INT IDENTITY(1,1) PRIMARY KEY,
@@ -185,25 +169,33 @@ CREATE TABLE Usuario (
     contrasena VARCHAR(50),
     email VARCHAR(50)
 );
+-- Tabla detalles_facturas
+CREATE TABLE detalle_Ticketfactura (
+    id_detalle_factura INT PRIMARY KEY,
+    id_factura INT,
+    id_butaca INT,
+    precio DECIMAL(10, 2),
+    id_descuento INT,
+	id_funcion int
+	constraint FK_detalles_ticketfactura_funcion foreign key (id_funcion)
+	references Funciones (codigo_funcion)
+	);
+
 
 
  ALTER TABLE funciones
 DROP COLUMN descripcion;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--Agregar relacion entre Descuento y tipo de descuento
+alter table Descuento
+add constraint Fk_Descuento_tipo
+FOREIGN KEY (id_tipo) 
+REFERENCES tipo_descuento(id_tipo)
+--Agregar relacion entre butacas y estado
+ALTER TABLE butacas
+ADD CONSTRAINT FK_Butacas_Estado
+FOREIGN KEY (id_estado) 
+REFERENCES estados(id_estado)
 -- Agregar relación entre butacas y salas
 ALTER TABLE butacas
 ADD CONSTRAINT FK_Butacas_Salas
@@ -220,17 +212,17 @@ ADD CONSTRAINT FK_Fechas_Funciones
 FOREIGN KEY (codigo_funcion)
 REFERENCES funciones (codigo_funcion);
 -- Agregar relación entre detalles_facturas y facturas
-ALTER TABLE detalles_facturas
+ALTER TABLE detalle_Ticketfactura
 ADD CONSTRAINT FK_DetallesFacturas_Facturas
 FOREIGN KEY (id_factura)
-REFERENCES facturas (id_factura);
+REFERENCES TicketFactura (id_factura);
 -- Agregar relación entre detalles_facturas y butacas
-ALTER TABLE detalles_facturas
+ALTER TABLE detalle_Ticketfactura
 ADD CONSTRAINT FK_DetallesFacturas_Butacas
 FOREIGN KEY (id_butaca)
 REFERENCES butacas (id_butaca);
 -- Agregar relación entre detalles_facturas y descuento
-ALTER TABLE detalles_facturas
+ALTER TABLE detalle_Ticketfactura
 ADD CONSTRAINT FK_DetallesFacturas_Descuento
 FOREIGN KEY (id_descuento)
 REFERENCES descuento (id_descuento);
@@ -270,13 +262,149 @@ ADD CONSTRAINT FK_Funciones_Salas
 FOREIGN KEY (id_sala)
 REFERENCES salas (id_sala);
 
-CREATE TABLE usuarios (
-    nombre_de_usuario VARCHAR(50),
-    contrasena VARCHAR(50)
-);
 
----------------------INSERTS
+--nuevos atributos a la tabla clientes
+ALTER TABLE clientes
+ADD activo bit;
 
+ALTER TABLE clientes
+ADD DNI BIGINT;
+
+
+--Otras modificaciones
+DROP TABLE Ticket;
+
+DROP TABLE detalles_pagos;
+
+ALTER TABLE Ticketfactura
+ADD id_forma INT NULL,
+Constraint FK_TicketFacturas_formaPago FOREIGN KEY (id_forma) REFERENCES formas_pago(id_forma);
+
+ALTER TABLE peliculas
+DROP COLUMN fecha_final
+
+ALTER TABLE peliculas
+DROP COLUMN fecha_inicio
+
+ALTER TABLE peliculas
+ADD duracion TIME;
+
+ALTER TABLE peliculas
+DROP COLUMN codigo_fecha
+
+DROP TABLE fechas;
+
+ALTER TABLE butacas
+DROP COLUMN descripcion;
+
+go
+-------------------------------------------------------------------------------
+
+--------------SP-----
+--consulta datos del cliente
+CREATE procedure [dbo].[SP_Consultar_Clientes]
+as
+begin
+	select id_cliente,nom_cliente,apellido_cliente,telefono,email,telefono
+	from clientes
+end;
+GO
+-- consulta datos del cliente pasandole un nombre como parametro
+CREATE procedure [dbo].[sp_buscar_clientes_nombre]
+as
+begin
+declare @nombre varchar (50)
+select nom_cliente,apellido_cliente
+from Clientes
+where nom_cliente like ('%' +@nombre+ '%')
+END;
+GO
+-- cpnsulta datos del cliente pasandole apellido por parametro
+CREATE procedure [dbo].[sp_buscar_clientes_apellido]
+as
+begin
+declare @apellido varchar (50)
+select nom_cliente,apellido_cliente
+from Clientes
+where apellido_cliente like ('%' +@apellido+ '%')
+END;
+go
+
+--consulta sobre funciones por fecha como parametro
+CREATE PROCEDURE [dbo].[sp_consultar_funciones_fecha]
+  as
+  begin
+  declare @fecha date
+  select f.codigo_funcion,p.nombre_pelicula+' - '+cast(format(f.fecha,'dd/MM/yyyy') as varchar)+' - Sala '+cast(id_sala as varchar) 
+  from funciones f, peliculas p
+  where f.codigo_funcion=p.codigo_pelicula  and f.fecha>=@fecha
+  end;
+  go
+-- consulta total de fechas
+CREATE PROC [dbo].[sp_consultar_total_fechas]
+AS
+BEGIN
+SELECT f.codigo_funcion,f.codigo_pelicula,f.fecha,f.hora,f.precio,id_sala,p.nombre_pelicula  as titulos
+from Funciones f join Peliculas p on p.codigo_pelicula = f.codigo_pelicula
+END;
+go
+
+--consulta de todas las peliculas disponibles
+CREATE PROCEDURE [dbo].[sp_consultar_pelicula]
+as
+begin
+select * from Peliculas
+end;
+go
+---
+CREATE PROCEDURE [dbo].[sp_consultar_peliculas_nombre]
+  as
+  begin
+  select codigo_pelicula, nombre_pelicula
+  from peliculas
+  end;
+  go
+--consulta de cliente
+CREATE PROCEDURE [dbo].[SP_GRABAR_CLIENTE] 
+as
+declare @activo bit = 1,@nombre varchar(100),
+@apellido varchar(100),
+@telefono bigint,
+@dni bigint,
+@email varchar(100)
+begin
+insert into clientes (email,telefono,nom_cliente,apellido_cliente, DNI, activo)
+values (@email,@telefono,@nombre,@apellido,@dni,@activo)
+end;
+go
+---dar de baja a un cliente
+
+CREATE PROCEDURE [dbo].[SP_BAJA_CLIENTES]
+as
+begin
+declare @clienteID int
+update clientes set activo=0 where id_cliente=@clienteID
+end;
+go
+--
+create proc [dbo].[SP_Insertar_Cliente] --usado en metodo GrabarCliente()
+as
+declare @activo bit = 1,@nombre varchar(100),
+@apellido varchar(100),
+@telefono bigint,
+@dni bigint,
+@email varchar(100)
+begin
+insert into clientes (DNI,email,telefono,nom_cliente,apellido_cliente,activo)
+values (@dni,@email,@telefono,@nombre,@apellido,@activo)
+end;
+
+GO
+
+
+---------------------INSERTS---------------------
+
+SET IDENTITY_INSERT [dbo].[clientes] ON 
 
 INSERT INTO clientes (id_cliente, nom_cliente, apellido_cliente, telefono, email, DNI, activo)
 VALUES 
@@ -290,7 +418,7 @@ VALUES
     (7, 'Carlos', 'Hernandez', '3517890123', 'carlos.hernandez@gmail.com', '432109876', 1),
     (8, 'Sofia', 'Perez', '3518901234', 'sofia.perez@gmail.com', '321098765', 1),
     (9, 'Luis', 'Gomez', '3519012345', 'luis.gomez@gmail.com', '210987654', 1),
-    (10, 'Valentina', 'Diaz', '3510123456', 'valentina.diaz@gmail.com', '109876543', 1)
+    (10, 'Valentina', 'Diaz', '3510123456', 'valentina.diaz@gmail.com', '109876543', 1),
     (11, 'Mariano', 'Fernandez', '3511234567', 'mariano.fernandez@gmail.com', '098765432', 1),
     (12, 'Camila', 'Lopez', '3512345678', 'camila.lopez@gmail.com', '987654321', 1),
     (13, 'Agustin', 'Gutierrez', '3513456789', 'agustin.gutierrez@gmail.com', '876543210', 1),
@@ -327,13 +455,17 @@ VALUES
     (44, 'Aria', 'Gutierrez', '3514567890', 'aria.gutierrez@gmail.com', '765432109', 1),
     (45, 'Elena', 'Martinez', '3515678901', 'elena.martinez@gmail.com', '654321098', 1),
     (46, 'Ella', 'Sanchez', '3516789012', 'ella.sanchez@gmail.com', '543210987', 1),
-    (47, 'Avery', 'Rodriguez', '3517890123', 'avery.rodriguez@gmail.com','41019295',1 )
+    (47, 'Avery', 'Rodriguez', '3517890123', 'avery.rodriguez@gmail.com','41019295',1 );
+	SET IDENTITY_INSERT [dbo].[Clientes] OFF
+	GO
 
 UPDATE clientes
 SET telefono = NULL;
+GO
 
   ALTER TABLE clientes
 ALTER COLUMN telefono bigINT;
+GO
 
 UPDATE clientes
 SET telefono = CASE 
@@ -384,16 +516,16 @@ SET telefono = CASE
     WHEN id_cliente = 45 THEN 3515678901
     WHEN id_cliente = 46 THEN 3516789012
     WHEN id_cliente = 47 THEN 3517890123
-    -- Continúa con el resto de los casos
-    ELSE 0 -- Puedes poner un valor por defecto o NULL si no estás seguro
+    ELSE 0 
 END;
-
+GO
 
 
   INSERT INTO formas_pago (id_forma, descripcion) VALUES
 (1, 'Efectivo'),
 (2, 'Débito'),
 (3, 'Crédito');
+GO
 
 INSERT INTO categorias (codigo_categoria, descripcion)
 VALUES
@@ -409,7 +541,7 @@ VALUES
 (10, 'Suspenso'),
 (11, 'Documental'),
 (12, 'Infantil');
-
+GO
 
   INSERT INTO formatos (id_formato, descripcion)
 VALUES
@@ -419,7 +551,7 @@ VALUES
 (4, 'IMAX 3D'),
 (5, 'Dolby Atmos'),
 (6, 'ScreenX');
-
+GO
 
 INSERT INTO clasificaciones (codigo_clasificacion, descripcion)
 VALUES
@@ -429,12 +561,12 @@ VALUES
 (4, 'Prohibida para menores de 17 años'),
 (5, 'Guía parental'),
 (6, 'Sin clasificación');
-
+GO
 
 INSERT INTO cines (codigo_cine, nombre_cine, localidad)
 VALUES
 (1, 'SUNSTAR', 'Cordoba');
-
+GO
 
 
 INSERT INTO peliculas (codigo_pelicula, nombre_pelicula, codigo_cine, codigo_Categoria, codigo_clasificacion, duracion)
@@ -477,7 +609,8 @@ VALUES
 (36, 'Sinfonía del Anochecer', 1, 12, 6, '01:30:00'),
 (37, 'Sombras del Pasado', 1, 1, 1, '02:15:00'),
 (38, 'El Último Susurro', 1, 2, 2, '01:45:00'),
-(39, 'Aventuras en el Crepúsculo', 1, 3, 3, '02:30:00')
+(39, 'Aventuras en el Crepúsculo', 1, 3, 3, '02:30:00');
+GO
 
   UPDATE peliculas
 SET director = 
@@ -523,7 +656,8 @@ SET director =
         WHEN 39 THEN 'Martin Scorsese'
         WHEN 40 THEN 'Quentin Tarantino'
         
-    END
+    END;
+	GO
 
 
 INSERT INTO salas (id_sala, cantidad_butaca, codigo_cine)
@@ -536,9 +670,9 @@ VALUES
 (6, 50, 1),
 (7, 50, 1),
 (8, 50, 1);
-
+GO
 UPDATE salas SET cantidad_butaca = 15 WHERE id_sala BETWEEN 1 AND 4;
-UPDATE salas SET cantidad_butaca = 20 WHERE id_sala BETWEEN 5 AND 8;
+UPDATE salas SET cantidad_butaca = 20 WHERE id_sala BETWEEN 5 AND 8; 
 
 
 
@@ -624,10 +758,11 @@ VALUES
 (77, 21, '2024-01-24', '16:00:00', 1165.00, 5),
 (78, 12, '2024-01-25', '18:15:00', 1335.25, 6),
 (79, 29, '2024-01-26', '20:30:00', 1100.90, 2),
-(80, 4, '2024-01-27', '22:45:00', 1250.50, 5)
+(80, 4, '2024-01-27', '22:45:00', 1250.50, 5);
+GO
 
 
-  UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 1;
+  UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 1; 
 UPDATE funciones SET precio = 1300 WHERE codigo_pelicula = 2;
 UPDATE funciones SET precio = 1100 WHERE codigo_pelicula = 3;
 UPDATE funciones SET precio = 1250 WHERE codigo_pelicula = 4;
@@ -638,7 +773,7 @@ UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 8;
 UPDATE funciones SET precio = 1300 WHERE codigo_pelicula = 9;
 UPDATE funciones SET precio = 1100 WHERE codigo_pelicula = 10;
 UPDATE funciones SET precio = 1250 WHERE codigo_pelicula = 11;
-UPDATE funciones SET precio = 1280.90 WHERE codigo_pelicula = 12;
+UPDATE funciones SET precio = 1280.90 WHERE codigo_pelicula = 12; 
 UPDATE funciones SET precio = 1320 WHERE codigo_pelicula = 13;
 UPDATE funciones SET precio = 1300 WHERE codigo_pelicula = 14;
 UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 15;
@@ -668,54 +803,54 @@ UPDATE funciones SET precio = 1100 WHERE codigo_pelicula = 38;
 UPDATE funciones SET precio = 1250 WHERE codigo_pelicula = 39;
 
 
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1), (13, 1), (14, 1), (15, 1);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (16, 2), (17, 2), (18, 2), (19, 2), (20, 2), (21, 2), (22, 2), (23, 2), (24, 2), (25, 2), (26, 2), (27, 2), (28, 2), (29, 2), (30, 2);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (31, 3), (32, 3), (33, 3), (34, 3), (35, 3), (36, 3), (37, 3), (38, 3), (39, 3), (40, 3), (41, 3), (42, 3), (43, 3), (44, 3), (45, 3);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (46, 4), (47, 4), (48, 4), (49, 4), (50, 4), (51, 4), (52, 4), (53, 4), (54, 4), (55, 4), (56, 4), (57, 4), (58, 4), (59, 4), (60, 4);
-
+GO
 -- Insertar butacas para salas del 5 al 8 con 20 butacas cada una
 INSERT INTO butacas (id_butaca, id_sala)
-
+GO
 VALUES
 (61, 5), (62, 5), (63, 5), (64, 5), (65, 5), (66, 5), (67, 5), (68, 5), (69, 5), (70, 5), (71, 5), (72, 5), (73, 5), (74, 5), (75, 5), (76, 5), (77, 5), (78, 5), (79, 5), (80, 5);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (81, 6), (82, 6), (83, 6), (84, 6), (85, 6), (86, 6), (87, 6), (88, 6), (89, 6), (90, 6), (91, 6), (92, 6), (93, 6), (94, 6), (95, 6), (96, 6), (97, 6), (98, 6), (99, 6), (100, 6);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (101, 7), (102, 7), (103, 7), (104, 7), (105, 7), (106, 7), (107, 7), (108, 7), (109, 7), (110, 7), (111, 7), (112, 7), (113, 7), (114, 7), (115, 7), (116, 7), (117, 7), (118, 7), (119, 7), (120, 7);
-
+GO
 INSERT INTO butacas (id_butaca, id_sala)
 VALUES
 (121, 8), (122, 8), (123, 8), (124, 8), (125, 8), (126, 8), (127, 8), (128, 8), (129, 8), (130, 8), (131, 8), (132, 8), (133, 8), (134, 8), (135, 8), (136, 8), (137,8)
 
-
+GO
 
 
  INSERT INTO tipo_descuento (id_tipo, descripcion)
 VALUES
 (1, 'Descuento por Pago con debito'),
 (2, 'Sin Descuento')
-
+GO
 
 -- Insertar un descuento
 INSERT INTO descuento (id_descuento, id_tipo, valor)
 VALUES (1, 1, 10);
-
+GO
 INSERT INTO Ticketfactura (id_factura, fecha, id_cliente, id_forma)
 VALUES
 (1, '2023-01-01', 12, 2),
@@ -744,7 +879,7 @@ VALUES
 (24, '2024-12-08', 10, 2),
 (25, '2025-01-01', 24, 1),
 (26, '2025-02-14', 40, 3);
-
+GO
 
   INSERT INTO detalle_Ticketfactura (id_detalle_factura, id_factura, id_butaca, precio, id_descuento, id_funcion)
 VALUES
@@ -759,130 +894,11 @@ VALUES
 (9, 9, 9, 100, null, 9),
 (10, 10, 10, 120, 1, 10)
 
+GO
 
 
 
 
-
-
---------------SP-----
---consulta datos del cliente
-CREATE procedure [dbo].[SP_Consultar_Clientes]
-as
-begin
-	select id_cliente,nom_cliente,apellido_cliente,telefono,email,telefono
-	from clientes
-end
--- consulta datos del cliente pasandole un nombre como parametro
-CREATE procedure [dbo].[sp_buscar_clientes_nombre]
-@nombre varchar (50)
-as
-select nom_cliente,apellido_cliente
-from Clientes
-where nom_cliente like ('%' +@nombre+ '%')
-
--- cpnsulta datos del cliente pasandole apellido por parametro
-CREATE procedure [dbo].[sp_buscar_clientes_apellido]
-@apellido varchar (50)
-as
-select nom_cliente,apellido_cliente
-from Clientes
-where apellido_cliente like ('%' +@apellido+ '%')
-
---consulta sobre funciones por fecha como parametro
-CREATE PROCEDURE [dbo].[sp_consultar_funciones_fecha]
-@fecha date
-  as
-  begin
-  select f.codigo_funcion,p.nombre_pelicula+' - '+cast(format(f.fecha,'dd/MM/yyyy') as varchar)+' - Sala '+cast(id_sala as varchar) 
-  from funciones f, peliculas p
-  where f.codigo_funcion=p.codigo_pelicula  and f.fecha>=@fecha
-  end
--- consulta total de fechas
-CREATE PROC [dbo].[sp_consultar_total_fechas]
-AS
-BEGIN
-SELECT f.codigo_funcion,f.codigo_pelicula,f.fecha,f.hora,f.precio,id_sala,p.nombre_pelicula  as titulos
-from Funciones f join Peliculas p on p.codigo_pelicula = f.codigo_pelicula
-END
-
---consulta de todas las peliculas disponibles
-CREATE PROCEDURE [dbo].[sp_consultar_pelicula]
-as
-select * from Peliculas
-
-CREATE PROCEDURE [dbo].[sp_consultar_peliculas_nombre]
-  as
-  begin
-  select codigo_pelicula, nombre_pelicula
-  from peliculas
-  end
-
---nuevos atributos a la tabla clientes
-  ALTER TABLE clientes
-ADD activo bit;
-
-ALTER TABLE clientes
-ADD DNI BIGINT;
---consulta de cliente
-CREATE PROCEDURE [dbo].[SP_GRABAR_CLIENTE] 
-@nombre varchar(100),
-@apellido varchar(100),
-@telefono bigint,
-@dni bigint,
-@email varchar(100)
-as
-declare @activo bit = 1
-begin
-insert into clientes (email,telefono,nom_cliente,apellido_cliente, DNI, activo)
-values (@email,@telefono,@nombre,@apellido,@dni,@activo)
-end
-
----dar de baja a un cliente
-
-
-CREATE PROCEDURE [dbo].[SP_BAJA_CLIENTES]
-@clienteID int
-as
-begin
-update clientes set activo=0 where id_cliente=@clienteID
-end
-
---------------<CAMBIOS EN LA BASE
-
-DROP TABLE Ticket;
-
-DROP TABLE detalles_pagos;
-
-
-ALTER TABLE facturas
-ADD id_forma INT NULL,
-FOREIGN KEY (id_forma) REFERENCES formas_pago(id_forma);
-
-
-ALTER TABLE detalles_pagos
-ADD id_funcion INT NULL,
-FOREIGN KEY (id_funcion) REFERENCES funciones(codigo_funcion);
-
-EXEC sp_rename 'detalle_factura', 'detalle_Ticketfactura';
-EXEC sp_rename 'factura', 'Ticketfactura';
-
-ALTER TABLE peliculas
-DROP COLUMN fecha_final
-
-ALTER TABLE peliculas
-DROP COLUMN fecha_inicio
-
-ALTER TABLE peliculas
-ADD duracion TIME;
-
-ALTER TABLE peliculas
-DROP COLUMN codigo_fecha
-
-DROP TABLE fechas;
-
-ALTER TABLE butacas
-DROP COLUMN descripcion;
 
 
 

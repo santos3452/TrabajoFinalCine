@@ -11,31 +11,35 @@ namespace CineBack.Entidades
     {
      
         public int id_cliente { get; set; }
-        public string nom_cliente { get; set; }
-        public string apellido_cliente{ get; set; }
-        public int telefono { get; set; }
-        public string email { get; set; }
-        public int DNI { get; set; }
+        public string NOMBRE { get; set; }
+        public string APELLIDO{ get; set; }
+        public long TELEFONO { get; set; }
+        public string EMAIL { get; set; }
+        public long DNI { get; set; }
 
-        public Clientes(int id_cliente, string nom_cliente, string apellido_cliente, int telefono, string email, int dNI)
+        public Clientes(int id_cliente, string nOMBRE, string aPELLIDO, long tELEFONO, string eMAIL, long dNI)
         {
             this.id_cliente = id_cliente;
-            this.nom_cliente = nom_cliente;
-            this.apellido_cliente = apellido_cliente;
-            this.telefono = telefono;
-            this.email = email;
-            this.DNI = dNI;
+            NOMBRE = nOMBRE;
+            APELLIDO = aPELLIDO;
+            TELEFONO = tELEFONO;
+            EMAIL = eMAIL;
+            DNI = dNI;
         }
+
+
 
         public Clientes()
         {
             this.id_cliente = 0;
-            this.nom_cliente = string.Empty;
-            this.apellido_cliente = string.Empty;
-            this.telefono = 0;
-            this.email = string.Empty;
+            this.NOMBRE = string.Empty;
+            this.APELLIDO = string.Empty;
+            this.TELEFONO = 0;
+            this.EMAIL = string.Empty;
             this.DNI = 0;
         }
+
+       
     }
 
 

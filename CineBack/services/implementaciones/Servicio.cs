@@ -18,11 +18,26 @@ namespace CineBack.services.implementaciones
         {
             oDao = new AplicationRepository();
         }
+
+        
+
         public List<Clientes> getconsultarClientes()
         {
             return oDao.getconsultarClientes();
 
+
         }
+        public bool getEliminarCliente(int idCliente)
+        {
+            return oDao.getEliminarCliente(idCliente);
+        }
+
+       public int getInsertarCliente(Clientes oCliente)
+        {
+            return oDao.getInsertarCliente( oCliente);
+        }
+
+
 
         
 

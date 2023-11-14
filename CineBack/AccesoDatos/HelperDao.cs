@@ -32,6 +32,44 @@ namespace CineBack.AccesoDatos
             return instancia; // Devuelve la instancia existente o recién creada
         }
 
+
+        public int EjecutarSQL(string strSql, List<Parametro> values)
+        {
+
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction transaccion = null;
+            int filasAfectadas = 0;
+
+            try
+            {
+                conexion.Open();
+                cmd.Connection = conexion;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = strSql;
+                cmd.Parameters.Clear();
+                foreach (Parametro p in values)
+                {
+                    cmd.Parameters.AddWithValue(p.Clave, p.Valor);
+                }
+                filasAfectadas = cmd.ExecuteNonQuery();
+                //cnn.Close();
+                return filasAfectadas;
+            }
+            catch (SqlException ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+
+
+
+
         // Método para ejecutar un procedimiento almacenado que devuelve un valor escalar (un solo valor)
         public int ConsultarEscalar(string nombreSP, string nombreParamOut)
         {

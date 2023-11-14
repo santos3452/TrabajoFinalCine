@@ -25,10 +25,43 @@ namespace CineApi.Controllers
             return Ok(gestor.getconsultarClientes());
         }
 
-        [HttpPost("/Consultar")]
-        public async Task<IActionResult> GetAllClientes([FromBody] Usuarios user)
+        [HttpDelete("/EliminarCliente")]
+        public IActionResult EliminarCliente(int id)
         {
-            return Ok("El usuario es " + user.Usuario );
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest("error ");
+                }
+                return Ok(gestor.getEliminarCliente(id));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
+
+        [HttpPost("/PostCliente")]
+        public IActionResult PostCliente(Clientes cliente)
+        {
+            try
+            {
+                if (cliente == null)
+                    return BadRequest("Error al dar de alta al cliente.");
+
+                return Ok(gestor.getInsertarCliente(cliente));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+
+
+
     }
 }
