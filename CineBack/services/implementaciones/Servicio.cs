@@ -12,11 +12,11 @@ namespace CineBack.services.implementaciones
 {
     public class Servicio : IServicio
     {
-        private IAplicationRepository oDao;
+        private IAplicacion oDao;
 
         public Servicio()
         {
-            oDao = new AplicationRepository();
+            oDao = new Aplicacion();
         }
 
         

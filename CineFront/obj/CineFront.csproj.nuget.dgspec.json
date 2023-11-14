@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {}
+    "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineFront\\CineFront.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\CineApi.csproj": {
+    "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\CineApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\CineApi.csproj",
+        "projectUniqueName": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\CineApi.csproj",
         "projectName": "CineApi",
-        "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\CineApi.csproj",
-        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\obj\\",
+        "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\CineApi.csproj",
+        "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
-                "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj"
+              "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj": {
+                "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj"
               }
             }
           }
@@ -73,21 +72,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
+    "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
+        "projectUniqueName": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj",
         "projectName": "CineBack",
-        "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj",
-        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\obj\\",
+        "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj",
+        "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -134,21 +133,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineFront\\CineFront.csproj": {
+    "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineFront\\CineFront.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
+        "projectUniqueName": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineFront\\CineFront.csproj",
         "projectName": "CineFront",
-        "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineFront\\CineFront.csproj",
-        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineFront\\obj\\",
+        "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineFront\\CineFront.csproj",
+        "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineFront\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -162,11 +161,11 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\CineApi.csproj": {
-                "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineApi\\CineApi.csproj"
+              "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\CineApi.csproj": {
+                "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineApi\\CineApi.csproj"
               },
-              "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj": {
-                "projectPath": "C:\\Users\\lauta\\Desktop\\TrabajoPrograFinal\\TrabajoFinal\\TrabajoFinalCine\\CineBack\\CineBack.csproj"
+              "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj": {
+                "projectPath": "C:\\Users\\brand\\Documents\\TrabajoFinalProgra\\CineBack\\CineBack.csproj"
               }
             }
           }
@@ -213,7 +212,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

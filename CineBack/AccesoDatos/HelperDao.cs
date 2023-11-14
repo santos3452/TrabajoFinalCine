@@ -19,7 +19,7 @@ namespace CineBack.AccesoDatos
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB1;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
+            conexion = new SqlConnection(@"Data Source=BRANDON;Initial Catalog=CineDB;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao
@@ -36,12 +36,13 @@ namespace CineBack.AccesoDatos
         public int EjecutarSQL(string strSql, List<Parametro> values)
         {
 
-            SqlCommand cmd = new SqlCommand();
-            
+
+            SqlTransaction transaccion = null;
             int filasAfectadas = 0;
 
             try
             {
+                SqlCommand cmd = new SqlCommand();
                 conexion.Open();
                 cmd.Connection = conexion;
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -52,17 +53,24 @@ namespace CineBack.AccesoDatos
                     cmd.Parameters.AddWithValue(p.Clave, p.Valor);
                 }
                 filasAfectadas = cmd.ExecuteNonQuery();
-                //cnn.Close();
-                return filasAfectadas;
+                transaccion.Commit();
+
+
             }
             catch (SqlException ex)
             {
-                throw (ex);
+                if (transaccion != null)
+                {
+                    transaccion.Rollback();
+                }
             }
             finally
             {
-                conexion.Close();
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                    conexion.Close();
             }
+
+            return filasAfectadas;
         }
 
 
@@ -137,5 +145,38 @@ namespace CineBack.AccesoDatos
             return conexion; // Devuelve el objeto de conexión a la base de datos
         }
 
+        public int EjecutarSQL2(string sp, List<Parametro> lst)
+        {
+
+            SqlCommand cmd = new SqlCommand();
+
+            int filasAfectadas = 0;
+
+            try
+            {
+                conexion.Open();
+                cmd.Connection = conexion;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Parameters.Clear();
+                foreach (Parametro p in lst)
+                {
+                    cmd.Parameters.AddWithValue(p.Clave, p.Valor);
+                }
+                filasAfectadas = cmd.ExecuteNonQuery();
+                //cnn.Close();
+                return filasAfectadas;
+            }
+            catch (SqlException ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
     }
+
 }
