@@ -5,6 +5,7 @@ using CineBack.services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +13,11 @@ namespace CineBack.services.implementaciones
 {
     public class Servicio : IServicio
     {
-        private IAplicationRepository oDao;
+        private IAplicacion oDao;
 
         public Servicio()
         {
-            oDao = new AplicationRepository();
+            oDao = new Aplicacion();
         }
 
         
@@ -27,9 +28,9 @@ namespace CineBack.services.implementaciones
 
 
         }
-        public bool getEliminarCliente(int idCliente)
+        public bool getEliminarCliente(int id_cliente)
         {
-            return oDao.getEliminarCliente(idCliente);
+            return oDao.getEliminarCliente(id_cliente);
         }
 
        public int getInsertarCliente(Clientes oCliente)
@@ -37,9 +38,11 @@ namespace CineBack.services.implementaciones
             return oDao.getInsertarCliente( oCliente);
         }
 
+        public bool getActualizarCliente(Clientes oCliente)
+        {
 
-
-        
+            return oDao.getActualizarCliente(oCliente);
+        }
 
 
 

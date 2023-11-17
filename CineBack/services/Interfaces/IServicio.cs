@@ -13,6 +13,7 @@ namespace CineBack.services.Interfaces
         List<Clientes> getconsultarClientes();
         bool getEliminarCliente(int idCliente);
         int getInsertarCliente(Clientes oCliente);
+        public bool getActualizarCliente(Clientes oCliente);
     }
 
 }

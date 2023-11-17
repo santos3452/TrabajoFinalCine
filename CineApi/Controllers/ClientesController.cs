@@ -3,6 +3,7 @@ using CineBack.services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using CineBack.Entidades;
+using System.Net.Sockets;
 
 namespace CineApi.Controllers
 {
@@ -43,6 +44,7 @@ namespace CineApi.Controllers
             }
         }
 
+
         [HttpPost("/PostCliente")]
         public IActionResult PostCliente(Clientes cliente)
         {
@@ -59,9 +61,25 @@ namespace CineApi.Controllers
             }
         }
 
+        [HttpPut("/ActualizarCliente")]
+        public IActionResult ActualizarCliente(Clientes cliente)
+        {
+            try
+            {
+                if (cliente == null)
+                    return BadRequest("ERROR AL DAR DE ALTA EL TICKET");
+
+                return Ok(gestor.getActualizarCliente(cliente));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
 
 
 
+
+        }
     }
 }

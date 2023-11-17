@@ -379,27 +379,61 @@ end;
 go
 ---dar de baja a un cliente
 
-CREATE PROCEDURE [dbo].[SP_BAJA_CLIENTES]
+CREATE PROCEDURE [dbo].[SP_Eliminar_Clientes]
+@id int
 as
 begin
-declare @clienteID int
-update clientes set activo=0 where id_cliente=@clienteID
-end;
-go
+update clientes set activo=0 where id_cliente=@id
+end
+
 --
-create proc [dbo].[SP_Insertar_Cliente] --usado en metodo GrabarCliente()
-as
-declare @activo bit = 1,@nombre varchar(100),
+CREATE proc [dbo].[SP_Insertar_Cliente] --usado en metodo GrabarCliente()
+@nombre varchar(100),
 @apellido varchar(100),
 @telefono bigint,
 @dni bigint,
 @email varchar(100)
+as
+declare @activo bit = 1
 begin
-insert into clientes (DNI,email,telefono,nom_cliente,apellido_cliente,activo)
-values (@dni,@email,@telefono,@nombre,@apellido,@activo)
-end;
+insert into clientes (nom_cliente,apellido_cliente,DNI,email,telefono,activo)
+values (@nombre,@apellido,@dni,@email,@telefono,@activo)
+end
+
 
 GO
+
+CREATE PROCEDURE [dbo].[SP_Actualizar_Cliente]
+    @idCliente INT,
+    @nombre VARCHAR(100),
+    @apellido VARCHAR(100),
+    @telefono BIGINT,
+    @dni BIGINT,
+    @email VARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    
+    IF EXISTS (SELECT 1 FROM clientes WHERE id_cliente = @idCliente)
+    BEGIN
+        UPDATE clientes
+        SET nom_cliente = @nombre,
+            apellido_cliente = @apellido,
+            DNI = @dni,
+            email = @email,
+            telefono = @telefono,
+            activo = 1 
+        WHERE id_cliente = @idCliente;
+
+        PRINT 'Cliente actualizado correctamente.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'El cliente con el ID proporcionado no existe.';
+    END
+END
+
 
 
 ---------------------INSERTS---------------------

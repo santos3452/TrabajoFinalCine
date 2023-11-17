@@ -38,24 +38,26 @@ namespace CineBack.Fachada.Implementacion
             return clientes;
         }
 
-        public bool getEliminarCliente(int IDCliente)
+        public bool getEliminarCliente(int id_cliente)
         {
-            string sp = "SP_Eliminar_Cliente";
+            string sp = "SP_Eliminar_Clientes";
             List<Parametro> lst = new List<Parametro>();
-            lst.Add(new Parametro("@id", IDCliente));
+            lst.Add(new Parametro("@id", id_cliente));
             int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
             return afectadas > 0;
 
         }
+
+     
         public int getInsertarCliente(Clientes Cliente)
         {
             string sp = "SP_Insertar_Cliente";
             List<Parametro> parametros = new List<Parametro>();
             parametros.Add(new Parametro("@nombre", Cliente.NOMBRE));
             parametros.Add(new Parametro("@apellido", Cliente.APELLIDO));
+            parametros.Add(new Parametro("@telefono", Cliente.TELEFONO));
             parametros.Add(new Parametro("@dni", Cliente.DNI));
             parametros.Add(new Parametro("@email", Cliente.EMAIL));
-            parametros.Add(new Parametro("@telefono", Cliente.TELEFONO));
 
             return HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
 
@@ -63,9 +65,26 @@ namespace CineBack.Fachada.Implementacion
             
         }
 
+        public bool getActualizarCliente(Clientes Cliente)
+        {
+            string sp = "SP_Actualizar_Cliente";
+            List<Parametro> parametros = new List<Parametro>();
+            parametros.Add(new Parametro("@idCliente", Cliente.id_cliente));
+            parametros.Add(new Parametro("@nombre", Cliente.NOMBRE));
+            parametros.Add(new Parametro("@apellido", Cliente.APELLIDO));
+            parametros.Add(new Parametro("@telefono", Cliente.TELEFONO));
+            parametros.Add(new Parametro("@dni", Cliente.DNI));
+            parametros.Add(new Parametro("@email", Cliente.EMAIL));
+            int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
+            return afectadas != 0;
+
+
+
+        }
 
 
 
 
-}
+
+    }
 }

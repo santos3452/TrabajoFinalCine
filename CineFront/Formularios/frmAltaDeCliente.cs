@@ -37,23 +37,53 @@ namespace Front.Formularios
                 MessageBox.Show("ERROR. Algun campo se encuentra vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtDni.Text.Length > 10)
+            if (txtDni.Text.Length > 9)
             {
-                MessageBox.Show("ERROR. El N° de DNI solo puede tener 8 digitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR. El N° de DNI  puede tener hasta 8 digitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
             if (Int32.TryParse(txtDni.Text, out int a) == false)
             {
                 MessageBox.Show("ERROR. Ingrese solo numeros en el N° de DNI.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            foreach (DataGridViewRow row in grillaclientes.Rows)
+            {
+                if (row.Cells["Dni"].Value.ToString().Equals(txtDni.Text))
+                {
+                    string valorCelda = row.Cells["id_cliente"].Value.ToString();
+                    MessageBox.Show("Este cliente ya ha sido registrado" + "Es el ID: " + valorCelda, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("Ingrese un correo válido");
-                txtEmail.Clear();
+                MessageBox.Show("Ingrese un correo válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
 
             }
+
+            if (!Regex.IsMatch(txtNombre.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un nombre válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Regex.IsMatch(txtApellido.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un apellido válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Regex.IsMatch(txtTelefono.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un apellido válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
 
 
             return true;
@@ -63,7 +93,7 @@ namespace Front.Formularios
         private async Task insertarClientesAsync()
         {
 
-            validar();
+
             cliente.NOMBRE = txtNombre.Text;
             cliente.APELLIDO = txtApellido.Text;
             cliente.DNI = Convert.ToInt64(txtDni.Text);
@@ -76,7 +106,7 @@ namespace Front.Formularios
 
             if (result.Equals("1"))
             {
-                MessageBox.Show("Cliente Registrado", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cliente Registrado exitosamente", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cargarlosclientes();
             }
             else
@@ -88,6 +118,7 @@ namespace Front.Formularios
 
         private async Task cargarlosclientes()
         {
+
             string url = "https://localhost:7180/ConsultarClientes";
             var data = await ClientSingleton.GetInstancia().GetAsync(url);
             var lst = JsonConvert.DeserializeObject<List<Clientes>>(data);
@@ -109,6 +140,7 @@ namespace Front.Formularios
 
 
 
+
         private void limpiar()
         {
             txtNombre.Text = "";
@@ -126,18 +158,36 @@ namespace Front.Formularios
             int ID;
             if (grillaclientes.CurrentCell.ColumnIndex == 0)
             {
-                ID = Convert.ToInt32(grillaclientes.CurrentRow.Cells[1].Value);
+                ID = Convert.ToInt32(grillaclientes.CurrentRow.Cells[2].Value);
                 await eliminarCliente(ID);
+                cargarlosclientes();
 
                 //grillaclientes.Rows.Remove(grillaclientes.CurrentRow);
             }
-            cargarlosclientes();
+
+            if (grillaclientes.CurrentCell.ColumnIndex == 1)
+            {
+                btnGrabar.Visible = false;
+                btnActualizar.Visible = true;
+                txtNombre.Text = grillaclientes.CurrentRow.Cells["NOMBRE"].Value.ToString();
+                txtApellido.Text = grillaclientes.CurrentRow.Cells["APELLIDO"].Value.ToString();
+                txtTelefono.Text = grillaclientes.CurrentRow.Cells["TELEFONO"].Value.ToString();
+                txtEmail.Text = grillaclientes.CurrentRow.Cells["EMAIL"].Value.ToString();
+                txtDni.Text = grillaclientes.CurrentRow.Cells["DNI"].Value.ToString();
+
+
+            }
+
+
+
+
 
         }
 
         private void frmAltaDeCliente_Load(object sender, EventArgs e)
         {
             cargarlosclientes();
+            btnActualizar.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,6 +202,86 @@ namespace Front.Formularios
         private void button2_Click(object sender, EventArgs e)
         {
 
+            if (validar())
+            {
+                insertarClientesAsync();
+                limpiar();
+                btnGrabar.Visible = true;
+                btnActualizar.Visible = false;
+                cargarlosclientes();
+            }
+
+        }
+
+
+
+        private async Task ActualizarClientesAsync()
+        {
+
+
+            cliente.id_cliente = Convert.ToInt32(grillaclientes.CurrentRow.Cells[2].Value);
+            cliente.NOMBRE = txtNombre.Text;
+            cliente.APELLIDO = txtApellido.Text;
+            cliente.DNI = long.Parse(txtDni.Text);
+            cliente.EMAIL = txtEmail.Text;
+            cliente.TELEFONO = long.Parse(txtTelefono.Text);
+
+
+            string bodyContent = JsonConvert.SerializeObject(cliente);
+            string url = "https://localhost:7180/ActualizarCliente";
+            var result = await ClientSingleton.GetInstancia().PutAsync(url, bodyContent);
+
+
+            if (result.Equals("true"))
+            {
+                MessageBox.Show("Cliente actualizado exitosamente", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cargarlosclientes();
+
+            }
+            else
+            {
+                MessageBox.Show("HUBO UN ERROR AL ACTUALIZAR EL CLIENTE", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void btnActualizar_MouseClick(object sender, MouseEventArgs e)
+        {
+
+
+            if (validar())
+            {
+                ActualizarClientesAsync();
+                limpiar();
+                btnGrabar.Visible = true;
+                btnActualizar.Visible = false;
+            }
+
+
+
+
+
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+          
+            
+            this.Close();
+            
         }
     }
 }
