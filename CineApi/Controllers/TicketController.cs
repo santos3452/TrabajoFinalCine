@@ -35,5 +35,26 @@ namespace CineApi.Controllers
         }
 
 
+        [HttpGet("/FuncionesPorID")]
+        public IActionResult getFuncionesPorID(int id)
+        {
+
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest("error ");
+                }
+                return Ok(gestor.getFunciones_por_ID(id));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
+
     }
 }

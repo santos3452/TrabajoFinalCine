@@ -301,6 +301,17 @@ go
 -------------------------------------------------------------------------------
 
 --------------SP-----
+
+CREATE PROCEDURE Sp_Buscar_Funcion_Pelicula
+    @id_pelicula INT
+AS
+BEGIN
+    
+    SELECT *
+    FROM funciones
+    WHERE codigo_pelicula = @id_pelicula;
+END;
+
 --consulta datos del cliente
 CREATE procedure [dbo].[SP_Consultar_Clientes]
 as

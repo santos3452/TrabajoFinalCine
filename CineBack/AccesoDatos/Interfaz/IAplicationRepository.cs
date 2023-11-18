@@ -21,5 +21,6 @@ namespace CineBack.Fachada
 
         List<FormaDePago> getFormaDelPago();
         List<Peliculas> GetPeliculas();
+        List<Funciones> getFunciones_por_ID(int codigo_pelicula);
     }
 }

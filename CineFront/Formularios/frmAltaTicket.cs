@@ -19,13 +19,14 @@ namespace Front.Formularios
         Clientes clientes;
         private string datoformA;
         private readonly int idClienteSeleccionado;
+        private  int codigo_pelicula_seleccionado;
         public frmAltaTicket(int datoSeleccionado)
         {
             InitializeComponent();
 
-            this.idClienteSeleccionado = datoSeleccionado; // Guardar el ID del cliente seleccionado
+            this.idClienteSeleccionado = datoSeleccionado; // Guarda el ID del cliente seleccionado
 
-            // Llamar a cargarlosclientes() después de inicializar los componentes
+
 
         }
         private async Task<List<Clientes>> cargarlosclientes()
@@ -56,11 +57,26 @@ namespace Front.Formularios
             CargarLasPeliculas();
             cmbPeliculas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboButaca.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFuncion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClientSelec.Enabled = false;
+          
+        }
 
+        private async Task BuscarFuncionPorID(int id)
+        {
+            var url = "https://localhost:7180/FuncionesPorID?id=" + id;
+            var data = await ClientSingleton.GetInstancia().GetAsync(url);
+            var forma = JsonConvert.DeserializeObject<List<Funciones>>(data);
+
+            cboFuncion.DataSource = forma;
+            cboFuncion.DisplayMember = "codigo_funcion";
+            cboFuncion.ValueMember = "codigo_funcion";
 
 
         }
+
+
 
         private async Task CargarLasPeliculas()
         {
@@ -71,6 +87,16 @@ namespace Front.Formularios
             cmbPeliculas.DataSource = forma;
             cmbPeliculas.DisplayMember = "nombre_pelicula";
             cmbPeliculas.ValueMember = "codigo_pelicula";
+
+            cmbPeliculas.SelectedIndexChanged += async (sender, args) =>
+            {
+                if (cmbPeliculas.SelectedItem is Peliculas PeliculaSeleccionada)
+                {
+                    codigo_pelicula_seleccionado = PeliculaSeleccionada.codigo_pelicula; // Actualizar el ID de la película seleccionada
+                    await BuscarFuncionPorID(codigo_pelicula_seleccionado);
+                }
+            };
+
         }
 
 
@@ -79,11 +105,13 @@ namespace Front.Formularios
             string url = "https://localhost:7180/FormasDePago";
             var data = await ClientSingleton.GetInstancia().GetAsync(url);
             var forma = JsonConvert.DeserializeObject<List<FormaDePago>>(data);
-            
+
             cmbFormaPago.DataSource = forma;
             cmbFormaPago.DisplayMember = "descripcion";
             cmbFormaPago.ValueMember = "forma";
         }
+
+       
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -91,6 +119,16 @@ namespace Front.Formularios
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboFuncion_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

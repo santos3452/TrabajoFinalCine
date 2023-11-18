@@ -64,6 +64,25 @@ namespace CineBack.AccesoDatos
                 conexion.Close();
             }
         }
+        public DataTable ConsultaFiltros(string spNombre, List<Parametro> values)
+        {
+            DataTable tabla = new DataTable();
+
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand(spNombre, conexion);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (values != null)
+            {
+                foreach (Parametro oParametro in values)
+                {
+                    cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
+                }
+            }
+            tabla.Load(cmd.ExecuteReader());
+            conexion.Close();
+
+            return tabla;
+        }
 
 
 

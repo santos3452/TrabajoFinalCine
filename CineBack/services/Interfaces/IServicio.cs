@@ -22,6 +22,7 @@ namespace CineBack.services.Interfaces
 
         List<FormaDePago> getFormaDelPago();
         List<Peliculas> getPeliculas();
+        List<Funciones> getFunciones_por_ID(int codigo_pelicula);
 
 
     }

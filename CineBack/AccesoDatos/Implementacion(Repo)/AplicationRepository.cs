@@ -134,8 +134,37 @@ namespace CineBack.Fachada.Implementacion
 
 
         }
+        List<Funciones> IAplicacion.getFunciones_por_ID(int codigo_pelicula)
+        {
+            string sp = "Sp_Buscar_Funcion_Pelicula";
+            List<Funciones> funciones = new List<Funciones>();
 
-      
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro("@id_pelicula", codigo_pelicula));
+            DataTable tabla = HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
+
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Funciones fun = new Funciones();
+                fun.codigo_funcion = Convert.ToInt32(r["codigo_funcion"]);
+                fun.codigo_pelicula = Convert.ToInt32(r["codigo_pelicula"]);
+                fun.fecha  = (DateTime)(r["fecha"]);
+                TimeSpan? hora = (TimeSpan)r["hora"];
+                fun.HoraPeli = hora;
+                fun.precio = Convert.ToInt32(r["precio"]);
+                fun.id_sala = Convert.ToInt32(r["id_sala"]);
+
+
+                funciones.Add(fun);
+
+            }
+            return funciones;
+
+
+        }
+
+
     }
 
 

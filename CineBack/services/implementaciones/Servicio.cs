@@ -60,7 +60,11 @@ namespace CineBack.services.implementaciones
             return oDao.GetPeliculas();
         }
 
+       
 
-
+        List<Funciones> IServicio.getFunciones_por_ID(int codigo_pelicula)
+        {
+            return oDao.getFunciones_por_ID(codigo_pelicula);
+        }
     }
 }

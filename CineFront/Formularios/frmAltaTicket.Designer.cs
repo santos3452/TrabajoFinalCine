@@ -32,6 +32,10 @@
             lblNOMBRE = new Label();
             label6 = new Label();
             panel2 = new Panel();
+            cboButaca = new ComboBox();
+            label5 = new Label();
+            cboFuncion = new ComboBox();
+            label4 = new Label();
             label3 = new Label();
             cmbPeliculas = new ComboBox();
             label2 = new Label();
@@ -78,6 +82,10 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(51, 51, 76);
+            panel2.Controls.Add(cboButaca);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(cboFuncion);
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(cmbPeliculas);
             panel2.Controls.Add(label2);
@@ -92,11 +100,49 @@
             panel2.TabIndex = 19;
             panel2.Paint += panel2_Paint;
             // 
+            // cboButaca
+            // 
+            cboButaca.FormattingEnabled = true;
+            cboButaca.Location = new Point(384, 72);
+            cboButaca.Name = "cboButaca";
+            cboButaca.Size = new Size(48, 23);
+            cboButaca.TabIndex = 10;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = SystemColors.ButtonHighlight;
+            label5.Location = new Point(257, 80);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 15);
+            label5.TabIndex = 9;
+            label5.Text = "BUTACA DISPONIBLE:";
+            label5.Click += label5_Click;
+            // 
+            // cboFuncion
+            // 
+            cboFuncion.FormattingEnabled = true;
+            cboFuncion.Location = new Point(384, 41);
+            cboFuncion.Name = "cboFuncion";
+            cboFuncion.Size = new Size(317, 23);
+            cboFuncion.TabIndex = 8;
+            cboFuncion.SelectedIndexChanged += cboFuncion_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = SystemColors.ButtonHighlight;
+            label4.Location = new Point(316, 49);
+            label4.Name = "label4";
+            label4.Size = new Size(62, 15);
+            label4.TabIndex = 7;
+            label4.Text = "FUNCION:";
+            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(27, 73);
+            label3.Location = new Point(316, 15);
             label3.Name = "label3";
             label3.Size = new Size(62, 15);
             label3.TabIndex = 6;
@@ -105,7 +151,7 @@
             // cmbPeliculas
             // 
             cmbPeliculas.FormattingEnabled = true;
-            cmbPeliculas.Location = new Point(95, 70);
+            cmbPeliculas.Location = new Point(384, 12);
             cmbPeliculas.Name = "cmbPeliculas";
             cmbPeliculas.Size = new Size(317, 23);
             cmbPeliculas.TabIndex = 5;
@@ -189,5 +235,9 @@
         private ComboBox cmbFormaPago;
         private Label label3;
         private ComboBox cmbPeliculas;
+        private ComboBox cboFuncion;
+        private Label label4;
+        private ComboBox cboButaca;
+        private Label label5;
     }
 }
