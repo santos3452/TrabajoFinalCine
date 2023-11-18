@@ -8,8 +8,8 @@ namespace CineBack.Entidades
 {
     public class FormaDePago
     {
-        public int id_formapago;
-        public string descripcion;
+        public int id_formapago {  get; set; }
+        public string descripcion { get; set; }
 
         public FormaDePago()
         {

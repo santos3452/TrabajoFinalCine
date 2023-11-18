@@ -3,7 +3,8 @@ using CineBack.services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Numerics;
 using System.Net.Sockets;
-
+using CineBack.Fachada;
+using CineBack.Fachada.Implementacion;
 
 namespace CineApi.Controllers
 {
@@ -21,17 +22,18 @@ namespace CineApi.Controllers
         }
 
 
-        //[HttpGet("/ConsultarFormasDePago")]
-        //public  IActionResult GetFormasDePago()
-        //{
-        //    return Ok(gestor.getFormaDePagos());
-        //}
-
-        [HttpGet("/FormaDePagos")]
-        public async Task<IActionResult> GetPagos()
+        [HttpGet("/FormasDePago")]
+        public IActionResult GetFormasDePago()
         {
-            return Ok(gestor.getFormasDePago());
+            return Ok(gestor.getFormaDelPago());
         }
+
+        [HttpGet("/Peliculas")]
+        public IActionResult GetPeliculas()
+        {
+            return Ok(gestor.getPeliculas());
+        }
+
 
     }
 }

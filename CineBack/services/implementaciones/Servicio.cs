@@ -45,14 +45,20 @@ namespace CineBack.services.implementaciones
             return oDao.getActualizarCliente(oCliente);
         }
 
-       
-
-        List<FormaDePago> IServicio.getFormasDePago()
-        {
-            return oDao.getFormasDePago();
-        }
 
         //TICKET
+
+        public List<FormaDePago> getFormaDelPago()
+        {
+            return oDao.getFormaDelPago();
+
+        }
+
+
+       public  List<Peliculas> getPeliculas()
+        {
+            return oDao.GetPeliculas();
+        }
 
 
 

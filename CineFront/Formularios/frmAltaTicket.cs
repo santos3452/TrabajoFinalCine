@@ -1,4 +1,5 @@
-﻿using CineBack.Entidades;
+﻿using BackEnd.Dominio;
+using CineBack.Entidades;
 using CineBack.Http;
 using Newtonsoft.Json;
 using System;
@@ -51,10 +52,37 @@ namespace Front.Formularios
         private void frmAltaTicket_Load(object sender, EventArgs e)
         {
             cargarlosclientes();
+            CargarLasFormasDePago();
+            CargarLasPeliculas();
+            cmbPeliculas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClientSelec.Enabled = false;
 
 
 
+        }
+
+        private async Task CargarLasPeliculas()
+        {
+            string url = "https://localhost:7180/Peliculas";
+            var data = await ClientSingleton.GetInstancia().GetAsync(url);
+            var forma = JsonConvert.DeserializeObject<List<Peliculas>>(data);
+
+            cmbPeliculas.DataSource = forma;
+            cmbPeliculas.DisplayMember = "nombre_pelicula";
+            cmbPeliculas.ValueMember = "codigo_pelicula";
+        }
+
+
+        private async Task CargarLasFormasDePago()
+        {
+            string url = "https://localhost:7180/FormasDePago";
+            var data = await ClientSingleton.GetInstancia().GetAsync(url);
+            var forma = JsonConvert.DeserializeObject<List<FormaDePago>>(data);
+            
+            cmbFormaPago.DataSource = forma;
+            cmbFormaPago.DisplayMember = "descripcion";
+            cmbFormaPago.ValueMember = "forma";
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

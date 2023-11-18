@@ -32,11 +32,13 @@
             lblNOMBRE = new Label();
             label6 = new Label();
             panel2 = new Panel();
+            label3 = new Label();
+            cmbPeliculas = new ComboBox();
+            label2 = new Label();
+            cmbFormaPago = new ComboBox();
             cmbClientSelec = new ComboBox();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            comboBox1 = new ComboBox();
-            label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -76,8 +78,10 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(51, 51, 76);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(cmbPeliculas);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(cmbFormaPago);
             panel2.Controls.Add(cmbClientSelec);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(dataGridView1);
@@ -87,6 +91,42 @@
             panel2.Size = new Size(1151, 409);
             panel2.TabIndex = 19;
             panel2.Paint += panel2_Paint;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = SystemColors.ButtonHighlight;
+            label3.Location = new Point(27, 73);
+            label3.Name = "label3";
+            label3.Size = new Size(62, 15);
+            label3.TabIndex = 6;
+            label3.Text = "PELICULA:";
+            // 
+            // cmbPeliculas
+            // 
+            cmbPeliculas.FormattingEnabled = true;
+            cmbPeliculas.Location = new Point(95, 70);
+            cmbPeliculas.Name = "cmbPeliculas";
+            cmbPeliculas.Size = new Size(317, 23);
+            cmbPeliculas.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(877, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 15);
+            label2.TabIndex = 4;
+            label2.Text = "FORMA DE PAGO:";
+            // 
+            // cmbFormaPago
+            // 
+            cmbFormaPago.FormattingEnabled = true;
+            cmbFormaPago.Location = new Point(994, 9);
+            cmbFormaPago.Name = "cmbFormaPago";
+            cmbFormaPago.Size = new Size(121, 23);
+            cmbFormaPago.TabIndex = 3;
             // 
             // cmbClientSelec
             // 
@@ -117,24 +157,6 @@
             dataGridView1.Size = new Size(1151, 216);
             dataGridView1.TabIndex = 0;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(380, 12);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(263, 15);
-            label2.Name = "label2";
-            label2.Size = new Size(102, 15);
-            label2.TabIndex = 4;
-            label2.Text = "FORMA DE PAGO:";
-            // 
             // frmAltaTicket
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -164,6 +186,8 @@
         private ComboBox cmbClientSelec;
         private Label lblNOMBRE;
         private Label label2;
-        private ComboBox comboBox1;
+        private ComboBox cmbFormaPago;
+        private Label label3;
+        private ComboBox cmbPeliculas;
     }
 }

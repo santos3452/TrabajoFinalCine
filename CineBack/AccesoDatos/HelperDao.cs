@@ -95,11 +95,17 @@ namespace CineBack.AccesoDatos
         // Método para ejecutar un procedimiento almacenado que devuelve un conjunto de resultados (DataTable) sin parámetros
         public DataTable Consultar(string nombreSP)
         {
+            conexion.Close();
+            conexion.Open();
+            conexion.Close();
             conexion.Open(); // Abre la conexión a la base de datos
             SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
             comando.Connection = conexion; // Establece la conexión para el comando
             comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
             comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
+
+            
+            
 
             DataTable tabla = new DataTable(); // Crea un DataTable para almacenar los resultados
             tabla.Load(comando.ExecuteReader()); // Carga el resultado del comando en el DataTable

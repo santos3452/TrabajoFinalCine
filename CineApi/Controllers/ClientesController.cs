@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using CineBack.Entidades;
 using System.Net.Sockets;
+using CineBack.Fachada;
+using CineBack.Fachada.Implementacion;
 
 namespace CineApi.Controllers
 {
@@ -12,11 +14,13 @@ namespace CineApi.Controllers
     public class ClientesController : Controller
     {
         private IServicio gestor;
+        private IAplicacion a;
 
         public ClientesController()
         {
 
             gestor = new Servicio();
+            a = new Aplicacion();
         }
 
 
@@ -25,6 +29,8 @@ namespace CineApi.Controllers
         {
             return Ok(gestor.getconsultarClientes());
         }
+
+      
 
         [HttpDelete("/EliminarCliente")]
         public IActionResult EliminarCliente(int id)
@@ -76,7 +82,7 @@ namespace CineApi.Controllers
                 throw e;
             }
 
-
+          
 
 
 

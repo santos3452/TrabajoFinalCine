@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CineBack.AccesoDatos;
 using System.Reflection.Metadata;
+using BackEnd.Dominio;
 
 namespace CineBack.Fachada.Implementacion
 {
@@ -84,7 +85,10 @@ namespace CineBack.Fachada.Implementacion
 
        
 
-        List<FormaDePago> IAplicacion.getFormasDePago()
+
+        //TICKETS
+
+        List<FormaDePago> IAplicacion.getFormaDelPago()
         {
             List<FormaDePago> formas = new List<FormaDePago>();
             DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Formas_Pago");
@@ -94,7 +98,7 @@ namespace CineBack.Fachada.Implementacion
                 FormaDePago forma = new FormaDePago();
                 forma.id_formapago = Convert.ToInt32(r["id_forma"]);
                 forma.descripcion = r["descripcion"].ToString();
-               
+
                 formas.Add(forma);
 
             }
@@ -102,11 +106,44 @@ namespace CineBack.Fachada.Implementacion
         }
 
 
-        //TICKETS
+        List<Peliculas> IAplicacion.GetPeliculas()
+        {
+            List<Peliculas> peliculas = new List<Peliculas>();
+            
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("sp_consultar_pelicula");
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Peliculas peli = new Peliculas();
+                peli.codigo_pelicula = Convert.ToInt32(r["codigo_pelicula"]);
+                peli.nombre_pelicula = r["nombre_pelicula"].ToString();
+                peli.codigo_cine = Convert.ToInt32(r["codigo_cine"]);
+                peli.director = r["director"].ToString();
+                peli.codigo_categoria = Convert.ToInt32(r["codigo_categoria"]);
+                peli.codigo_clasificacion = Convert.ToInt32(r["codigo_clasificacion"]);
+                //  peli.codigo_formato = Convert.ToInt32(r["codigo_formato"]);
+                TimeSpan? duracion = (TimeSpan)r["duracion"];
+                peli.duracion = duracion;
+               
 
 
+                peliculas.Add(peli);
+
+            }
+            return peliculas;
 
 
+        }
 
+      
     }
+
+
+        
+
+
+
+
+
+    
 }

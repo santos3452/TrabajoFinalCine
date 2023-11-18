@@ -15,9 +15,11 @@ namespace CineBack.Fachada
         public bool getEliminarCliente(int id_cliente);
         public int  getInsertarCliente(Clientes oCliente);
         public bool getActualizarCliente(Clientes Cliente);
+        
 
         //TICKETS
-        public List<FormaDePago> getFormasDePago();
 
+        List<FormaDePago> getFormaDelPago();
+        List<Peliculas> GetPeliculas();
     }
 }

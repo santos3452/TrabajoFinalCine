@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace CineBack.Entidades
 {
-    internal class Funciones
+    public class Funciones
     {
+        public int codigo_funcion { get; set; }
+        public int codigo_pelicula { get; set; }
+        //    public int MyProperty { get; set; }
+        //    public int MyProperty { get; set; }
+        //    public int MyProperty { get; set; }
+        //    public int MyProperty { get; set; }
+        //}
     }
 }

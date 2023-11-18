@@ -16,10 +16,13 @@ namespace CineBack.services.Interfaces
         int getInsertarCliente(Clientes oCliente);
         public bool getActualizarCliente(Clientes oCliente);
 
-        List<FormaDePago> getFormasDePago();
+
+
         //Tickets
 
-      
+        List<FormaDePago> getFormaDelPago();
+        List<Peliculas> getPeliculas();
+
 
     }
 
