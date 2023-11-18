@@ -150,7 +150,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlLight;
-            label4.Location = new Point(259, 147);
+            label4.Location = new Point(341, 145);
             label4.Name = "label4";
             label4.Size = new Size(37, 21);
             label4.TabIndex = 9;
@@ -172,7 +172,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(268, 18);
+            label6.Location = new Point(294, 19);
             label6.Name = "label6";
             label6.Size = new Size(322, 35);
             label6.TabIndex = 11;
@@ -189,7 +189,7 @@
             // 
             txtEmail.Location = new Point(114, 145);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(100, 23);
+            txtEmail.Size = new Size(177, 23);
             txtEmail.TabIndex = 3;
             // 
             // txtApellido
@@ -201,7 +201,7 @@
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(341, 145);
+            txtDni.Location = new Point(411, 145);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(100, 23);
             txtDni.TabIndex = 4;

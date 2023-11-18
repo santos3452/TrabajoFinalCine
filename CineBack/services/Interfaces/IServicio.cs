@@ -1,4 +1,5 @@
-﻿using CineBack.Entidades;
+﻿using BackEnd.Dominio;
+using CineBack.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace CineBack.services.Interfaces
         bool getEliminarCliente(int idCliente);
         int getInsertarCliente(Clientes oCliente);
         public bool getActualizarCliente(Clientes oCliente);
+
+        List<FormaDePago> getFormasDePago();
+        //Tickets
+
+      
+
     }
 
 }

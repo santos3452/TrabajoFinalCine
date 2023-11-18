@@ -1,4 +1,5 @@
-﻿using CineBack.Entidades;
+﻿using BackEnd.Dominio;
+using CineBack.Entidades;
 using CineBack.Fachada;
 using CineBack.Fachada.Implementacion;
 using CineBack.services.Interfaces;
@@ -20,7 +21,7 @@ namespace CineBack.services.implementaciones
             oDao = new Aplicacion();
         }
 
-        
+        //CLIENTES
 
         public List<Clientes> getconsultarClientes()
         {
@@ -33,9 +34,9 @@ namespace CineBack.services.implementaciones
             return oDao.getEliminarCliente(id_cliente);
         }
 
-       public int getInsertarCliente(Clientes oCliente)
+        public int getInsertarCliente(Clientes oCliente)
         {
-            return oDao.getInsertarCliente( oCliente);
+            return oDao.getInsertarCliente(oCliente);
         }
 
         public bool getActualizarCliente(Clientes oCliente)
@@ -43,6 +44,15 @@ namespace CineBack.services.implementaciones
 
             return oDao.getActualizarCliente(oCliente);
         }
+
+       
+
+        List<FormaDePago> IServicio.getFormasDePago()
+        {
+            return oDao.getFormasDePago();
+        }
+
+        //TICKET
 
 
 

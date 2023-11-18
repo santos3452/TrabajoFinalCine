@@ -434,6 +434,13 @@ BEGIN
     END
 END
 
+CREATE procedure [dbo].[SP_Consultar_Formas_Pago]
+as
+begin
+	select id_forma, descripcion
+	from formas_pago
+	
+end;
 
 
 ---------------------INSERTS---------------------

@@ -11,7 +11,7 @@ using System.Reflection.Metadata;
 
 namespace CineBack.Fachada.Implementacion
 {
-    internal class Aplicacion : IAplicacion
+    public class Aplicacion : IAplicacion
     {   
         
         
@@ -81,6 +81,28 @@ namespace CineBack.Fachada.Implementacion
 
 
         }
+
+       
+
+        List<FormaDePago> IAplicacion.getFormasDePago()
+        {
+            List<FormaDePago> formas = new List<FormaDePago>();
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Formas_Pago");
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                FormaDePago forma = new FormaDePago();
+                forma.id_formapago = Convert.ToInt32(r["id_forma"]);
+                forma.descripcion = r["descripcion"].ToString();
+               
+                formas.Add(forma);
+
+            }
+            return formas;
+        }
+
+
+        //TICKETS
 
 
 

@@ -1,4 +1,5 @@
 ﻿using CineFront;
+using CineFront.Formularios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,7 +87,7 @@ namespace Front.Formularios
         private void btnTicket_Click(object sender, EventArgs e)
         {
             lstNostros.Items.Clear();
-            frmAltaDeCliente frm = new frmAltaDeCliente();
+            SeleccionarELCliente frm = new SeleccionarELCliente();
             frm.Show();
             esconderMenu();
         }

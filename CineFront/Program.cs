@@ -14,7 +14,7 @@ namespace CineFront.Formularios
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new frmAltaDeCliente());
+            Application.Run(new SeleccionarELCliente());
         }
     }
     }
