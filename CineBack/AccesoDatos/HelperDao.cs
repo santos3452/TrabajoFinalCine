@@ -15,11 +15,12 @@ namespace CineBack.AccesoDatos
     {
         private static HelperDao instancia; // Instancia única de la clase HelperDao
         private SqlConnection conexion; // Objeto de conexión a la base de datos
+        private SqlCommand comando = new SqlCommand();
 
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB1;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
+            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB2;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao
@@ -30,6 +31,20 @@ namespace CineBack.AccesoDatos
                 instancia = new HelperDao(); // Crea una nueva instancia si no existe
             }
             return instancia; // Devuelve la instancia existente o recién creada
+        }
+
+
+        private void Conectar()
+        {
+            conexion.Open();
+            comando.Connection = conexion;
+            comando.CommandType = CommandType.StoredProcedure;
+        }
+
+
+        private void Desconectar()
+        {
+            conexion.Close();
         }
 
 
@@ -66,23 +81,102 @@ namespace CineBack.AccesoDatos
         }
         public DataTable ConsultaFiltros(string spNombre, List<Parametro> values)
         {
+            
             DataTable tabla = new DataTable();
-
-            conexion.Open();
-            SqlCommand cmd = new SqlCommand(spNombre, conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            if (values != null)
+            try
             {
-                foreach (Parametro oParametro in values)
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(spNombre, conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (values != null)
                 {
-                    cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
+                    foreach (Parametro oParametro in values)
+                    {
+                        cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
+                    }
                 }
-            }
-            tabla.Load(cmd.ExecuteReader());
-            conexion.Close();
+                tabla.Load(cmd.ExecuteReader());
 
-            return tabla;
+
+                return tabla;
+            }
+            
+            catch (Exception ex)
+            {
+
+                throw(ex);
+            }
+            finally
+            {
+                conexion.Close();
+
+            }
+           
         }
+        public async Task<bool> EjecutarMaestroDetalle(string spMaestro, string spDetalle, TicketFactura ticket)
+        {
+            bool control = true;
+            SqlTransaction t = null;
+
+            try
+            {
+                conexion.Open();
+                t = conexion.BeginTransaction();
+                comando.Transaction = t;
+
+                // MAESTRO
+                comando.Parameters.Clear();
+                comando.CommandText = spMaestro;
+                // CARGA PARAMETROS
+
+                comando.Parameters.AddWithValue("@fecha", DateTime.Today);
+                comando.Parameters.AddWithValue("@id_cliente", ticket.id_cliente); ;
+                comando.Parameters.AddWithValue("@id_forma", ticket.id_forma);
+
+                SqlParameter pOut = new SqlParameter("@id_factura", SqlDbType.Int);
+                pOut.Direction = ParameterDirection.Output;
+                comando.Parameters.Add(pOut);
+
+                await comando.ExecuteNonQueryAsync();
+                int id = (int)pOut.Value;
+                comando.Parameters.Clear();
+
+                // DETALLE
+
+
+                foreach (DetalleTicketFactura detalle in ticket.Detalle)
+                {
+                    comando.CommandText = spDetalle;
+
+                    // CARGA PARAMETROS
+                    comando.Parameters.AddWithValue("@id_factura", (int)pOut.Value);
+                    comando.Parameters.AddWithValue("@id_butaca", detalle.id_butaca);
+                    comando.Parameters.AddWithValue("@precio", detalle.precio);
+                    comando.Parameters.AddWithValue("@id_descuento", detalle.id_descuento);
+                    comando.Parameters.AddWithValue("@id_funcion", detalle.id_funcion);
+
+                    await comando.ExecuteNonQueryAsync();
+                    comando.Parameters.Clear();
+                }
+                t.Commit();
+
+                control = true;
+            }
+            catch
+            {
+                if (t != null)
+                {
+                    t.Rollback();
+                }
+                control = false;
+            }
+            finally
+            {
+                Desconectar();
+            }
+            return control;
+        }
+
 
 
 

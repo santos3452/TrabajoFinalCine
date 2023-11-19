@@ -25,7 +25,7 @@ namespace CineBack.Entidades
             this.precio = precio;
             this.id_sala = id_sala;
         }
-
+        public string CodigoFuncionFechaNombre => $"FUNCION: {codigo_funcion}  -HORARIO: {HoraPeli}  -FECHA:  {fecha}";
         public Funciones()
         {
             this.codigo_funcion = 0;

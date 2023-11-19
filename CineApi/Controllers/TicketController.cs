@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Net.Sockets;
 using CineBack.Fachada;
 using CineBack.Fachada.Implementacion;
+using CineBack.Entidades;
 
 namespace CineApi.Controllers
 {
@@ -53,6 +54,43 @@ namespace CineApi.Controllers
                 throw;
             }
             
+        }
+        [HttpGet("/ButacasPorFuncion")]
+        public IActionResult getButacaPorFuncion(int id)
+        {
+
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest("error ");
+                }
+                return Ok(gestor.GetButacas(id));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost("/InsertarTicket")]
+        public async Task<IActionResult> PostTicket(TicketFactura ticket)
+        {
+            try
+            {
+                if (ticket == null)
+                {
+                    return BadRequest("Datos del examen incorrectos!");
+                }
+
+                return Ok(await gestor.InsertarTicket(ticket));
+            }
+            catch
+            {
+                return StatusCode(500, "Error interno! Intente luego");
+            }
         }
 
 

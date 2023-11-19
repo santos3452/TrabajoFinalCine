@@ -20,11 +20,12 @@ namespace CineBack.services.Interfaces
 
         //Tickets
 
+        
         List<FormaDePago> getFormaDelPago();
         List<Peliculas> getPeliculas();
         List<Funciones> getFunciones_por_ID(int codigo_pelicula);
-
-
+        public Task<bool> InsertarTicket(TicketFactura Ticket);
+        List<Butaca> GetButacas(int codigo_funcion);
     }
 
 }

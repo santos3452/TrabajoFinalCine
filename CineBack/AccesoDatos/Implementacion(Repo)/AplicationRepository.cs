@@ -16,7 +16,10 @@ namespace CineBack.Fachada.Implementacion
     {   
         
         
-        //CLIENTES
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////CLIENTES
+        /// </summary>
+        /// <returns></returns>
 
 
         public List<Clientes> getconsultarClientes()
@@ -81,12 +84,26 @@ namespace CineBack.Fachada.Implementacion
 
 
 
+
         }
 
-       
 
 
-        //TICKETS
+
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////TICKETS
+        /// </summary>
+        /// <returns></returns>
+
+
+        public Task<bool> InsertarTicket(TicketFactura Ticket)
+        {
+
+            return  HelperDao.ObtenerInstancia().EjecutarMaestroDetalle("SP_Grabar_TicketFactura", "SP_Gabar_Detalle_Ticket", Ticket);
+        }
+
+
+
 
         List<FormaDePago> IAplicacion.getFormaDelPago()
         {
@@ -163,8 +180,33 @@ namespace CineBack.Fachada.Implementacion
 
 
         }
+        List<Butaca> IAplicacion.GetButacas(int codigo_funcion)
+        {
+
+            string sp = "Sp_Buscar_Butacas_Funcion";
+            List<Butaca> butaca = new List<Butaca>();
+
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro("@id_funcion", codigo_funcion));
+            DataTable tabla = HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
+
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Butaca but = new Butaca();
+                but.id_butaca = Convert.ToInt32(r["id_butaca"]);
+                but.numero = Convert.ToInt32(r["numero"]);
+                
 
 
+                butaca.Add(but);
+
+            }
+            return butaca;
+
+        }
+
+        
     }
 
 

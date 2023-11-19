@@ -48,6 +48,13 @@ namespace CineBack.services.implementaciones
 
         //TICKET
 
+
+
+        public Task<bool> InsertarTicket(TicketFactura Ticket)
+        {
+            return oDao.InsertarTicket(Ticket);
+        }
+
         public List<FormaDePago> getFormaDelPago()
         {
             return oDao.getFormaDelPago();
@@ -66,5 +73,14 @@ namespace CineBack.services.implementaciones
         {
             return oDao.getFunciones_por_ID(codigo_pelicula);
         }
+
+       
+
+        public List<Butaca> GetButacas(int codigo_funcion)
+        {
+            return oDao.GetButacas(codigo_funcion);
+        }
+
+        
     }
 }

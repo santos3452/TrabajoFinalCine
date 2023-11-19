@@ -44,7 +44,7 @@ CREATE TABLE clientes (
 
 -- Tabla facturas
 CREATE TABLE TicketFactura (
-    id_factura INT PRIMARY KEY,
+    id_factura INT IDENTITY(1,1) PRIMARY KEY,
     fecha DATE,
     id_cliente INT,
     CONSTRAINT FK_Facturas_Clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
@@ -59,7 +59,7 @@ CREATE TABLE estados (
 
 -- Tabla detalles_pagos
 CREATE TABLE detalles_pagos (
-    id_detalle_pago INT PRIMARY KEY,
+    id_detalle_pago INT IDENTITY(1,1) PRIMARY KEY,
     id_factura INT,
     id_forma INT,
     FOREIGN KEY (id_factura) REFERENCES TicketFactura(id_factura),
@@ -106,7 +106,7 @@ CREATE TABLE butacas (
 
 -- Tabla funciones
 CREATE TABLE funciones (
-    codigo_funcion INT PRIMARY KEY,
+    codigo_funcion INT IDENTITY(1,1) PRIMARY KEY,
     descripcion VARCHAR(255),
     codigo_pelicula INT,
     fecha DATE,
@@ -171,7 +171,7 @@ CREATE TABLE Usuario (
 );
 -- Tabla detalles_facturas
 CREATE TABLE detalle_Ticketfactura (
-    id_detalle_factura INT PRIMARY KEY,
+    id_detalle_factura INT IDENTITY(1,1) PRIMARY KEY,
     id_factura INT,
     id_butaca INT,
     precio DECIMAL(10, 2),
@@ -453,6 +453,42 @@ begin
 	
 end;
 
+CREATE PROCEDURE [dbo].[Sp_Buscar_Butacas_Funcion]
+    @id_funcion INT
+AS
+BEGIN
+    
+    SELECT id_butaca,numero
+    FROM funciones f join salas s on f.id_sala = s.id_sala join butacas b on b.id_sala = s.id_sala
+    WHERE codigo_funcion = @id_funcion;
+END;
+
+CREATE PROCEDURE [dbo].[SP_Grabar_TicketFactura]
+	@id_factura int output,
+	@fecha datetime,
+	@id_cliente int,
+	@id_forma int output
+AS
+BEGIN
+	INSERT INTO TicketFactura (fecha,id_cliente,id_forma)
+    VALUES (@fecha,@id_cliente,@id_forma);
+	set @id_factura = SCOPE_IDENTITY();
+END
+
+GO
+CREATE PROCEDURE [dbo].[SP_Gabar_Detalle_Ticket] 
+	@id_factura int,
+	@id_butaca int,
+	@precio decimal,
+	@id_descuento int,
+    @id_funcion int
+as
+BEGIN	
+    INSERT INTO detalle_Ticketfactura(id_factura,id_butaca,precio,id_descuento,id_funcion)
+    VALUES (@id_factura,@id_butaca,@precio,@id_descuento,@id_funcion);
+
+END
+
 
 ---------------------INSERTS---------------------
 
@@ -728,7 +764,7 @@ UPDATE salas SET cantidad_butaca = 20 WHERE id_sala BETWEEN 5 AND 8;
 
 
 
-
+SET IDENTITY_INSERT [dbo].[funciones ] ON 
 INSERT INTO funciones (codigo_funcion, codigo_pelicula, fecha, hora, precio, id_sala)
 VALUES
 (1, 1, '2023-11-09', '08:30:00', 1200.50, 1),
@@ -811,10 +847,11 @@ VALUES
 (78, 12, '2024-01-25', '18:15:00', 1335.25, 6),
 (79, 29, '2024-01-26', '20:30:00', 1100.90, 2),
 (80, 4, '2024-01-27', '22:45:00', 1250.50, 5);
+SET IDENTITY_INSERT [dbo].[funciones ] OFF
 GO
 
 
-  UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 1; 
+UPDATE funciones SET precio = 1200 WHERE codigo_pelicula = 1; 
 UPDATE funciones SET precio = 1300 WHERE codigo_pelicula = 2;
 UPDATE funciones SET precio = 1100 WHERE codigo_pelicula = 3;
 UPDATE funciones SET precio = 1250 WHERE codigo_pelicula = 4;
@@ -903,6 +940,7 @@ GO
 INSERT INTO descuento (id_descuento, id_tipo, valor)
 VALUES (1, 1, 10);
 GO
+SET IDENTITY_INSERT [dbo].[Ticketfactura ] ON 
 INSERT INTO Ticketfactura (id_factura, fecha, id_cliente, id_forma)
 VALUES
 (1, '2023-01-01', 12, 2),
@@ -931,8 +969,9 @@ VALUES
 (24, '2024-12-08', 10, 2),
 (25, '2025-01-01', 24, 1),
 (26, '2025-02-14', 40, 3);
+SET IDENTITY_INSERT [dbo].[Ticketfactura ] OFF
 GO
-
+SET IDENTITY_INSERT [dbo].[detalle_Ticketfactura ] ON 
   INSERT INTO detalle_Ticketfactura (id_detalle_factura, id_factura, id_butaca, precio, id_descuento, id_funcion)
 VALUES
 (1, 1, 1, 100, 1, 1),
@@ -945,8 +984,54 @@ VALUES
 (8, 5, 8, 150, null, 8),
 (9, 9, 9, 100, null, 9),
 (10, 10, 10, 120, 1, 10)
-
+SET IDENTITY_INSERT [dbo].[detalle_Ticketfactura ] OFF
 GO
+
+
+
+ALTER TABLE Butacas
+DROP CONSTRAINT FK_Butacas_Funciones;
+GO
+ALTER TABLE Butacas
+DROP COLUMN codigo_funcion;
+ALTER TABLE Butacas
+ADD numero INT
+GO
+UPDATE butacas
+SET numero = 1
+WHERE id = 1
+GO
+UPDATE Butacas
+SET numero = id_butaca
+WHERE id_butaca BETWEEN 1 AND 15;
+GO
+UPDATE Butacas
+SET numero = id_butaca - 15
+WHERE id_butaca BETWEEN 16 AND 30;
+GO
+UPDATE Butacas
+SET numero = id_butaca - 30
+WHERE id_butaca BETWEEN 31 AND 45;
+GO
+UPDATE Butacas
+SET numero = id_butaca - 45
+WHERE id_butaca BETWEEN 46 AND 60;
+GO
+UPDATE Butacas
+SET numero = id_butaca - 60
+WHERE id_butaca BETWEEN 61 AND 80
+GO
+UPDATE Butacas
+SET numero = id_butaca - 80
+WHERE id_butaca BETWEEN 81 AND 100
+GO
+UPDATE Butacas
+SET numero = id_butaca - 100
+WHERE id_butaca BETWEEN 101 AND 120
+GO
+UPDATE Butacas
+SET numero = id_butaca - 120
+WHERE id_butaca BETWEEN 121 AND 137
 
 
 
