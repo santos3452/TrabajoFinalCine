@@ -9,8 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Formularios\Reportes\rptGastoTotalFuncion.rdlc" />
+    <None Remove="Formularios\Reportes\rptSeleccionarFechasFunciones.rdlc" />
+    <None Remove="Formularios\Reportes\rptSeleccionar_Cliente.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\Reportes\rptGastoTotalFuncion.rdlc" />
+    <EmbeddedResource Include="Formularios\Reportes\rptSeleccionarFechasFunciones.rdlc" />
+    <EmbeddedResource Include="Formularios\Reportes\rptSeleccionar_Cliente.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.16" />
     <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
   </ItemGroup>
 
@@ -20,6 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Formularios\Reportes\dsReport.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsReport.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -32,6 +50,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Formularios\Reportes\dsReport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsReport.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 	
 

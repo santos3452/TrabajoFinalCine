@@ -21,7 +21,7 @@ namespace CineBack.AccesoDatos
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB2;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
+            conexion = new SqlConnection(@"Data Source=BRANDON;Initial Catalog=CineDB24689123;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao
@@ -118,7 +118,8 @@ namespace CineBack.AccesoDatos
 
         public DataTable Consultar(string nombreSP)
         {
-            
+            conexion.Close();
+
             DataTable tabla = new DataTable();
             try
             {

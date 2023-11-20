@@ -286,6 +286,19 @@ namespace CineBack.Fachada.Implementacion
             return funciones;
         }
 
+        public List<Funciones> getConsultarFuncionesALL()
+        {
+            List<Funciones> funciones = new List<Funciones>();
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones_ALL");
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Funciones f = new Funciones();
+                f.codigo_funcion = Convert.ToInt32(r["codigo_funcion"].ToString());
+                funciones.Add(f);
+            }
+            return funciones;
+        }
 
     }
 

@@ -90,7 +90,8 @@ namespace Front.Formularios
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            frmHistorialdeTicketsdelCliente frm = new frmHistorialdeTicketsdelCliente();
+            frm.Show();
         }
 
         private void btnTicket_Click(object sender, EventArgs e)
@@ -159,7 +160,19 @@ namespace Front.Formularios
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            frmBajaFuncion frm = new frmBajaFuncion();  
+            frmBajaFuncion frm = new frmBajaFuncion();
+            frm.Show();
+        }
+
+        private void btnReporte2_Click(object sender, EventArgs e)
+        {
+            frmGastoTotalFuncion frm = new frmGastoTotalFuncion();
+            frm.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            frmIngresarFechasFunciones frm = new frmIngresarFechasFunciones();
             frm.Show();
         }
     }

@@ -106,5 +106,10 @@ namespace CineBack.services.implementaciones
         {
             return oDao.getConsultarFunciones();
         }
+
+        public List<Funciones> getConsultarFuncionesALL()
+        {
+            return oDao.getConsultarFuncionesALL();
+        }
     }
 }

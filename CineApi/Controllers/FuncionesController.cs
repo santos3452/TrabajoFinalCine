@@ -64,9 +64,15 @@ namespace CineApi.Controllers
         }
 
         [HttpGet("/ConsultarFunciones")]
-        public async Task<IActionResult> GetClientes()
+        public async Task<IActionResult> GetFunciones()
         {
             return Ok(gestor.getConsultarFunciones());
+        }
+
+        [HttpGet("/ConsultarFuncionesALL")]
+        public async Task<IActionResult> GetFuncionesALL()
+        {
+            return Ok(gestor.getConsultarFuncionesALL());
         }
 
     }

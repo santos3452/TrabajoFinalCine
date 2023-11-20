@@ -34,6 +34,8 @@ namespace CineBack.services.Interfaces
         public bool getInsertarFunciones(List<Funciones> listaFunciones);
         public bool getEliminarFuncion(int codigo_funcion);
         public List<Funciones> getConsultarFunciones();
+        public List<Funciones> getConsultarFuncionesALL();
+
 
     }
 
