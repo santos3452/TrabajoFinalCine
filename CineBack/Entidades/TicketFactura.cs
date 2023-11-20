@@ -13,15 +13,17 @@ namespace CineBack.Entidades
         public DateTime? fecha { get; set; }
         public int id_cliente { get; set; }
         public int id_forma { get; set; }
+        public decimal totalfinal { get; set; }
         public List<DetalleTicketFactura> Detalle { get; set; }
 
-        public TicketFactura(int id_factura, DateTime? fecha, int id_cliente, int id_forma)
+        public TicketFactura(int id_factura, DateTime? fecha, int id_cliente, int id_forma,decimal totalfinal)
         {
             this.id_factura = id_factura;
             this.fecha = fecha;
             this.id_cliente = id_cliente;
             this.id_forma = id_forma;
-        }
+            this.totalfinal = totalfinal;   
+        }   
 
         public TicketFactura()
         {
@@ -30,6 +32,7 @@ namespace CineBack.Entidades
             this.fecha = DateTime.Now;
             this.id_cliente = 0;
             this.id_forma = 0;
+            this.totalfinal = 0;    
         }
 
         public void AgregarDetalle(DetalleTicketFactura detalle)
@@ -46,16 +49,16 @@ namespace CineBack.Entidades
         {
             return Detalle.Count;
         }
-        public decimal CalcularSubTotal()
+        public decimal CalcularTotal(decimal precioentero)
         {
-            decimal total = 0;
+            
             foreach (DetalleTicketFactura item in Detalle)
             {
-                total = total + item.precio;
+                item.precio = item.precio + precioentero ;
 
             }
 
-            return total;
+            return precioentero;
         }
 
     }

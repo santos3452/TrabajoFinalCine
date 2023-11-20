@@ -28,6 +28,7 @@ namespace Front.Formularios
         private void costumizar()
         {
             panelsubmenu.Visible = false;
+            panelsubmenu1.Visible = false;
         }
         private void esconderMenu()
         {
@@ -35,6 +36,14 @@ namespace Front.Formularios
             if (panelsubmenu.Visible == true)
             {
                 panelsubmenu.Visible = false;
+            }
+        }
+        private void esconderMenu2()
+        {
+
+            if (panelsubmenu1.Visible == true)
+            {
+                panelsubmenu1.Visible = false;
             }
         }
         public void mostrarsubmenu(Panel subMenu)
@@ -87,13 +96,41 @@ namespace Front.Formularios
         private void btnTicket_Click(object sender, EventArgs e)
         {
             lstNostros.Items.Clear();
-            SeleccionarELCliente frm = new SeleccionarELCliente();
+            frmAltaDeCliente frm = new frmAltaDeCliente();
             frm.Show();
             esconderMenu();
+            esconderMenu2();
         }
 
         private void btnNosotros_Click(object sender, EventArgs e)
         {
+            mostrarsubmenu(panelsubmenu1);
+            lstNostros.Items.Clear();
+            esconderMenu();
+
+
+
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            lstNostros.Items.Clear();
+            SeleccionarELCliente frm = new SeleccionarELCliente();
+            frm.Show();
+            esconderMenu();
+            esconderMenu2();
+
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            mostrarsubmenu(panelsubmenu);
+            esconderMenu2();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
             string nosotros = "INTEGRANTES:  -[405306] Lozano Placido Brandon Agustin -[405003] López Forcellini Lautaro Daniel -[113970] Perren M Valentina -[113448] Virga, Santos Jose";
 
             string[] integrantes = nosotros.Split(new string[] { " -[" }, StringSplitOptions.RemoveEmptyEntries);
@@ -109,17 +146,21 @@ namespace Front.Formularios
             esconderMenu();
         }
 
-        private void btnCliente_Click(object sender, EventArgs e)
+        private void panelsubmenu1_Paint(object sender, PaintEventArgs e)
         {
-            lstNostros.Items.Clear();
-            frmAltaDeCliente frm = new frmAltaDeCliente();
-            frm.Show();
-            esconderMenu();
+
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            mostrarsubmenu(panelsubmenu);
+            frmFunciones frm = new frmFunciones();
+            frm.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmBajaFuncion frm = new frmBajaFuncion();  
+            frm.Show();
         }
     }
 }

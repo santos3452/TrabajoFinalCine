@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button3 = new Button();
+            panelsubmenu1 = new Panel();
+            button1 = new Button();
+            button2 = new Button();
             btnNosotros = new Button();
             panelsubmenu = new Panel();
             btnReporte2 = new Button();
@@ -42,6 +46,7 @@
             label2 = new Label();
             lstNostros = new ListBox();
             panel1.SuspendLayout();
+            panelsubmenu1.SuspendLayout();
             panelsubmenu.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -51,6 +56,8 @@
             // 
             panel1.AutoScroll = true;
             panel1.BackColor = Color.FromArgb(51, 51, 76);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(panelsubmenu1);
             panel1.Controls.Add(btnNosotros);
             panel1.Controls.Add(panelsubmenu);
             panel1.Controls.Add(btnReportes);
@@ -60,8 +67,68 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 450);
+            panel1.Size = new Size(200, 495);
             panel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Dock = DockStyle.Top;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.ForeColor = SystemColors.ButtonHighlight;
+            button3.Location = new Point(0, 440);
+            button3.Name = "button3";
+            button3.Padding = new Padding(10, 0, 0, 0);
+            button3.Size = new Size(200, 50);
+            button3.TabIndex = 10;
+            button3.Text = "NOSOTROS";
+            button3.TextAlign = ContentAlignment.TopLeft;
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // panelsubmenu1
+            // 
+            panelsubmenu1.BackColor = Color.FromArgb(35, 32, 39);
+            panelsubmenu1.Controls.Add(button1);
+            panelsubmenu1.Controls.Add(button2);
+            panelsubmenu1.Dock = DockStyle.Top;
+            panelsubmenu1.Location = new Point(0, 359);
+            panelsubmenu1.Name = "panelsubmenu1";
+            panelsubmenu1.Size = new Size(200, 81);
+            panelsubmenu1.TabIndex = 9;
+            panelsubmenu1.Paint += panelsubmenu1_Paint;
+            // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Top;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = SystemColors.ButtonHighlight;
+            button1.Location = new Point(0, 32);
+            button1.Name = "button1";
+            button1.Padding = new Padding(25, 0, 0, 0);
+            button1.Size = new Size(200, 29);
+            button1.TabIndex = 8;
+            button1.Text = "Baja Funcion";
+            button1.TextAlign = ContentAlignment.TopLeft;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Top;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = SystemColors.ButtonHighlight;
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Padding = new Padding(25, 0, 0, 0);
+            button2.Size = new Size(200, 32);
+            button2.TabIndex = 7;
+            button2.Text = "Alta Funcion";
+            button2.TextAlign = ContentAlignment.TopLeft;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // btnNosotros
             // 
@@ -75,7 +142,7 @@
             btnNosotros.Padding = new Padding(10, 0, 0, 0);
             btnNosotros.Size = new Size(200, 50);
             btnNosotros.TabIndex = 8;
-            btnNosotros.Text = "NOSOTROS";
+            btnNosotros.Text = "FUNCIONES";
             btnNosotros.TextAlign = ContentAlignment.TopLeft;
             btnNosotros.UseVisualStyleBackColor = true;
             btnNosotros.Click += btnNosotros_Click;
@@ -151,7 +218,7 @@
             btnCliente.Padding = new Padding(10, 0, 0, 0);
             btnCliente.Size = new Size(200, 50);
             btnCliente.TabIndex = 4;
-            btnCliente.Text = "CLIENTE";
+            btnCliente.Text = "TICKET";
             btnCliente.TextAlign = ContentAlignment.TopLeft;
             btnCliente.UseVisualStyleBackColor = true;
             btnCliente.Click += btnCliente_Click;
@@ -168,7 +235,7 @@
             btnTicket.Padding = new Padding(10, 0, 0, 0);
             btnTicket.Size = new Size(200, 50);
             btnTicket.TabIndex = 3;
-            btnTicket.Text = "TICKET";
+            btnTicket.Text = "CLIENTES";
             btnTicket.TextAlign = ContentAlignment.TopLeft;
             btnTicket.UseVisualStyleBackColor = true;
             btnTicket.Click += btnTicket_Click;
@@ -225,7 +292,7 @@
             lstNostros.ItemHeight = 45;
             lstNostros.Location = new Point(200, 78);
             lstNostros.Name = "lstNostros";
-            lstNostros.Size = new Size(741, 372);
+            lstNostros.Size = new Size(741, 417);
             lstNostros.TabIndex = 2;
             lstNostros.SelectedIndexChanged += lstNostros_SelectedIndexChanged;
             // 
@@ -233,7 +300,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(941, 450);
+            ClientSize = new Size(941, 495);
             Controls.Add(lstNostros);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -241,6 +308,7 @@
             Text = "PaginaPrincipal";
             Load += PaginaPrincipal_Load;
             panel1.ResumeLayout(false);
+            panelsubmenu1.ResumeLayout(false);
             panelsubmenu.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -260,9 +328,13 @@
         private Button btnTicket;
         private Button btnReportes;
         private Button btnCliente;
-        private Button btnNosotros;
         private Panel panelsubmenu;
         private Button btnReporte2;
         private Button btnReporte1;
+        private Button btnNosotros;
+        private Button button3;
+        private Panel panelsubmenu1;
+        private Button button1;
+        private Button button2;
     }
 }

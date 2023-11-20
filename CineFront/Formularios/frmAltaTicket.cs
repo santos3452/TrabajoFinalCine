@@ -22,6 +22,7 @@ namespace Front.Formularios
         private readonly int idClienteSeleccionado;
         private int codigo_pelicula_seleccionado;
         private int codigo_funcion_seleccionado;
+        decimal totalPrecios = 0;
         public frmAltaTicket(int datoSeleccionado)
         {
             InitializeComponent();
@@ -57,12 +58,20 @@ namespace Front.Formularios
             cargarlosclientes();
             CargarLasFormasDePago();
             CargarLasPeliculas();
+            dgvTICKET.AllowUserToAddRows = false;
             cmbPeliculas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cboButaca.DropDownStyle = ComboBoxStyle.DropDownList;
             cboFuncion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbClientSelec.Enabled = false;
             txtVALOR.Enabled = false;
+            int anchoDeseado = 200; // Ancho que deseas establecer
+            dgvTICKET.Columns["PELICULA"].Width = anchoDeseado;
+            int anchoDeseado1 = 80; // Ancho que deseas establecer
+            dgvTICKET.Columns["FECHA"].Width = anchoDeseado1;
+
+
+            txtTotal.Text = totalPrecios.ToString();
 
 
         }
@@ -84,15 +93,17 @@ namespace Front.Formularios
                 MessageBox.Show("ERROR. Seleccione una pelicula.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            object idSeleccionado = cboFuncion.SelectedValue;
+            int id = (int)idSeleccionado;
 
-            //foreach (DataGridViewRow row in dgvTICKET.Rows)
-            //{
-            //    if (row.Cells["id_butaca"].Value.ToString().Equals(cboButaca.Text) & row.Cells["id_funcion"].Value.ToString().Equals(cboFuncion.Text))
-            //    {
-            //        MessageBox.Show("ERROR. Butaca ya reservada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return false;
-            //    }
-            //}
+            foreach (DataGridViewRow row in dgvTICKET.Rows)
+            {
+                if (row.Cells["BUTACA"].Value.ToString().Equals(cboButaca.Text) && row.Cells["FUNCION"].Value.Equals(id))
+                {
+                    MessageBox.Show("ERROR. Butaca ya reservada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
 
             return true;
         }
@@ -162,25 +173,35 @@ namespace Front.Formularios
 
         }
 
-        //private async Task<bool> InsertarTicket()
-        //{
-        //    Ticket.Pago = cboTipoPagos.SelectedIndex + 1;
-        //    oTicket.Cliente = cboClientes.SelectedIndex + 1;
+        private async Task<bool> InsertarTicket()
+        {
 
-        //    var bodyContent = JsonConvert.SerializeObject(oTicket);
-        //    string url = "https://localhost:7066/Ticket22";
-        //    var result = await ClientSingleton.GetInstancia().PostAsync(url, bodyContent);
-        //    if (result.Equals("true"))
-        //    {
-        //        MessageBox.Show("INSERTADO CORRECTAMENTE");
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("ERROR INTERNO, CONTACTE UN ADMINISTRADOR");
-        //        return false;
-        //    }
-        //}
+
+
+            Ticket.id_forma = cmbFormaPago.SelectedIndex + 1;
+            Ticket.id_cliente = cmbClientSelec.SelectedIndex + 1;
+            Ticket.totalfinal = decimal.Parse(txtTotal.Text);
+
+
+            var bodyContent = JsonConvert.SerializeObject(Ticket);
+            string url = "https://localhost:7180/InsertarTicket";
+            var result = await ClientSingleton.GetInstancia().PostAsync(url, bodyContent);
+            if (result.Equals("true"))
+            {
+                MessageBox.Show("INSERTADO CORRECTAMENTE");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("HAY UN ERROR EN EL INGRESO DE TICKET. INTENTE NUEVAMENTE.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+
+
+
+        }
 
         private async Task CargarLasFormasDePago()
         {
@@ -197,19 +218,32 @@ namespace Front.Formularios
         {
             if (validar())
             {
+
+
+
+                Peliculas PeliculaSeleccionada = (Peliculas)cmbPeliculas.SelectedItem;
                 Clientes clientes = (Clientes)cmbClientSelec.SelectedItem;
                 clientes.id_cliente = (int)cmbClientSelec.SelectedValue;
                 FormaDePago tp = (FormaDePago)cmbFormaPago.SelectedItem;
-                string nombrepeli = cmbPeliculas.SelectedItem.ToString();
+                Funciones f = (Funciones)cboFuncion.SelectedItem;
+
+                string hora = f.HoraPeli;
+                DateTime? fecha = f.fecha;
+                string nombrepeli = PeliculaSeleccionada.nombre_pelicula.ToString();
                 int Funcion = Convert.ToInt32(cboFuncion.SelectedValue);
                 decimal precio = decimal.Parse(txtVALOR.Text);
                 int Butaca = (int)cboButaca.SelectedIndex + 1;
-                int precioEntero = Convert.ToInt32(precio);
+                int precioTotal = Convert.ToInt32(precio);
 
 
-                DetalleTicketFactura dt = new DetalleTicketFactura(Funcion, Butaca, precioEntero, Funcion);
+                DetalleTicketFactura dt = new DetalleTicketFactura(Butaca, precioTotal, 1, Funcion);
                 Ticket.AgregarDetalle(dt);
-                dgvTICKET.Rows.Add(new object[] { clientes.NOMBRE, clientes.APELLIDO, tp.descripcion, dt.id_funcion, nombrepeli, dt.id_butaca, dt.precio });
+                dgvTICKET.Rows.Add(new object[] { "", clientes.NOMBRE, clientes.APELLIDO, tp.descripcion, dt.id_funcion, nombrepeli, hora, fecha, dt.id_butaca, dt.precio });
+
+                totalPrecios += Convert.ToInt32(txtVALOR.Text);
+                txtTotal.Text = totalPrecios.ToString();
+
+
             }
         }
 
@@ -244,6 +278,66 @@ namespace Front.Formularios
 
         }
 
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            if (dgvTICKET.Rows.Count >= 1)
+            {
+                await InsertarTicket();
 
+                //foreach (DataGridViewRow row in dgvTICKET.Rows)
+                //{
+                //    if (!row.IsNewRow) // Para evitar la fila de inserción (new row)
+                //    {
+                //        Ticket.QuitarDetalle(row.Index);
+                //    }
+                //}
+
+
+            }
+            else
+            {
+
+                MessageBox.Show("NO AGREGO NINGUN TICKET. INTENTE NUEVAMENTE.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+
+            }
+        }
+
+        private void dgvTICKET_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvTICKET.CurrentCell.ColumnIndex == 0)
+            {
+                Ticket.QuitarDetalle(dgvTICKET.CurrentRow.Index);
+
+                if (e.ColumnIndex == 0 && e.RowIndex != -1)
+                {
+                   
+
+                    if (dgvTICKET.Rows[e.RowIndex].Cells["VALOR"].Value != null && decimal.TryParse(dgvTICKET.Rows[e.RowIndex].Cells["VALOR"].Value.ToString(), out decimal valor))
+                    {
+
+
+                        decimal totalActual = decimal.Parse(txtTotal.Text);
+                        totalActual = totalActual - valor;
+                        totalPrecios = totalPrecios - valor;
+
+
+                        txtTotal.Text = totalActual.ToString();
+
+
+                        dgvTICKET.Rows.RemoveAt(e.RowIndex);
+                        
+
+
+                    }
+                }
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

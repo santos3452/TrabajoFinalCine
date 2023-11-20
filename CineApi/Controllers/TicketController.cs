@@ -93,6 +93,16 @@ namespace CineApi.Controllers
             }
         }
 
+        [HttpGet("/ProximoID")]
+        public IActionResult getProximoID()
+        {
+            return Ok(gestor.GetProximoID());
+        }
+
+
+
+
+
 
     }
 }

@@ -167,8 +167,7 @@ namespace CineBack.Fachada.Implementacion
                 fun.codigo_funcion = Convert.ToInt32(r["codigo_funcion"]);
                 fun.codigo_pelicula = Convert.ToInt32(r["codigo_pelicula"]);
                 fun.fecha  = (DateTime)(r["fecha"]);
-                TimeSpan? hora = (TimeSpan)r["hora"];
-                fun.HoraPeli = hora;
+                fun.HoraPeli = r["hora"].ToString();
                 fun.precio = Convert.ToInt32(r["precio"]);
                 fun.id_sala = Convert.ToInt32(r["id_sala"]);
 
@@ -206,7 +205,88 @@ namespace CineBack.Fachada.Implementacion
 
         }
 
-        
+        public async Task<int> GetProximoID()
+        {
+            return await HelperDao.ObtenerInstancia().ConsultaNumero("SP_Proximo_Ticket", "@proximoID");
+        }
+
+
+        ///////////////////////////// FUNCIONES
+        ///
+        public List<Salas> getConsultarSalas()
+        {
+            List<Salas> sala = new List<Salas>();
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Salas");
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Salas sal = new Salas();
+                sal.id_sala = Convert.ToInt32(r["id_sala"]);
+                sal.cantidad_butaca = Convert.ToInt32(r["cantidad_butaca"]);
+                sal.codigo_cine = Convert.ToInt32(r["codigo_cine"]);
+
+                sala.Add(sal);
+
+            }
+            return sala;
+
+        }
+
+        public bool getInsertarFunciones(List<Funciones> listaFunciones)
+        {
+            string sp = "SP_Insertar_Funcion";
+            bool totalFilasInsertadas = false;
+
+            foreach (Funciones f in listaFunciones)
+            {
+                
+                List<Parametro> parametros = new List<Parametro>();
+                parametros.Add(new Parametro("@codigo_pelicula", f.codigo_pelicula));
+                parametros.Add(new Parametro("@fecha", f.fecha));
+           
+                parametros.Add(new Parametro("@hora", f.HoraPeli));
+                parametros.Add(new Parametro("@precio", f.precio));
+                parametros.Add(new Parametro("@id_sala", f.id_sala));
+
+                int filasInsertadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
+                totalFilasInsertadas = true;
+            }
+
+            return totalFilasInsertadas;
+        }
+
+        public bool getEliminarFuncion(int codigo_funcion)
+        {
+            string sp = "SP_Baja_Funcion";
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro("@id", codigo_funcion));
+            int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
+            return afectadas > 0;
+
+        }
+
+
+        public List<Funciones> getConsultarFunciones()
+        {
+            List<Funciones> funciones = new List<Funciones>();
+            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones");
+            foreach (DataRow r in tabla.Rows)
+            {
+                //mapeo
+                Funciones f = new Funciones();
+                f.codigo_funcion = Convert.ToInt32(r["codigo_funcion"].ToString());
+                f.codigo_pelicula = Convert.ToInt32(r["codigo_pelicula"].ToString());
+                f.fecha =  (DateTime)(r["fecha"]);
+                f.HoraPeli= r["hora"].ToString();
+                f.precio = Convert.ToInt32(r["precio"]);
+                f.id_sala = Convert.ToInt32(r["id_sala"]);
+                funciones.Add(f);
+
+            }
+            return funciones;
+        }
+
+
     }
 
 

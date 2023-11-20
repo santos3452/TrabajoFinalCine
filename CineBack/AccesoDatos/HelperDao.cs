@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,10 +82,10 @@ namespace CineBack.AccesoDatos
         }
         public DataTable ConsultaFiltros(string spNombre, List<Parametro> values)
         {
-            
             DataTable tabla = new DataTable();
             try
             {
+                
                 conexion.Open();
                 SqlCommand cmd = new SqlCommand(spNombre, conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -108,10 +109,41 @@ namespace CineBack.AccesoDatos
             }
             finally
             {
-                conexion.Close();
+                Desconectar();
 
             }
            
+        }
+
+
+        public DataTable Consultar(string nombreSP)
+        {
+            
+            DataTable tabla = new DataTable();
+            try
+            {
+                
+                conexion.Open();
+                SqlCommand comando = new SqlCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.CommandText = nombreSP;
+               
+                tabla.Load(comando.ExecuteReader());
+                return tabla;
+            }
+            catch (Exception e)
+            {
+
+                throw e ;
+            }
+
+            finally
+            {
+                conexion.Close();
+
+            }
+      
         }
         public async Task<bool> EjecutarMaestroDetalle(string spMaestro, string spDetalle, TicketFactura ticket)
         {
@@ -120,7 +152,7 @@ namespace CineBack.AccesoDatos
 
             try
             {
-                conexion.Open();
+                Conectar();
                 t = conexion.BeginTransaction();
                 comando.Transaction = t;
 
@@ -132,6 +164,7 @@ namespace CineBack.AccesoDatos
                 comando.Parameters.AddWithValue("@fecha", DateTime.Today);
                 comando.Parameters.AddWithValue("@id_cliente", ticket.id_cliente); ;
                 comando.Parameters.AddWithValue("@id_forma", ticket.id_forma);
+                comando.Parameters.AddWithValue("@totalfinal", ticket.totalfinal);
 
                 SqlParameter pOut = new SqlParameter("@id_factura", SqlDbType.Int);
                 pOut.Direction = ParameterDirection.Output;
@@ -146,9 +179,12 @@ namespace CineBack.AccesoDatos
 
                 foreach (DetalleTicketFactura detalle in ticket.Detalle)
                 {
+                   
                     comando.CommandText = spDetalle;
 
                     // CARGA PARAMETROS
+                    comando.Connection = conexion;
+                    comando.Transaction = t;
                     comando.Parameters.AddWithValue("@id_factura", (int)pOut.Value);
                     comando.Parameters.AddWithValue("@id_butaca", detalle.id_butaca);
                     comando.Parameters.AddWithValue("@precio", detalle.precio);
@@ -160,14 +196,14 @@ namespace CineBack.AccesoDatos
                 }
                 t.Commit();
 
-                control = true;
+                
             }
             catch
             {
-                if (t != null)
-                {
-                    t.Rollback();
-                }
+               
+                
+                t.Rollback();
+                
                 control = false;
             }
             finally
@@ -175,6 +211,24 @@ namespace CineBack.AccesoDatos
                 Desconectar();
             }
             return control;
+        }
+
+        public async Task<int> ConsultaNumero(string nombreSP, string paramSalida)
+        {
+            SqlParameter pOut = new SqlParameter(paramSalida, SqlDbType.Int);
+
+            Conectar();
+            comando.Parameters.Clear();
+            comando.CommandText = nombreSP;
+
+            pOut.Direction = ParameterDirection.Output;
+            comando.Parameters.Add(pOut);
+            await comando.ExecuteNonQueryAsync();
+            comando.Parameters.Clear();
+
+            Desconectar();
+
+            return (int)pOut.Value;
         }
 
 
@@ -206,27 +260,7 @@ namespace CineBack.AccesoDatos
         }
 
         // Método para ejecutar un procedimiento almacenado que devuelve un conjunto de resultados (DataTable) sin parámetros
-        public DataTable Consultar(string nombreSP)
-        {
-            conexion.Close();
-            conexion.Open();
-            conexion.Close();
-            conexion.Open(); // Abre la conexión a la base de datos
-            SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
-            comando.Connection = conexion; // Establece la conexión para el comando
-            comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
-            comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
-
-            
-            
-
-            DataTable tabla = new DataTable(); // Crea un DataTable para almacenar los resultados
-            tabla.Load(comando.ExecuteReader()); // Carga el resultado del comando en el DataTable
-
-            conexion.Close(); // Cierra la conexión a la base de datos
-
-            return tabla; // Devuelve el DataTable con los resultados obtenidos
-        }
+       
 
         //Método para ejecutar un procedimiento almacenado que toma una lista de parámetros y devuelve un conjunto de resultados(DataTable)
         public DataTable ConsultarUsuarioPorNombre(string nombreSP, string usuario)
@@ -251,10 +285,6 @@ namespace CineBack.AccesoDatos
         }
 
         // Método para obtener la instancia de la conexión a la base de datos
-        public SqlConnection ObtenerConexion()
-        {
-            return conexion; // Devuelve el objeto de conexión a la base de datos
-        }
-
+      
     }
 }

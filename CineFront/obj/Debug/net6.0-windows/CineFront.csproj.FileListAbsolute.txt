@@ -204,3 +204,5 @@ C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windo
 C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windows\ref\CineFront.dll
 C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windows\CineFront.Formularios.SeleccionarELCliente.resources
 C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windows\Front.Formularios.frmQuienesSomos.resources
+C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windows\CineFront.Formularios.frmFunciones.resources
+C:\Users\Usuario\Documents\TrabajoFinalDeProgra\CineFront\obj\Debug\net6.0-windows\CineFront.Formularios.frmBajaFuncion.resources

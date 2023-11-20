@@ -23,6 +23,13 @@ namespace CineBack.Fachada
         List<Peliculas> GetPeliculas();
         List<Funciones> getFunciones_por_ID(int codigo_pelicula);
         List<Butaca> GetButacas(int codigo_funcion);
-        
+        public  Task<int> GetProximoID();
+
+
+        // FUNCIONES
+        public List<Salas> getConsultarSalas();
+        public bool getInsertarFunciones(List<Funciones> listaFunciones);
+        public bool getEliminarFuncion(int codigo_funcion);
+        public List<Funciones> getConsultarFunciones();
     }
 }

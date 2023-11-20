@@ -12,13 +12,13 @@ namespace CineBack.Entidades
         public int codigo_funcion { get; set; }
         public int codigo_pelicula { get; set; }
         public DateTime? fecha { get; set; }
-        public TimeSpan? HoraPeli { get; set; }
+        public string HoraPeli { get; set; }
         public int precio { get; set; }
         public int id_sala { get; set; }
 
-        public Funciones(int codigo_funcion, int codigo_pelicula, DateTime? fecha, TimeSpan? horaPeli, int precio, int id_sala)
+        public Funciones( int codigo_pelicula, DateTime? fecha, string horaPeli, int precio, int id_sala)
         {
-            this.codigo_funcion = codigo_funcion;
+           
             this.codigo_pelicula = codigo_pelicula;
             this.fecha = fecha;
             HoraPeli = horaPeli;
@@ -28,7 +28,7 @@ namespace CineBack.Entidades
         public string CodigoFuncionFechaNombre => $"FUNCION: {codigo_funcion}  -HORARIO: {HoraPeli}  -FECHA:  {fecha}";
         public Funciones()
         {
-            this.codigo_funcion = 0;
+            
             this.codigo_pelicula = 0;
             this.fecha = null;
             this.HoraPeli = null;

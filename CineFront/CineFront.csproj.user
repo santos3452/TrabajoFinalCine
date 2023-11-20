@@ -7,7 +7,13 @@
     <Compile Update="Formularios\frmAltaTicket.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\frmBajaFuncion.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\frmCrear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmFunciones.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Formularios\frmIngresar.cs">

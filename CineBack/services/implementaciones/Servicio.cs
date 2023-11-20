@@ -81,6 +81,30 @@ namespace CineBack.services.implementaciones
             return oDao.GetButacas(codigo_funcion);
         }
 
-        
+        public async Task<int> GetProximoID()
+        {
+            return await oDao.GetProximoID();
+        }
+
+        // FUNCIONES
+
+        public List<Salas> getConsultarSalas()
+        {
+            return oDao.getConsultarSalas();
+        }
+       
+
+        public bool getInsertarFunciones(List<Funciones> listaFunciones)
+        {
+            return oDao.getInsertarFunciones(listaFunciones);
+        }
+        public bool getEliminarFuncion(int codigo_funcion)
+        {
+            return oDao.getEliminarFuncion(codigo_funcion);
+        }
+        public List<Funciones> getConsultarFunciones()
+        {
+            return oDao.getConsultarFunciones();
+        }
     }
 }

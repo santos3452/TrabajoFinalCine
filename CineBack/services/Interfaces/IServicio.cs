@@ -26,6 +26,15 @@ namespace CineBack.services.Interfaces
         List<Funciones> getFunciones_por_ID(int codigo_pelicula);
         public Task<bool> InsertarTicket(TicketFactura Ticket);
         List<Butaca> GetButacas(int codigo_funcion);
+        public Task<int> GetProximoID();
+
+        // Funciones
+
+        public List<Salas> getConsultarSalas();
+        public bool getInsertarFunciones(List<Funciones> listaFunciones);
+        public bool getEliminarFuncion(int codigo_funcion);
+        public List<Funciones> getConsultarFunciones();
+
     }
 
 }

@@ -58,6 +58,8 @@
             FORMADEPAGO = new DataGridViewTextBoxColumn();
             FUNCION = new DataGridViewTextBoxColumn();
             PELICULA = new DataGridViewTextBoxColumn();
+            HORARIO = new DataGridViewTextBoxColumn();
+            FECHA = new DataGridViewTextBoxColumn();
             BUTACA = new DataGridViewTextBoxColumn();
             VALOR = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
@@ -73,7 +75,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(972, 67);
+            panel1.Size = new Size(1122, 67);
             panel1.TabIndex = 18;
             // 
             // lblNOMBRE
@@ -90,7 +92,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(384, 18);
+            label6.Location = new Point(500, 9);
             label6.Name = "label6";
             label6.Size = new Size(217, 35);
             label6.TabIndex = 11;
@@ -121,7 +123,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 67);
             panel2.Name = "panel2";
-            panel2.Size = new Size(972, 393);
+            panel2.Size = new Size(1122, 393);
             panel2.TabIndex = 19;
             panel2.Paint += panel2_Paint;
             // 
@@ -133,10 +135,11 @@
             btnSalir.TabIndex = 27;
             btnSalir.Text = "SALIR";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(744, 358);
+            button3.Location = new Point(903, 358);
             button3.Name = "button3";
             button3.Size = new Size(100, 23);
             button3.TabIndex = 26;
@@ -145,18 +148,19 @@
             // 
             // button2
             // 
-            button2.Location = new Point(860, 358);
+            button2.Location = new Point(1019, 358);
             button2.Name = "button2";
             button2.Size = new Size(100, 23);
             button2.TabIndex = 25;
             button2.Text = "ACEPTAR";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.ForeColor = SystemColors.ButtonHighlight;
-            label8.Location = new Point(802, 323);
+            label8.Location = new Point(961, 328);
             label8.Name = "label8";
             label8.Size = new Size(42, 15);
             label8.TabIndex = 24;
@@ -164,7 +168,7 @@
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(860, 320);
+            txtTotal.Location = new Point(1019, 320);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(100, 23);
             txtTotal.TabIndex = 23;
@@ -174,7 +178,7 @@
             // 
             label7.AutoSize = true;
             label7.ForeColor = SystemColors.ButtonHighlight;
-            label7.Location = new Point(567, 80);
+            label7.Location = new Point(629, 80);
             label7.Name = "label7";
             label7.Size = new Size(46, 15);
             label7.TabIndex = 22;
@@ -182,7 +186,7 @@
             // 
             // txtVALOR
             // 
-            txtVALOR.Location = new Point(619, 72);
+            txtVALOR.Location = new Point(681, 72);
             txtVALOR.Name = "txtVALOR";
             txtVALOR.Size = new Size(88, 23);
             txtVALOR.TabIndex = 21;
@@ -190,7 +194,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(874, 92);
+            button1.Location = new Point(1024, 92);
             button1.Name = "button1";
             button1.Size = new Size(86, 23);
             button1.TabIndex = 20;
@@ -201,7 +205,7 @@
             // cboButaca
             // 
             cboButaca.FormattingEnabled = true;
-            cboButaca.Location = new Point(384, 72);
+            cboButaca.Location = new Point(573, 72);
             cboButaca.Name = "cboButaca";
             cboButaca.Size = new Size(39, 23);
             cboButaca.TabIndex = 10;
@@ -210,7 +214,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ButtonHighlight;
-            label5.Location = new Point(257, 80);
+            label5.Location = new Point(446, 80);
             label5.Name = "label5";
             label5.Size = new Size(121, 15);
             label5.TabIndex = 9;
@@ -220,7 +224,7 @@
             // cboFuncion
             // 
             cboFuncion.FormattingEnabled = true;
-            cboFuncion.Location = new Point(384, 41);
+            cboFuncion.Location = new Point(446, 36);
             cboFuncion.Name = "cboFuncion";
             cboFuncion.Size = new Size(323, 23);
             cboFuncion.TabIndex = 8;
@@ -230,7 +234,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(316, 49);
+            label4.Location = new Point(362, 44);
             label4.Name = "label4";
             label4.Size = new Size(62, 15);
             label4.TabIndex = 7;
@@ -240,7 +244,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(316, 15);
+            label3.Location = new Point(362, 15);
             label3.Name = "label3";
             label3.Size = new Size(62, 15);
             label3.TabIndex = 6;
@@ -249,7 +253,7 @@
             // cmbPeliculas
             // 
             cmbPeliculas.FormattingEnabled = true;
-            cmbPeliculas.Location = new Point(384, 12);
+            cmbPeliculas.Location = new Point(446, 7);
             cmbPeliculas.Name = "cmbPeliculas";
             cmbPeliculas.Size = new Size(323, 23);
             cmbPeliculas.TabIndex = 5;
@@ -258,7 +262,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(739, 15);
+            label2.Location = new Point(881, 15);
             label2.Name = "label2";
             label2.Size = new Size(102, 15);
             label2.TabIndex = 4;
@@ -267,7 +271,7 @@
             // cmbFormaPago
             // 
             cmbFormaPago.FormattingEnabled = true;
-            cmbFormaPago.Location = new Point(847, 12);
+            cmbFormaPago.Location = new Point(989, 15);
             cmbFormaPago.Name = "cmbFormaPago";
             cmbFormaPago.Size = new Size(121, 23);
             cmbFormaPago.TabIndex = 3;
@@ -298,17 +302,20 @@
             dgvTICKET.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvTICKET.BackgroundColor = SystemColors.ButtonHighlight;
             dgvTICKET.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTICKET.Columns.AddRange(new DataGridViewColumn[] { QUITAR, NOMBRE, APELLIDO, FORMADEPAGO, FUNCION, PELICULA, BUTACA, VALOR });
+            dgvTICKET.Columns.AddRange(new DataGridViewColumn[] { QUITAR, NOMBRE, APELLIDO, FORMADEPAGO, FUNCION, PELICULA, HORARIO, FECHA, BUTACA, VALOR });
             dgvTICKET.Location = new Point(0, 121);
             dgvTICKET.Name = "dgvTICKET";
             dgvTICKET.RowTemplate.Height = 25;
-            dgvTICKET.Size = new Size(972, 193);
+            dgvTICKET.Size = new Size(1122, 193);
             dgvTICKET.TabIndex = 0;
+            dgvTICKET.CellContentClick += dgvTICKET_CellContentClick;
             // 
             // QUITAR
             // 
             QUITAR.HeaderText = "QUITAR";
             QUITAR.Name = "QUITAR";
+            QUITAR.Text = "QUITAR";
+            QUITAR.UseColumnTextForButtonValue = true;
             // 
             // NOMBRE
             // 
@@ -336,6 +343,16 @@
             PELICULA.HeaderText = "PELICULA";
             PELICULA.Name = "PELICULA";
             // 
+            // HORARIO
+            // 
+            HORARIO.HeaderText = "HORARIO";
+            HORARIO.Name = "HORARIO";
+            // 
+            // FECHA
+            // 
+            FECHA.HeaderText = "FECHA";
+            FECHA.Name = "FECHA";
+            // 
             // BUTACA
             // 
             BUTACA.HeaderText = "BUTACA";
@@ -350,7 +367,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(972, 460);
+            ClientSize = new Size(1122, 460);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Margin = new Padding(4, 3, 4, 3);
@@ -396,6 +413,8 @@
         private DataGridViewTextBoxColumn FORMADEPAGO;
         private DataGridViewTextBoxColumn FUNCION;
         private DataGridViewTextBoxColumn PELICULA;
+        private DataGridViewTextBoxColumn HORARIO;
+        private DataGridViewTextBoxColumn FECHA;
         private DataGridViewTextBoxColumn BUTACA;
         private DataGridViewTextBoxColumn VALOR;
     }

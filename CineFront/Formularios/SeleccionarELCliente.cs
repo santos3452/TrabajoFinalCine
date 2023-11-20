@@ -106,8 +106,7 @@ namespace CineFront.Formularios
         {
             if (validar())
             {
-                if (validar())
-                {
+               
                     if (cmbDNI.SelectedItem is Clientes clienteSeleccionado)
                     {
                         int idClienteSeleccionado = clienteSeleccionado.id_cliente; // Obtener el ID del cliente seleccionado
@@ -117,7 +116,7 @@ namespace CineFront.Formularios
 
                         await ActualizarClientesEnComboBox();
                     }
-                }
+                
             }
           
 

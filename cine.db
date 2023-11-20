@@ -47,6 +47,7 @@ CREATE TABLE TicketFactura (
     id_factura INT IDENTITY(1,1) PRIMARY KEY,
     fecha DATE,
     id_cliente INT,
+    totalfinal DECIMAL(10,2),
     CONSTRAINT FK_Facturas_Clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
@@ -180,6 +181,7 @@ CREATE TABLE detalle_Ticketfactura (
 	constraint FK_detalles_ticketfactura_funcion foreign key (id_funcion)
 	references Funciones (codigo_funcion)
 	);
+
 
 
 
@@ -318,6 +320,7 @@ as
 begin
 	select id_cliente,nom_cliente,apellido_cliente,telefono,email,DNI
 	from clientes
+	where activo = 1
 end;
 GO
 -- consulta datos del cliente pasandole un nombre como parametro
@@ -463,15 +466,16 @@ BEGIN
     WHERE codigo_funcion = @id_funcion;
 END;
 
-CREATE PROCEDURE [dbo].[SP_Grabar_TicketFactura]
+ALTER PROCEDURE [dbo].[SP_Grabar_TicketFactura]
 	@id_factura int output,
 	@fecha datetime,
 	@id_cliente int,
-	@id_forma int output
+	@id_forma int,
+	@totalfinal decimal
 AS
 BEGIN
-	INSERT INTO TicketFactura (fecha,id_cliente,id_forma)
-    VALUES (@fecha,@id_cliente,@id_forma);
+	INSERT INTO TicketFactura (fecha,id_cliente,id_forma,totalfinal)
+    VALUES (@fecha,@id_cliente,@id_forma,@totalfinal);
 	set @id_factura = SCOPE_IDENTITY();
 END
 
@@ -488,6 +492,60 @@ BEGIN
     VALUES (@id_factura,@id_butaca,@precio,@id_descuento,@id_funcion);
 
 END
+
+CREATE PROCEDURE [dbo].[SP_Proximo_Ticket]
+@proximoID int output
+as
+begin
+set @proximoID = (select max(id_factura)+1 from TicketFactura);
+end
+
+CREATE procedure [dbo].[SP_Consultar_Salas]
+as
+begin
+	select *
+	from salas
+	
+end;
+
+CREATE PROCEDURE [dbo].[SP_Baja_Funcion]	
+@id INT
+AS
+BEGIN
+    update Funciones set activo=0 where codigo_funcion=@id
+END
+
+
+CREATE PROC [dbo].[SP_Insertar_Funcion] 
+@codigo_pelicula INT,
+@fecha DATE,
+@hora VARCHAR(10), -- Cambiado a VARCHAR según tu definición
+@precio DECIMAL,
+@id_sala INT
+AS
+declare @activo bit = 1
+BEGIN
+    DECLARE @hora_convertida TIME;
+
+    -- Realizar la conversión de varchar a time
+    SET @hora_convertida = CONVERT(TIME, @hora);
+
+    INSERT INTO funciones(codigo_pelicula, fecha, hora, precio, id_sala,activo)
+    VALUES (@codigo_pelicula, @fecha, @hora_convertida, @precio, @id_sala,@activo);
+END
+
+GO
+CREATE procedure [dbo].[SP_Consultar_Funciones]
+as
+begin
+	select codigo_funcion,codigo_pelicula,fecha,hora,precio,id_sala
+	from funciones
+	where activo = 1 and  fecha >= CONVERT(date, GETDATE())
+    ORDER BY Fecha ASC;
+
+	
+end;
+
 
 
 ---------------------INSERTS---------------------

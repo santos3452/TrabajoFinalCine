@@ -90,6 +90,60 @@ namespace Front.Formularios
         }
 
 
+        private bool validarbtnActualizar()
+        {
+            if (String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtApellido.Text) || String.IsNullOrEmpty(txtEmail.Text)
+                || String.IsNullOrEmpty(txtDni.Text) || String.IsNullOrEmpty(txtTelefono.Text))
+            {
+                MessageBox.Show("ERROR. Algun campo se encuentra vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (txtDni.Text.Length > 9)
+            {
+                MessageBox.Show("ERROR. El N° de DNI  puede tener hasta 8 digitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Int32.TryParse(txtDni.Text, out int a) == false)
+            {
+                MessageBox.Show("ERROR. Ingrese solo numeros en el N° de DNI.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+         
+
+            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Ingrese un correo válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+
+            if (!Regex.IsMatch(txtNombre.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un nombre válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!Regex.IsMatch(txtApellido.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un apellido válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Regex.IsMatch(txtTelefono.Text, @"^[^\d]+$"))
+            {
+                MessageBox.Show("Ingrese un apellido válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+
+            return true;
+        }
+
+
+
         private async Task insertarClientesAsync()
         {
 
@@ -167,6 +221,7 @@ namespace Front.Formularios
 
             if (grillaclientes.CurrentCell.ColumnIndex == 1)
             {
+                txtDni.Enabled = false;
                 btnGrabar.Visible = false;
                 btnActualizar.Visible = true;
                 txtNombre.Text = grillaclientes.CurrentRow.Cells["NOMBRE"].Value.ToString();
@@ -186,6 +241,7 @@ namespace Front.Formularios
 
         private void frmAltaDeCliente_Load(object sender, EventArgs e)
         {
+            grillaclientes.AllowUserToAddRows = false;
             cargarlosclientes();
             btnActualizar.Visible = false;
         }
@@ -196,6 +252,11 @@ namespace Front.Formularios
             if (MessageBox.Show("¿Desea cancelar?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 limpiar();
+                if (btnActualizar.Visible=true)
+                {
+                    btnActualizar.Visible= false;
+                    btnGrabar.Visible = true;
+                }
             }
         }
 
@@ -249,9 +310,9 @@ namespace Front.Formularios
 
         private void btnActualizar_MouseClick(object sender, MouseEventArgs e)
         {
+            txtDni.Enabled = true;
 
-
-            if (validar())
+            if (validarbtnActualizar())
             {
                 ActualizarClientesAsync();
                 limpiar();
