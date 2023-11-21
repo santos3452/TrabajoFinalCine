@@ -110,7 +110,7 @@ namespace Front.Formularios
                 return false;
             }
 
-         
+
 
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
@@ -252,9 +252,9 @@ namespace Front.Formularios
             if (MessageBox.Show("¿Desea cancelar?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 limpiar();
-                if (btnActualizar.Visible=true)
+                if (btnActualizar.Visible = true)
                 {
-                    btnActualizar.Visible= false;
+                    btnActualizar.Visible = false;
                     btnGrabar.Visible = true;
                 }
             }

@@ -61,7 +61,7 @@ namespace Front.Formularios
             await CargarLasFormasDePago();
             await CargarLasPeliculas();
             ProximoIDticket();
-            lblNOMBRE.Text += 
+            txtTotal.Enabled = false;
             dgvTICKET.AllowUserToAddRows = false;
             cmbPeliculas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -73,6 +73,9 @@ namespace Front.Formularios
             dgvTICKET.Columns["PELICULA"].Width = anchoDeseado;
             int anchoDeseado1 = 80; // Ancho que deseas establecer
             dgvTICKET.Columns["FECHA"].Width = anchoDeseado1;
+            int anchoDeseado2 = 100; // Ancho que deseas establecer
+            dgvTICKET.Columns["FUNCION"].Width = anchoDeseado2;
+
 
 
             txtTotal.Text = totalPrecios.ToString();
@@ -85,7 +88,7 @@ namespace Front.Formularios
             lblTICKET.Text = "GENERAR TICKET NRO: " + num;
         }
 
-            private bool validar()
+        private bool validar()
         {
 
             if (String.IsNullOrEmpty(txtVALOR.Text))
@@ -231,7 +234,7 @@ namespace Front.Formularios
             cmbFormaPago.DisplayMember = "descripcion";
             cmbFormaPago.ValueMember = "id_formapago";
 
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -363,6 +366,16 @@ namespace Front.Formularios
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            dgvTICKET.Rows.Clear();
+            cboButaca.SelectedIndex = -1;
+            cboFuncion.SelectedIndex = -1;
+            txtVALOR.Text = string.Empty;
+            Ticket.Detalle.Clear();
         }
     }
 }

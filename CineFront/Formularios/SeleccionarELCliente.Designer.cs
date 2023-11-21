@@ -51,8 +51,9 @@
             panel1.Controls.Add(label6);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(365, 67);
+            panel1.Size = new Size(417, 89);
             panel1.TabIndex = 18;
             panel1.Paint += panel1_Paint;
             // 
@@ -61,9 +62,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(21, 20);
+            label6.Location = new Point(24, 27);
             label6.Name = "label6";
-            label6.Size = new Size(313, 35);
+            label6.Size = new Size(398, 45);
             label6.TabIndex = 11;
             label6.Text = "SELECCIONE EL DNI DEL CLIENTE";
             label6.Click += label6_Click;
@@ -82,17 +83,19 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(cmbDNI);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 67);
+            panel2.Location = new Point(0, 89);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(365, 383);
+            panel2.Size = new Size(417, 511);
             panel2.TabIndex = 19;
             panel2.Paint += panel2_Paint;
             // 
             // btnLimpear
             // 
-            btnLimpear.Location = new Point(77, 246);
+            btnLimpear.Location = new Point(88, 328);
+            btnLimpear.Margin = new Padding(3, 4, 3, 4);
             btnLimpear.Name = "btnLimpear";
-            btnLimpear.Size = new Size(75, 23);
+            btnLimpear.Size = new Size(90, 31);
             btnLimpear.TabIndex = 9;
             btnLimpear.Text = "CANCELAR";
             btnLimpear.UseVisualStyleBackColor = true;
@@ -100,9 +103,10 @@
             // 
             // btnIrAticket
             // 
-            btnIrAticket.Location = new Point(205, 246);
+            btnIrAticket.Location = new Point(234, 328);
+            btnIrAticket.Margin = new Padding(3, 4, 3, 4);
             btnIrAticket.Name = "btnIrAticket";
-            btnIrAticket.Size = new Size(75, 23);
+            btnIrAticket.Size = new Size(90, 31);
             btnIrAticket.TabIndex = 8;
             btnIrAticket.Text = "ACEPTAR";
             btnIrAticket.UseVisualStyleBackColor = true;
@@ -110,9 +114,10 @@
             // 
             // btnIrAFormCliente
             // 
-            btnIrAFormCliente.Location = new Point(151, 338);
+            btnIrAFormCliente.Location = new Point(173, 451);
+            btnIrAFormCliente.Margin = new Padding(3, 4, 3, 4);
             btnIrAFormCliente.Name = "btnIrAFormCliente";
-            btnIrAFormCliente.Size = new Size(75, 23);
+            btnIrAFormCliente.Size = new Size(86, 31);
             btnIrAFormCliente.TabIndex = 7;
             btnIrAFormCliente.Text = "GENERAR";
             btnIrAFormCliente.UseVisualStyleBackColor = true;
@@ -122,33 +127,35 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(44, 310);
+            label4.Location = new Point(50, 413);
             label4.Name = "label4";
-            label4.Size = new Size(290, 15);
+            label4.Size = new Size(368, 20);
             label4.TabIndex = 6;
             label4.Text = "¿El cliente no se encuentra registrado?. Presione abajo";
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(140, 192);
+            txtApellido.Location = new Point(160, 256);
+            txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(100, 23);
+            txtApellido.Size = new Size(114, 27);
             txtApellido.TabIndex = 5;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(140, 141);
+            txtNombre.Location = new Point(160, 188);
+            txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(100, 23);
+            txtNombre.Size = new Size(114, 27);
             txtNombre.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(54, 195);
+            label3.Location = new Point(62, 260);
             label3.Name = "label3";
-            label3.Size = new Size(63, 15);
+            label3.Size = new Size(78, 20);
             label3.TabIndex = 3;
             label3.Text = "APELLIDO:";
             // 
@@ -156,9 +163,9 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(58, 144);
+            label2.Location = new Point(66, 192);
             label2.Name = "label2";
-            label2.Size = new Size(59, 15);
+            label2.Size = new Size(73, 20);
             label2.TabIndex = 2;
             label2.Text = "NOMBRE:";
             // 
@@ -166,28 +173,30 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ButtonHighlight;
-            label1.Location = new Point(77, 81);
+            label1.Location = new Point(88, 108);
             label1.Name = "label1";
-            label1.Size = new Size(30, 15);
+            label1.Size = new Size(38, 20);
             label1.TabIndex = 1;
             label1.Text = "DNI:";
             // 
             // cmbDNI
             // 
             cmbDNI.FormattingEnabled = true;
-            cmbDNI.Location = new Point(130, 78);
+            cmbDNI.Location = new Point(149, 104);
+            cmbDNI.Margin = new Padding(3, 4, 3, 4);
             cmbDNI.Name = "cmbDNI";
-            cmbDNI.Size = new Size(121, 23);
+            cmbDNI.Size = new Size(138, 28);
             cmbDNI.TabIndex = 0;
             cmbDNI.SelectedIndexChanged += cmbDNI_SelectedIndexChanged;
             // 
             // SeleccionarELCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(365, 450);
+            ClientSize = new Size(417, 600);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SeleccionarELCliente";
             Text = "SeleccionarELCliente";
             Load += SeleccionarELCliente_Load;

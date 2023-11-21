@@ -27,17 +27,18 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox1">
+                    <Textbox Name="Textbox14">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ID del cliente</Value>
+                              <Value>Id del Cliente</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Century Gothic</FontFamily>
+                                <FontWeight>SemiBold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -63,32 +64,18 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox2">
+                    <Textbox Name="Textbox15">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nombre del</Value>
+                              <Value>Nombre del Cliente</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Century Gothic</FontFamily>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Cliente</Value>
-                              <Style>
-                                <FontStyle>Italic</FontStyle>
-                                <FontFamily>Century Gothic</FontFamily>
+                                <FontWeight>SemiBold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -114,32 +101,18 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox3">
+                    <Textbox Name="Textbox16">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Apellido del</Value>
+                              <Value>Apellido del Cliente</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Century Gothic</FontFamily>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Cliente</Value>
-                              <Style>
-                                <FontStyle>Italic</FontStyle>
-                                <FontFamily>Century Gothic</FontFamily>
+                                <FontWeight>SemiBold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -165,7 +138,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
+                    <Textbox Name="Textbox17">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -176,6 +149,7 @@
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Century Gothic</FontFamily>
+                                <FontWeight>SemiBold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -201,17 +175,18 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox5">
+                    <Textbox Name="Textbox18">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Gasto total</Value>
+                              <Value>Gasto Total</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Century Gothic</FontFamily>
+                                <FontWeight>SemiBold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -404,7 +379,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -432,27 +406,43 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.9652cm</Top>
-        <Left>1.32503cm</Left>
-        <Height>2.00433cm</Height>
-        <Width>12.92333cm</Width>
+        <Left>0.37166cm</Left>
+        <Height>2.00434cm</Height>
+        <Width>12.92334cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
-      <Line Name="Line2">
+      <Line Name="Line3">
+        <Top>0.03528cm</Top>
+        <Left>0cm</Left>
         <Height>0cm</Height>
-        <Width>16.51cm</Width>
+        <Width>15.29633cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
+            <Color>#009688</Color>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line4">
+        <Top>4.08442cm</Top>
+        <Left>0.00001cm</Left>
+        <Height>0cm</Height>
+        <Width>15.29633cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Color>#009688</Color>
             <Style>Solid</Style>
           </Border>
         </Style>
       </Line>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1.62193in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -460,14 +450,14 @@
       <BackgroundColor>#33334c</BackgroundColor>
     </Style>
   </Body>
-  <Width>6.5in</Width>
+  <Width>6.02218in</Width>
   <Page>
     <PageHeader>
-      <Height>1.73567cm</Height>
+      <Height>1.12cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox11">
+        <Textbox Name="Textbox6">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
@@ -479,7 +469,7 @@
                     <FontFamily>Century Gothic</FontFamily>
                     <FontSize>20pt</FontSize>
                     <FontWeight>Bold</FontWeight>
-                    <Color>White</Color>
+                    <Color>#009688</Color>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -488,10 +478,10 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox11</rd:DefaultName>
-          <Top>0.4445cm</Top>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Left>0.00001cm</Left>
           <Height>0.91017cm</Height>
-          <Width>16.25833cm</Width>
+          <Width>15.29633cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -510,6 +500,62 @@
         <BackgroundColor>#33334c</BackgroundColor>
       </Style>
     </PageHeader>
+    <PageFooter>
+      <Height>1cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox26">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Pag.</Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value> / </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!TotalPages</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Top>0.2cm</Top>
+          <Left>0cm</Left>
+          <Height>0.6cm</Height>
+          <Width>15.29633cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+        <BackgroundColor>#33334c</BackgroundColor>
+      </Style>
+    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>

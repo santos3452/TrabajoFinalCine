@@ -28,16 +28,16 @@ namespace CineFront.Formularios
             InitializeComponent();
         }
 
-        private void frmFunciones_Load(object sender, EventArgs e)
+        private async void frmFunciones_Load(object sender, EventArgs e)
         {
 
-            CargarLasPeliculas();
-            CargarLasSalas();
+            await CargarLasPeliculas();
+            await CargarLasSalas();
             dtvFunciones.AllowUserToAddRows = false;
             txtHORA.Text = hoy.ToString("hh:mm:ss");
             int anchoDeseado = 200; // Ancho que deseas establecer
             dtvFunciones.Columns["NOMBRE"].Width = anchoDeseado;
-            int anchoDeseado1 = 75; // Ancho que deseas establecer
+            int anchoDeseado1 = 100; // Ancho que deseas establecer
             dtvFunciones.Columns["FECHA"].Width = anchoDeseado1;
             // Obtener la fecha seleccionada del DateTimePicker
             DateTime fechaSeleccionada = dtPICKER.Value.Date;
@@ -72,7 +72,8 @@ namespace CineFront.Formularios
 
         }
         private async Task<bool> InsertarFunciones(List<Funciones> ListaDeFunciones)
-        { if (dtvFunciones.RowCount > 0)
+        {
+            if (dtvFunciones.RowCount > 0)
             {
 
 
@@ -136,7 +137,7 @@ namespace CineFront.Formularios
                     return false;
                 }
 
-               
+
             }
 
 
@@ -213,11 +214,13 @@ namespace CineFront.Formularios
         {
             InsertarFunciones(listaDeFunciones);
             dtvFunciones.Rows.Clear();
+            listaDeFunciones.Clear();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            listaDeFunciones.Clear();
             this.Close();
         }
 

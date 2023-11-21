@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             grillaclientes = new DataGridView();
             ELIMINAR = new DataGridViewButtonColumn();
             EDITAR = new DataGridViewButtonColumn();
@@ -56,13 +59,42 @@
             // 
             // grillaclientes
             // 
-            grillaclientes.BackgroundColor = SystemColors.ButtonFace;
+            grillaclientes.BackgroundColor = Color.FromArgb(51, 51, 76);
+            grillaclientes.BorderStyle = BorderStyle.None;
+            grillaclientes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(51, 51, 76);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(0, 150, 136);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(0, 150, 136);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            grillaclientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             grillaclientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grillaclientes.Columns.AddRange(new DataGridViewColumn[] { ELIMINAR, EDITAR });
-            grillaclientes.Location = new Point(12, 240);
+            grillaclientes.EnableHeadersVisualStyles = false;
+            grillaclientes.GridColor = Color.FromArgb(0, 150, 136);
+            grillaclientes.Location = new Point(14, 320);
+            grillaclientes.Margin = new Padding(3, 4, 3, 4);
             grillaclientes.Name = "grillaclientes";
+            grillaclientes.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(51, 51, 76);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            grillaclientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            grillaclientes.RowHeadersVisible = false;
+            grillaclientes.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(51, 51, 76);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.DarkCyan;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            grillaclientes.RowsDefaultCellStyle = dataGridViewCellStyle3;
             grillaclientes.RowTemplate.Height = 25;
-            grillaclientes.Size = new Size(865, 220);
+            grillaclientes.Size = new Size(989, 293);
             grillaclientes.TabIndex = 9;
             grillaclientes.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -70,23 +102,28 @@
             // 
             ELIMINAR.FlatStyle = FlatStyle.Flat;
             ELIMINAR.HeaderText = "ELIMINAR";
+            ELIMINAR.MinimumWidth = 6;
             ELIMINAR.Name = "ELIMINAR";
             ELIMINAR.Text = "ELIMINAR";
             ELIMINAR.UseColumnTextForButtonValue = true;
+            ELIMINAR.Width = 125;
             // 
             // EDITAR
             // 
             EDITAR.FlatStyle = FlatStyle.Flat;
             EDITAR.HeaderText = "EDITAR";
+            EDITAR.MinimumWidth = 6;
             EDITAR.Name = "EDITAR";
             EDITAR.Text = "EDITAR";
             EDITAR.UseColumnTextForButtonValue = true;
+            EDITAR.Width = 125;
             // 
             // button1
             // 
-            button1.Location = new Point(619, 202);
+            button1.Location = new Point(707, 269);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(108, 32);
+            button1.Size = new Size(123, 43);
             button1.TabIndex = 5;
             button1.Text = "CANCELAR";
             button1.UseVisualStyleBackColor = true;
@@ -94,9 +131,10 @@
             // 
             // btnGrabar
             // 
-            btnGrabar.Location = new Point(743, 202);
+            btnGrabar.Location = new Point(849, 269);
+            btnGrabar.Margin = new Padding(3, 4, 3, 4);
             btnGrabar.Name = "btnGrabar";
-            btnGrabar.Size = new Size(108, 32);
+            btnGrabar.Size = new Size(123, 43);
             btnGrabar.TabIndex = 6;
             btnGrabar.Text = "GRABAR";
             btnGrabar.UseVisualStyleBackColor = true;
@@ -104,9 +142,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(743, 466);
+            button3.Location = new Point(849, 621);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(108, 39);
+            button3.Size = new Size(123, 52);
             button3.TabIndex = 8;
             button3.Text = "ACEPTAR";
             button3.UseVisualStyleBackColor = true;
@@ -117,9 +156,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(23, 81);
+            label1.Location = new Point(26, 108);
             label1.Name = "label1";
-            label1.Size = new Size(75, 21);
+            label1.Size = new Size(93, 28);
             label1.TabIndex = 6;
             label1.Text = "NOMBRE";
             // 
@@ -128,9 +167,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ControlLight;
-            label2.Location = new Point(246, 81);
+            label2.Location = new Point(281, 108);
             label2.Name = "label2";
-            label2.Size = new Size(80, 21);
+            label2.Size = new Size(98, 28);
             label2.TabIndex = 7;
             label2.Text = "APELLIDO";
             // 
@@ -139,9 +178,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlLight;
-            label3.Location = new Point(23, 147);
+            label3.Location = new Point(26, 196);
             label3.Name = "label3";
-            label3.Size = new Size(54, 21);
+            label3.Size = new Size(67, 28);
             label3.TabIndex = 8;
             label3.Text = "EMAIL";
             // 
@@ -150,9 +189,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlLight;
-            label4.Location = new Point(341, 145);
+            label4.Location = new Point(390, 193);
             label4.Name = "label4";
-            label4.Size = new Size(37, 21);
+            label4.Size = new Size(46, 28);
             label4.TabIndex = 9;
             label4.Text = "DNI";
             // 
@@ -161,9 +200,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ControlLight;
-            label5.Location = new Point(457, 83);
+            label5.Location = new Point(522, 111);
             label5.Name = "label5";
-            label5.Size = new Size(86, 21);
+            label5.Size = new Size(106, 28);
             label5.TabIndex = 10;
             label5.Text = "TELEFONO";
             // 
@@ -172,45 +211,50 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(294, 19);
+            label6.Location = new Point(336, 25);
             label6.Name = "label6";
-            label6.Size = new Size(322, 35);
+            label6.Size = new Size(409, 45);
             label6.TabIndex = 11;
             label6.Text = "INGRESE LOS DATOS DEL CLIENTE";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(114, 83);
+            txtNombre.Location = new Point(130, 111);
+            txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(100, 23);
+            txtNombre.Size = new Size(114, 27);
             txtNombre.TabIndex = 0;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(114, 145);
+            txtEmail.Location = new Point(130, 193);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(177, 23);
+            txtEmail.Size = new Size(202, 27);
             txtEmail.TabIndex = 3;
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(341, 83);
+            txtApellido.Location = new Point(390, 111);
+            txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(100, 23);
+            txtApellido.Size = new Size(114, 27);
             txtApellido.TabIndex = 1;
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(411, 145);
+            txtDni.Location = new Point(470, 193);
+            txtDni.Margin = new Padding(3, 4, 3, 4);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(100, 23);
+            txtDni.Size = new Size(114, 27);
             txtDni.TabIndex = 4;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(563, 83);
+            txtTelefono.Location = new Point(643, 111);
+            txtTelefono.Margin = new Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(100, 23);
+            txtTelefono.Size = new Size(114, 27);
             txtTelefono.TabIndex = 2;
             // 
             // panel1
@@ -219,8 +263,9 @@
             panel1.Controls.Add(label6);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(889, 67);
+            panel1.Size = new Size(1016, 89);
             panel1.TabIndex = 17;
             // 
             // servicioBindingSource
@@ -229,9 +274,10 @@
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(494, 202);
+            btnActualizar.Location = new Point(565, 269);
+            btnActualizar.Margin = new Padding(3, 4, 3, 4);
             btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(108, 32);
+            btnActualizar.Size = new Size(123, 43);
             btnActualizar.TabIndex = 7;
             btnActualizar.Text = "ACTUALIZAR";
             btnActualizar.UseVisualStyleBackColor = true;
@@ -240,10 +286,10 @@
             // 
             // frmAltaDeCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(51, 51, 76);
-            ClientSize = new Size(889, 517);
+            BackColor = Color.FromArgb(39, 39, 58);
+            ClientSize = new Size(1016, 689);
             Controls.Add(btnActualizar);
             Controls.Add(panel1);
             Controls.Add(txtTelefono);
@@ -260,6 +306,7 @@
             Controls.Add(btnGrabar);
             Controls.Add(button1);
             Controls.Add(grillaclientes);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAltaDeCliente";
             Text = "frmAltaDeCliente";
             Load += frmAltaDeCliente_Load;

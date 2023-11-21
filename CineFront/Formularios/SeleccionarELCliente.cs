@@ -113,7 +113,7 @@ namespace CineFront.Formularios
 
                     frmAltaTicket frm = new frmAltaTicket(idClienteSeleccionado);
                     frm.ShowDialog();
-                    
+
 
                     await ActualizarClientesEnComboBox();
                 }
@@ -143,7 +143,7 @@ namespace CineFront.Formularios
         private void btnLimpear_Click(object sender, EventArgs e)
         {
             limpiar();
-            
+
 
         }
 

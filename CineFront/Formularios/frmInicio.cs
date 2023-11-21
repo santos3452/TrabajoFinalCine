@@ -71,8 +71,7 @@ namespace CineFront
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmPrincipal frm = new frmPrincipal();
-            frm.Show();
+            
         }
     }
 }

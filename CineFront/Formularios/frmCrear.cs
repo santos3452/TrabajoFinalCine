@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,7 +32,24 @@ namespace CineFront
             txtMail.Clear();
 
         }
+        private bool validar()
+        {
+            if (String.IsNullOrEmpty(txtUsuario.Text) || String.IsNullOrEmpty(txtContraseña.Text))
+            {
+                MessageBox.Show("ERROR. Algun campo se encuentra vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
+
+            if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Ingrese un correo válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            return true;
+
+        }
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -44,17 +62,20 @@ namespace CineFront
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string contraseña = txtContraseña.Text;
-            string mail = txtMail.Text;
-
-            Usuarios creacion = new Usuarios
+            if (validar())
             {
-                Usuario = usuario,
-                Contraseña = contraseña,
-                mail = mail
-            };
-            await Verificar(creacion);
+                string usuario = txtUsuario.Text;
+                string contraseña = txtContraseña.Text;
+                string mail = txtMail.Text;
+
+                Usuarios creacion = new Usuarios
+                {
+                    Usuario = usuario,
+                    Contraseña = contraseña,
+                    mail = mail
+                };
+                await Verificar(creacion);
+            }
         }
 
 
@@ -78,6 +99,11 @@ namespace CineFront
                     MessageBox.Show("Colocar otro Usuario");
                 }
             }
+        }
+
+        private void frmCrear_Load(object sender, EventArgs e)
+        {
+            txtContraseña.UseSystemPasswordChar = true;
         }
     }
 }
