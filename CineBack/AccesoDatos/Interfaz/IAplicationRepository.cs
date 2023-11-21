@@ -11,26 +11,26 @@ namespace CineBack.Fachada
     public interface IAplicacion
     {
         //CLIENTES
-        List<Clientes> getconsultarClientes();
-        public bool getEliminarCliente(int id_cliente);
-        public int  getInsertarCliente(Clientes oCliente);
-        public bool getActualizarCliente(Clientes Cliente);
+        Task <List<Clientes>> getconsultarClientes();
+        Task <bool> getEliminarCliente(int id_cliente);
+        Task <int>  getInsertarCliente(Clientes oCliente);
+        Task <bool> getActualizarCliente(Clientes Cliente);
 
 
         //TICKETS
-        public Task<bool> InsertarTicket(TicketFactura Ticket);
-        List<FormaDePago> getFormaDelPago();
-        List<Peliculas> GetPeliculas();
-        List<Funciones> getFunciones_por_ID(int codigo_pelicula);
-        List<Butaca> GetButacas(int codigo_funcion);
-        public  Task<int> GetProximoID();
+        Task<bool> InsertarTicket(TicketFactura Ticket);
+         Task <List<FormaDePago>> getFormaDelPago();
+        Task <List<Peliculas>> GetPeliculas();
+        Task <List<Funciones>> getFunciones_por_ID(int codigo_pelicula);
+        Task <List<Butaca>> GetButacas(int codigo_funcion);
+         Task<int> GetProximoID();
 
 
         // FUNCIONES
-        public List<Salas> getConsultarSalas();
-        public bool getInsertarFunciones(List<Funciones> listaFunciones);
-        public bool getEliminarFuncion(int codigo_funcion);
-        public List<Funciones> getConsultarFunciones();
-        public List<Funciones> getConsultarFuncionesALL();
+        Task <List<Salas>> getConsultarSalas();
+        Task<bool> getInsertarFunciones(List<Funciones> listaFunciones);
+        Task<bool> getEliminarFuncion(int codigo_funcion);
+        Task <List<Funciones>> getConsultarFunciones();
+        Task <List<Funciones>> getConsultarFuncionesALL();
     }
 }

@@ -15,6 +15,7 @@ namespace CineBack.services.implementaciones
     public class Servicio : IServicio
     {
         private IAplicacion oDao;
+        
 
         public Servicio()
         {
@@ -23,26 +24,26 @@ namespace CineBack.services.implementaciones
 
         //CLIENTES
 
-        public List<Clientes> getconsultarClientes()
+        public async Task<List<Clientes>> getconsultarClientes()
         {
-            return oDao.getconsultarClientes();
+            return await oDao.getconsultarClientes();
 
 
         }
-        public bool getEliminarCliente(int id_cliente)
+        public async Task<bool> getEliminarCliente(int id_cliente)
         {
-            return oDao.getEliminarCliente(id_cliente);
+            return await oDao.getEliminarCliente(id_cliente);
         }
 
-        public int getInsertarCliente(Clientes oCliente)
+        public async Task<int> getInsertarCliente(Clientes oCliente)
         {
-            return oDao.getInsertarCliente(oCliente);
+            return await oDao.getInsertarCliente(oCliente);
         }
 
-        public bool getActualizarCliente(Clientes oCliente)
+        public async Task<bool> getActualizarCliente(Clientes oCliente)
         {
 
-            return oDao.getActualizarCliente(oCliente);
+            return await oDao.getActualizarCliente(oCliente);
         }
 
 
@@ -50,35 +51,35 @@ namespace CineBack.services.implementaciones
 
 
 
-        public Task<bool> InsertarTicket(TicketFactura Ticket)
+        public async  Task<bool> InsertarTicket(TicketFactura Ticket)
         {
-            return oDao.InsertarTicket(Ticket);
+            return await oDao.InsertarTicket(Ticket);
         }
 
-        public List<FormaDePago> getFormaDelPago()
+        public async Task<List<FormaDePago>> getFormaDelPago()
         {
-            return oDao.getFormaDelPago();
+            return await oDao.getFormaDelPago();
 
         }
 
 
-       public  List<Peliculas> getPeliculas()
+       public  async Task<List<Peliculas>>  getPeliculas()
         {
-            return oDao.GetPeliculas();
-        }
-
-       
-
-        List<Funciones> IServicio.getFunciones_por_ID(int codigo_pelicula)
-        {
-            return oDao.getFunciones_por_ID(codigo_pelicula);
+            return await oDao.GetPeliculas();
         }
 
        
 
-        public List<Butaca> GetButacas(int codigo_funcion)
+        public async Task <List<Funciones>>  getFunciones_por_ID(int codigo_pelicula)
         {
-            return oDao.GetButacas(codigo_funcion);
+            return await oDao.getFunciones_por_ID(codigo_pelicula);
+        }
+
+       
+
+        public async Task <List<Butaca>> GetButacas(int codigo_funcion)
+        {
+            return await oDao.GetButacas(codigo_funcion);
         }
 
         public async Task<int> GetProximoID()
@@ -88,28 +89,30 @@ namespace CineBack.services.implementaciones
 
         // FUNCIONES
 
-        public List<Salas> getConsultarSalas()
+        public async Task<List<Salas>> getConsultarSalas()
         {
-            return oDao.getConsultarSalas();
+            return await oDao.getConsultarSalas();
         }
        
 
-        public bool getInsertarFunciones(List<Funciones> listaFunciones)
+        public async Task<bool> getInsertarFunciones(List<Funciones> listaFunciones)
         {
-            return oDao.getInsertarFunciones(listaFunciones);
+            return await oDao.getInsertarFunciones(listaFunciones);
         }
-        public bool getEliminarFuncion(int codigo_funcion)
+        public async Task<bool> getEliminarFuncion(int codigo_funcion)
         {
-            return oDao.getEliminarFuncion(codigo_funcion);
+            return await oDao.getEliminarFuncion(codigo_funcion);
         }
-        public List<Funciones> getConsultarFunciones()
+        public async Task<List<Funciones>> getConsultarFunciones()
         {
-            return oDao.getConsultarFunciones();
+            return await oDao.getConsultarFunciones();
         }
 
-        public List<Funciones> getConsultarFuncionesALL()
+        public async Task<List<Funciones>> getConsultarFuncionesALL()
         {
-            return oDao.getConsultarFuncionesALL();
+            return await oDao.getConsultarFuncionesALL();
         }
+
+        
     }
 }

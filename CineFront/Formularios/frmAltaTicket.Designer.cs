@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             lblNOMBRE = new Label();
-            label6 = new Label();
+            lblTICKET = new Label();
             panel2 = new Panel();
             btnSalir = new Button();
             button3 = new Button();
@@ -71,32 +71,32 @@
             // 
             panel1.BackColor = Color.FromArgb(0, 150, 136);
             panel1.Controls.Add(lblNOMBRE);
-            panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblTICKET);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1122, 67);
-            panel1.TabIndex = 18;
+            panel1.TabIndex = 1;
             // 
             // lblNOMBRE
             // 
             lblNOMBRE.AutoSize = true;
             lblNOMBRE.Location = new Point(12, 18);
             lblNOMBRE.Name = "lblNOMBRE";
-            lblNOMBRE.Size = new Size(38, 15);
+            lblNOMBRE.Size = new Size(0, 15);
             lblNOMBRE.TabIndex = 20;
-            lblNOMBRE.Text = "label2";
             // 
-            // label6
+            // lblTICKET
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = SystemColors.ControlLight;
-            label6.Location = new Point(500, 9);
-            label6.Name = "label6";
-            label6.Size = new Size(217, 35);
-            label6.TabIndex = 11;
-            label6.Text = "GENERAR TICKET NRO:";
+            lblTICKET.AutoSize = true;
+            lblTICKET.Font = new Font("Bahnschrift Condensed", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTICKET.ForeColor = SystemColors.ControlLight;
+            lblTICKET.Location = new Point(446, 18);
+            lblTICKET.Name = "lblTICKET";
+            lblTICKET.Size = new Size(217, 35);
+            lblTICKET.TabIndex = 11;
+            lblTICKET.Text = "GENERAR TICKET NRO:";
+            lblTICKET.Click += label6_Click;
             // 
             // panel2
             // 
@@ -124,7 +124,7 @@
             panel2.Location = new Point(0, 67);
             panel2.Name = "panel2";
             panel2.Size = new Size(1122, 393);
-            panel2.TabIndex = 19;
+            panel2.TabIndex = 0;
             panel2.Paint += panel2_Paint;
             // 
             // btnSalir
@@ -132,7 +132,7 @@
             btnSalir.Location = new Point(12, 358);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(100, 23);
-            btnSalir.TabIndex = 27;
+            btnSalir.TabIndex = 9;
             btnSalir.Text = "SALIR";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -142,7 +142,7 @@
             button3.Location = new Point(903, 358);
             button3.Name = "button3";
             button3.Size = new Size(100, 23);
-            button3.TabIndex = 26;
+            button3.TabIndex = 8;
             button3.Text = "CANCELAR";
             button3.UseVisualStyleBackColor = true;
             // 
@@ -151,7 +151,7 @@
             button2.Location = new Point(1019, 358);
             button2.Name = "button2";
             button2.Size = new Size(100, 23);
-            button2.TabIndex = 25;
+            button2.TabIndex = 7;
             button2.Text = "ACEPTAR";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
@@ -171,7 +171,7 @@
             txtTotal.Location = new Point(1019, 320);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(100, 23);
-            txtTotal.TabIndex = 23;
+            txtTotal.TabIndex = 6;
             txtTotal.TextChanged += textBox1_TextChanged;
             // 
             // label7
@@ -181,7 +181,7 @@
             label7.Location = new Point(629, 80);
             label7.Name = "label7";
             label7.Size = new Size(46, 15);
-            label7.TabIndex = 22;
+            label7.TabIndex = 10;
             label7.Text = "VALOR:";
             // 
             // txtVALOR
@@ -189,7 +189,7 @@
             txtVALOR.Location = new Point(681, 72);
             txtVALOR.Name = "txtVALOR";
             txtVALOR.Size = new Size(88, 23);
-            txtVALOR.TabIndex = 21;
+            txtVALOR.TabIndex = 4;
             txtVALOR.TextChanged += txtVALOR_TextChanged;
             // 
             // button1
@@ -197,7 +197,7 @@
             button1.Location = new Point(1024, 92);
             button1.Name = "button1";
             button1.Size = new Size(86, 23);
-            button1.TabIndex = 20;
+            button1.TabIndex = 5;
             button1.Text = "Agregar";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -208,7 +208,7 @@
             cboButaca.Location = new Point(573, 72);
             cboButaca.Name = "cboButaca";
             cboButaca.Size = new Size(39, 23);
-            cboButaca.TabIndex = 10;
+            cboButaca.TabIndex = 3;
             // 
             // label5
             // 
@@ -217,7 +217,7 @@
             label5.Location = new Point(446, 80);
             label5.Name = "label5";
             label5.Size = new Size(121, 15);
-            label5.TabIndex = 9;
+            label5.TabIndex = 6;
             label5.Text = "BUTACA DISPONIBLE:";
             label5.Click += label5_Click;
             // 
@@ -227,7 +227,7 @@
             cboFuncion.Location = new Point(446, 36);
             cboFuncion.Name = "cboFuncion";
             cboFuncion.Size = new Size(323, 23);
-            cboFuncion.TabIndex = 8;
+            cboFuncion.TabIndex = 1;
             cboFuncion.SelectedIndexChanged += cboFuncion_SelectedIndexChanged;
             // 
             // label4
@@ -256,7 +256,7 @@
             cmbPeliculas.Location = new Point(446, 7);
             cmbPeliculas.Name = "cmbPeliculas";
             cmbPeliculas.Size = new Size(323, 23);
-            cmbPeliculas.TabIndex = 5;
+            cmbPeliculas.TabIndex = 0;
             // 
             // label2
             // 
@@ -265,7 +265,7 @@
             label2.Location = new Point(881, 15);
             label2.Name = "label2";
             label2.Size = new Size(102, 15);
-            label2.TabIndex = 4;
+            label2.TabIndex = 12;
             label2.Text = "FORMA DE PAGO:";
             // 
             // cmbFormaPago
@@ -274,7 +274,7 @@
             cmbFormaPago.Location = new Point(989, 15);
             cmbFormaPago.Name = "cmbFormaPago";
             cmbFormaPago.Size = new Size(121, 23);
-            cmbFormaPago.TabIndex = 3;
+            cmbFormaPago.TabIndex = 2;
             // 
             // cmbClientSelec
             // 
@@ -297,8 +297,8 @@
             // 
             // dgvTICKET
             // 
-            dataGridViewCellStyle1.BackColor = Color.Transparent;
-            dgvTICKET.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = Color.Transparent;
+            dgvTICKET.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvTICKET.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgvTICKET.BackgroundColor = SystemColors.ButtonHighlight;
             dgvTICKET.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -385,7 +385,7 @@
         #endregion
 
         private Panel panel1;
-        private Label label6;
+        private Label lblTICKET;
         private Panel panel2;
         private Label label1;
         private DataGridView dgvTICKET;

@@ -1,4 +1,6 @@
-﻿using CineBack.AccesoDatos.Interfaz;
+﻿using CineBack.AccesoDatos;
+using CineBack.AccesoDatos.Implementacion_Repo_;
+using CineBack.AccesoDatos.Interfaz;
 using CineBack.Entidades;
 using CineBack.services.Interfaces;
 using System;
@@ -11,8 +13,8 @@ namespace CineBack.services.implementaciones
 {
     public class UsuarioService : IUsuarioService
     {
-        private IUsuarioRepository usuarioRepository;
 
+        private IUsuarioRepository usuarioRepository;
         public UsuarioService(IUsuarioRepository _usuarioRepository)
         {
             usuarioRepository = _usuarioRepository;
@@ -24,7 +26,7 @@ namespace CineBack.services.implementaciones
             Usuarios usuarioEncontrado = await usuarioRepository.GetUserByName(credenciales.Usuario);
 
             // Comparar contra del usuario que trajo el repo con la del usuario ingresado por txt
-            if(usuarioEncontrado.Contraseña == credenciales.Contraseña)
+            if (usuarioEncontrado.Contraseña == credenciales.Contraseña)
             {
                 return true;
             }
@@ -33,6 +35,18 @@ namespace CineBack.services.implementaciones
 
             return false;
         }
+        public async Task<bool> Start(Usuarios creacion)
+        {
+            // Buscar al usuario por nombre de usuario en el repo.
+            Usuarios usuarioEncontrado = await usuarioRepository.GetUserByName(creacion.Usuario);
 
+            if (usuarioEncontrado.Usuario == null)
+            {
+                await usuarioRepository.PutUser(creacion.Usuario, creacion.Contraseña, creacion.mail);
+                return true;
+            }
+            return false;
+
+        }
     }
 }

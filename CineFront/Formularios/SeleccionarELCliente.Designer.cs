@@ -31,6 +31,7 @@
             panel1 = new Panel();
             label6 = new Label();
             panel2 = new Panel();
+            btnLimpear = new Button();
             btnIrAticket = new Button();
             btnIrAFormCliente = new Button();
             label4 = new Label();
@@ -40,7 +41,6 @@
             label2 = new Label();
             label1 = new Label();
             cmbDNI = new ComboBox();
-            btnLimpear = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -54,6 +54,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(365, 67);
             panel1.TabIndex = 18;
+            panel1.Paint += panel1_Paint;
             // 
             // label6
             // 
@@ -86,6 +87,16 @@
             panel2.Size = new Size(365, 383);
             panel2.TabIndex = 19;
             panel2.Paint += panel2_Paint;
+            // 
+            // btnLimpear
+            // 
+            btnLimpear.Location = new Point(77, 246);
+            btnLimpear.Name = "btnLimpear";
+            btnLimpear.Size = new Size(75, 23);
+            btnLimpear.TabIndex = 9;
+            btnLimpear.Text = "CANCELAR";
+            btnLimpear.UseVisualStyleBackColor = true;
+            btnLimpear.Click += btnLimpear_Click;
             // 
             // btnIrAticket
             // 
@@ -169,16 +180,6 @@
             cmbDNI.Size = new Size(121, 23);
             cmbDNI.TabIndex = 0;
             cmbDNI.SelectedIndexChanged += cmbDNI_SelectedIndexChanged;
-            // 
-            // btnLimpear
-            // 
-            btnLimpear.Location = new Point(77, 246);
-            btnLimpear.Name = "btnLimpear";
-            btnLimpear.Size = new Size(75, 23);
-            btnLimpear.TabIndex = 9;
-            btnLimpear.Text = "CANCELAR";
-            btnLimpear.UseVisualStyleBackColor = true;
-            btnLimpear.Click += btnLimpear_Click;
             // 
             // SeleccionarELCliente
             // 

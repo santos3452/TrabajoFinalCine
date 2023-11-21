@@ -40,7 +40,7 @@ namespace CineFront.Formularios
             cmbDNI.DropDownStyle = ComboBoxStyle.DropDown;
             cmbDNI.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbDNI.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cmbDNI.SelectedIndex = -1; 
+            cmbDNI.SelectedIndex = -1;
 
 
         }
@@ -55,9 +55,9 @@ namespace CineFront.Formularios
 
         private async void SeleccionarELCliente_Load(object sender, EventArgs e)
         {
-            
+
             txtApellido.Enabled = false;
-            txtNombre.Enabled = false;  
+            txtNombre.Enabled = false;
 
             cmbDNI.DropDownStyle = ComboBoxStyle.DropDown;
             cmbDNI.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -106,19 +106,20 @@ namespace CineFront.Formularios
         {
             if (validar())
             {
-               
-                    if (cmbDNI.SelectedItem is Clientes clienteSeleccionado)
-                    {
-                        int idClienteSeleccionado = clienteSeleccionado.id_cliente; // Obtener el ID del cliente seleccionado
 
-                        frmAltaTicket frm = new  frmAltaTicket(idClienteSeleccionado);
-                        frm.ShowDialog();
+                if (cmbDNI.SelectedItem is Clientes clienteSeleccionado)
+                {
+                    int idClienteSeleccionado = clienteSeleccionado.id_cliente; // Obtener el ID del cliente seleccionado
 
-                        await ActualizarClientesEnComboBox();
-                    }
-                
+                    frmAltaTicket frm = new frmAltaTicket(idClienteSeleccionado);
+                    frm.ShowDialog();
+                    
+
+                    await ActualizarClientesEnComboBox();
+                }
+
             }
-          
+
 
         }
 
@@ -142,8 +143,13 @@ namespace CineFront.Formularios
         private void btnLimpear_Click(object sender, EventArgs e)
         {
             limpiar();
-            cargarlosclientes();
             
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

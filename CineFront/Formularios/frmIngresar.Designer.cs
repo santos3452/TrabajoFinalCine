@@ -56,7 +56,7 @@
             // 
             Contraseña.AutoSize = true;
             Contraseña.ForeColor = SystemColors.ControlLightLight;
-            Contraseña.Location = new Point(147, 174);
+            Contraseña.Location = new Point(142, 176);
             Contraseña.Name = "Contraseña";
             Contraseña.Size = new Size(83, 15);
             Contraseña.TabIndex = 1;

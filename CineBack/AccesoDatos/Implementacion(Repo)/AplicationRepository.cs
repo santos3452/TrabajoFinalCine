@@ -22,10 +22,10 @@ namespace CineBack.Fachada.Implementacion
         /// <returns></returns>
 
 
-        public List<Clientes> getconsultarClientes()
+        public async Task <List<Clientes>> getconsultarClientes()
         {
             List<Clientes> clientes = new List<Clientes>();
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Clientes");
+            DataTable tabla = await HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Clientes");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo
@@ -42,18 +42,18 @@ namespace CineBack.Fachada.Implementacion
             return clientes;
         }
 
-        public bool getEliminarCliente(int id_cliente)
+        public async Task<bool> getEliminarCliente(int id_cliente)
         {
             string sp = "SP_Eliminar_Clientes";
             List<Parametro> lst = new List<Parametro>();
             lst.Add(new Parametro("@id", id_cliente));
-            int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
+            int afectadas = await HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
             return afectadas > 0;
 
         }
 
      
-        public int getInsertarCliente(Clientes Cliente)
+        public async Task<int> getInsertarCliente(Clientes Cliente)
         {
             string sp = "SP_Insertar_Cliente";
             List<Parametro> parametros = new List<Parametro>();
@@ -63,13 +63,13 @@ namespace CineBack.Fachada.Implementacion
             parametros.Add(new Parametro("@dni", Cliente.DNI));
             parametros.Add(new Parametro("@email", Cliente.EMAIL));
 
-            return HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
+            return await HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
 
             
             
         }
 
-        public bool getActualizarCliente(Clientes Cliente)
+        public async Task<bool> getActualizarCliente(Clientes Cliente)
         {
             string sp = "SP_Actualizar_Cliente";
             List<Parametro> parametros = new List<Parametro>();
@@ -79,7 +79,7 @@ namespace CineBack.Fachada.Implementacion
             parametros.Add(new Parametro("@telefono", Cliente.TELEFONO));
             parametros.Add(new Parametro("@dni", Cliente.DNI));
             parametros.Add(new Parametro("@email", Cliente.EMAIL));
-            int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
+            int afectadas = await HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
             return afectadas != 0;
 
 
@@ -96,19 +96,19 @@ namespace CineBack.Fachada.Implementacion
         /// <returns></returns>
 
 
-        public Task<bool> InsertarTicket(TicketFactura Ticket)
+        public async Task<bool> InsertarTicket(TicketFactura Ticket)
         {
 
-            return  HelperDao.ObtenerInstancia().EjecutarMaestroDetalle("SP_Grabar_TicketFactura", "SP_Gabar_Detalle_Ticket", Ticket);
+            return  await HelperDao.ObtenerInstancia().EjecutarMaestroDetalle("SP_Grabar_TicketFactura", "SP_Gabar_Detalle_Ticket", Ticket);
         }
 
 
 
 
-        List<FormaDePago> IAplicacion.getFormaDelPago()
+        async Task<List<FormaDePago>> IAplicacion.getFormaDelPago()
         {
             List<FormaDePago> formas = new List<FormaDePago>();
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Formas_Pago");
+            DataTable tabla = await HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Formas_Pago");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo
@@ -123,11 +123,11 @@ namespace CineBack.Fachada.Implementacion
         }
 
 
-        List<Peliculas> IAplicacion.GetPeliculas()
+       public async Task<List<Peliculas>> GetPeliculas()
         {
             List<Peliculas> peliculas = new List<Peliculas>();
             
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("sp_consultar_pelicula");
+            DataTable tabla = await HelperDao.ObtenerInstancia().Consultar("sp_consultar_pelicula");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo
@@ -151,14 +151,14 @@ namespace CineBack.Fachada.Implementacion
 
 
         }
-        List<Funciones> IAplicacion.getFunciones_por_ID(int codigo_pelicula)
+        public async Task<List<Funciones>> getFunciones_por_ID(int codigo_pelicula)
         {
             string sp = "Sp_Buscar_Funcion_Pelicula";
             List<Funciones> funciones = new List<Funciones>();
 
             List<Parametro> lst = new List<Parametro>();
             lst.Add(new Parametro("@id_pelicula", codigo_pelicula));
-            DataTable tabla = HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
+            DataTable tabla = await HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
 
             foreach (DataRow r in tabla.Rows)
             {
@@ -179,7 +179,7 @@ namespace CineBack.Fachada.Implementacion
 
 
         }
-        List<Butaca> IAplicacion.GetButacas(int codigo_funcion)
+        public async Task<List<Butaca>> GetButacas(int codigo_funcion)
         {
 
             string sp = "Sp_Buscar_Butacas_Funcion";
@@ -187,7 +187,7 @@ namespace CineBack.Fachada.Implementacion
 
             List<Parametro> lst = new List<Parametro>();
             lst.Add(new Parametro("@id_funcion", codigo_funcion));
-            DataTable tabla = HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
+            DataTable tabla = await HelperDao.ObtenerInstancia().ConsultaFiltros(sp, lst);
 
             foreach (DataRow r in tabla.Rows)
             {
@@ -213,10 +213,10 @@ namespace CineBack.Fachada.Implementacion
 
         ///////////////////////////// FUNCIONES
         ///
-        public List<Salas> getConsultarSalas()
+        public async Task<List<Salas>> getConsultarSalas()
         {
             List<Salas> sala = new List<Salas>();
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Salas");
+            DataTable tabla = await HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Salas");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo
@@ -232,7 +232,7 @@ namespace CineBack.Fachada.Implementacion
 
         }
 
-        public bool getInsertarFunciones(List<Funciones> listaFunciones)
+        public async Task<bool> getInsertarFunciones(List<Funciones> listaFunciones)
         {
             string sp = "SP_Insertar_Funcion";
             bool totalFilasInsertadas = false;
@@ -248,28 +248,28 @@ namespace CineBack.Fachada.Implementacion
                 parametros.Add(new Parametro("@precio", f.precio));
                 parametros.Add(new Parametro("@id_sala", f.id_sala));
 
-                int filasInsertadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
+                int filasInsertadas = await HelperDao.ObtenerInstancia().EjecutarSQL(sp, parametros);
                 totalFilasInsertadas = true;
             }
 
             return totalFilasInsertadas;
         }
 
-        public bool getEliminarFuncion(int codigo_funcion)
+        public async Task<bool> getEliminarFuncion(int codigo_funcion)
         {
             string sp = "SP_Baja_Funcion";
             List<Parametro> lst = new List<Parametro>();
             lst.Add(new Parametro("@id", codigo_funcion));
-            int afectadas = HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
+            int afectadas = await HelperDao.ObtenerInstancia().EjecutarSQL(sp, lst);
             return afectadas > 0;
 
         }
 
 
-        public List<Funciones> getConsultarFunciones()
+        public async Task<List<Funciones>> getConsultarFunciones()
         {
             List<Funciones> funciones = new List<Funciones>();
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones");
+            DataTable tabla =await HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo
@@ -286,10 +286,10 @@ namespace CineBack.Fachada.Implementacion
             return funciones;
         }
 
-        public List<Funciones> getConsultarFuncionesALL()
+        public async Task<List<Funciones>> getConsultarFuncionesALL()
         {
             List<Funciones> funciones = new List<Funciones>();
-            DataTable tabla = HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones_ALL");
+            DataTable tabla =await HelperDao.ObtenerInstancia().Consultar("SP_Consultar_Funciones_ALL");
             foreach (DataRow r in tabla.Rows)
             {
                 //mapeo

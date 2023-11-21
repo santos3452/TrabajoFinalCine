@@ -27,13 +27,13 @@ namespace CineApi.Controllers
         [HttpGet("/ConsultarClientes")]
         public async Task<IActionResult> GetClientes()
         {
-            return Ok(gestor.getconsultarClientes());
+            return  Ok(await gestor.getconsultarClientes());
         }
 
       
 
         [HttpDelete("/EliminarCliente")]
-        public IActionResult EliminarCliente(int id)
+        public async Task<IActionResult> EliminarCliente(int id)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace CineApi.Controllers
                 {
                     return BadRequest("error ");
                 }
-                return Ok(gestor.getEliminarCliente(id));
+                return Ok(await gestor.getEliminarCliente(id));
             }
             catch (Exception)
             {
@@ -52,14 +52,14 @@ namespace CineApi.Controllers
 
 
         [HttpPost("/PostCliente")]
-        public IActionResult PostCliente(Clientes cliente)
+        public async Task<IActionResult> PostCliente(Clientes cliente)
         {
             try
             {
                 if (cliente == null)
                     return BadRequest("Error al dar de alta al cliente.");
 
-                return Ok(gestor.getInsertarCliente(cliente));
+                return Ok(await gestor.getInsertarCliente(cliente));
             }
             catch (Exception e)
             {
@@ -68,14 +68,14 @@ namespace CineApi.Controllers
         }
 
         [HttpPut("/ActualizarCliente")]
-        public IActionResult ActualizarCliente(Clientes cliente)
+        public async Task<IActionResult> ActualizarCliente(Clientes cliente)
         {
             try
             {
                 if (cliente == null)
                     return BadRequest("ERROR AL DAR DE ALTA EL TICKET");
 
-                return Ok(gestor.getActualizarCliente(cliente));
+                return Ok(await gestor.getActualizarCliente(cliente));
             }
             catch (Exception e)
             {

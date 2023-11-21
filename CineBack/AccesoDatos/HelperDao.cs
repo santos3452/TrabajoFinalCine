@@ -21,7 +21,7 @@ namespace CineBack.AccesoDatos
         // Constructor privado de la clase HelperDao
         private HelperDao()
         {
-            conexion = new SqlConnection(@"Data Source=BRANDON;Initial Catalog=CineDB24689123;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
+            conexion = new SqlConnection(@"Data Source=DESKTOP-U6HBTT5;Initial Catalog=CineDB2;Integrated Security=True"); // ACA PONGAN SU CADENA DE CONEXION
         }
 
         // Método estático que devuelve la instancia única de HelperDao
@@ -49,7 +49,7 @@ namespace CineBack.AccesoDatos
         }
 
 
-        public int EjecutarSQL(string strSql, List<Parametro> values)
+        public async Task<int> EjecutarSQL(string strSql, List<Parametro> values)
         {
 
             SqlCommand cmd = new SqlCommand();
@@ -67,7 +67,7 @@ namespace CineBack.AccesoDatos
                 {
                     cmd.Parameters.AddWithValue(p.Clave, p.Valor);
                 }
-                filasAfectadas = cmd.ExecuteNonQuery();
+                filasAfectadas = await cmd.ExecuteNonQueryAsync();
                 //cnn.Close();
                 return filasAfectadas;
             }
@@ -80,7 +80,7 @@ namespace CineBack.AccesoDatos
                 conexion.Close();
             }
         }
-        public DataTable ConsultaFiltros(string spNombre, List<Parametro> values)
+        public async Task <DataTable> ConsultaFiltros(string spNombre, List<Parametro> values)
         {
             DataTable tabla = new DataTable();
             try
@@ -96,7 +96,7 @@ namespace CineBack.AccesoDatos
                         cmd.Parameters.AddWithValue(oParametro.Clave, oParametro.Valor);
                     }
                 }
-                tabla.Load(cmd.ExecuteReader());
+                tabla.Load(await cmd.ExecuteReaderAsync());
 
 
                 return tabla;
@@ -116,9 +116,14 @@ namespace CineBack.AccesoDatos
         }
 
 
-        public DataTable Consultar(string nombreSP)
+        public async Task<DataTable> Consultar(string nombreSP)
         {
-            conexion.Close();
+            if (conexion != null && conexion.State == ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+
+            
 
             DataTable tabla = new DataTable();
             try
@@ -130,7 +135,7 @@ namespace CineBack.AccesoDatos
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.CommandText = nombreSP;
                
-                tabla.Load(comando.ExecuteReader());
+                tabla.Load(await comando.ExecuteReaderAsync());
                 return tabla;
             }
             catch (Exception e)
@@ -232,6 +237,84 @@ namespace CineBack.AccesoDatos
             return (int)pOut.Value;
         }
 
+        public Usuarios CrearUsuario(string nombreSP, string usuario, string contraseña, string mail)
+        {
+            Usuarios user = new Usuarios();
+
+            conexion.Open(); // Abre la conexión a la base de datos
+            SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
+            comando.Connection = conexion; // Establece la conexión para el comando
+            comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
+            comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
+            comando.Parameters.Clear(); // Limpia los parámetros del comando        
+            comando.Parameters.AddWithValue("@usuario", usuario);// Agrega los parámetros al comando
+            comando.Parameters.AddWithValue("@contraseña", contraseña);// Agrega los parámetros al comando
+            comando.Parameters.AddWithValue("mail", mail);// Agrega los parámetros al comando
+
+            using (SqlDataReader reader = comando.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    // Leer el primer registro
+                    reader.Read();
+                    // Mapear los resultados a un objeto Usuario
+                    user.Contraseña = reader["contrasena"].ToString();
+                    user.Usuario = reader["nombre_de_usuario"].ToString();
+                    user.Usuario = reader["email"].ToString();
+                    // Mapear otros campos según sea necesario
+                }
+            }
+
+            conexion.Close(); // Cierra la conexión a la base de datos
+
+            return user; // Devuelve el DataTable con los resultados obtenidos
+        }
+
+
+        public Usuarios ConsultarUsuarioPorNombre(string nombreSP, string usuario)
+        {
+            Usuarios user = new Usuarios();
+
+            conexion.Open(); // Abre la conexión a la base de datos
+            SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
+            comando.Connection = conexion; // Establece la conexión para el comando
+            comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
+            comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
+            comando.Parameters.Clear(); // Limpia los parámetros del comando        
+            comando.Parameters.AddWithValue("@usuario", usuario); // Agrega los parámetros al comando
+
+            using (SqlDataReader reader = comando.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    // Leer el primer registro
+                    reader.Read();
+                    // Mapear los resultados a un objeto Usuario
+                    user.Contraseña = reader["contrasena"].ToString();
+                    user.Usuario = reader["nombre_de_usuario"].ToString();
+                    // Mapear otros campos según sea necesario
+                }
+            }
+
+            conexion.Close(); // Cierra la conexión a la base de datos
+
+            return user; // Devuelve el DataTable con los resultados obtenidos
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -263,29 +346,7 @@ namespace CineBack.AccesoDatos
         // Método para ejecutar un procedimiento almacenado que devuelve un conjunto de resultados (DataTable) sin parámetros
        
 
-        //Método para ejecutar un procedimiento almacenado que toma una lista de parámetros y devuelve un conjunto de resultados(DataTable)
-        public DataTable ConsultarUsuarioPorNombre(string nombreSP, string usuario)
-        {
-            Usuarios user = null;
-            conexion.Open(); // Abre la conexión a la base de datos
-            SqlCommand comando = new SqlCommand(); // Crea un objeto para ejecutar comandos SQL
-            comando.Connection = conexion; // Establece la conexión para el comando
-            comando.CommandType = CommandType.StoredProcedure; // Indica que se utilizará un procedimiento almacenado
-            comando.CommandText = nombreSP; // Establece el nombre del procedimiento almacenado a ejecutar
-            comando.Parameters.Clear(); // Limpia los parámetros del comando        
-            comando.Parameters.AddWithValue("nombreParametro",usuario); // Agrega los parámetros al comando
-
-
-
-            DataTable tabla = new DataTable(); // Crea un DataTable para almacenar los resultados
-            tabla.Load(comando.ExecuteReader()); // Carga el resultado del comando en el DataTable
-
-            conexion.Close(); // Cierra la conexión a la base de datos
-
-            return tabla; // Devuelve el DataTable con los resultados obtenidos
-        }
-
-        // Método para obtener la instancia de la conexión a la base de datos
+      
       
     }
 }

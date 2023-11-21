@@ -10,5 +10,6 @@ namespace CineBack.services.Interfaces
     public interface IUsuarioService
     {
         Task<bool> Login(Usuarios credenciales);
+        Task<bool> Start(Usuarios credenciales);
     }
 }

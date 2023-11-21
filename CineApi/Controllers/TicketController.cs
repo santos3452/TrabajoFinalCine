@@ -24,20 +24,20 @@ namespace CineApi.Controllers
 
 
         [HttpGet("/FormasDePago")]
-        public IActionResult GetFormasDePago()
+        public async Task<IActionResult> GetFormasDePago()
         {
-            return Ok(gestor.getFormaDelPago());
+            return Ok(await gestor.getFormaDelPago());
         }
 
         [HttpGet("/Peliculas")]
-        public IActionResult GetPeliculas()
+        public async Task<IActionResult> GetPeliculas()
         {
-            return Ok(gestor.getPeliculas());
+            return Ok(await gestor.getPeliculas());
         }
 
 
         [HttpGet("/FuncionesPorID")]
-        public IActionResult getFuncionesPorID(int id)
+        public async Task<IActionResult> getFuncionesPorID(int id)
         {
 
             try
@@ -46,7 +46,7 @@ namespace CineApi.Controllers
                 {
                     return BadRequest("error ");
                 }
-                return Ok(gestor.getFunciones_por_ID(id));
+                return Ok(await gestor.getFunciones_por_ID(id));
             }
             catch (Exception)
             {
@@ -56,7 +56,7 @@ namespace CineApi.Controllers
             
         }
         [HttpGet("/ButacasPorFuncion")]
-        public IActionResult getButacaPorFuncion(int id)
+        public async Task<IActionResult> getButacaPorFuncion(int id)
         {
 
             try
@@ -65,7 +65,7 @@ namespace CineApi.Controllers
                 {
                     return BadRequest("error ");
                 }
-                return Ok(gestor.GetButacas(id));
+                return Ok(await gestor.GetButacas(id));
             }
             catch (Exception)
             {
@@ -94,9 +94,9 @@ namespace CineApi.Controllers
         }
 
         [HttpGet("/ProximoID")]
-        public IActionResult getProximoID()
+        public async Task<IActionResult> getProximoID()
         {
-            return Ok(gestor.GetProximoID());
+            return Ok(await gestor.GetProximoID());
         }
 
 

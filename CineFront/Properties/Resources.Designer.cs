@@ -63,6 +63,16 @@ namespace CineFront.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _94198529_cine_interior_gráfico_negro_blanco_dibujo_ilustración_vectorial {
+            get {
+                object obj = ResourceManager.GetObject("94198529-cine-interior-gráfico-negro-blanco-dibujo-ilustración-vectorial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lionel_andres {
             get {
                 object obj = ResourceManager.GetObject("lionel andres", resourceCulture);

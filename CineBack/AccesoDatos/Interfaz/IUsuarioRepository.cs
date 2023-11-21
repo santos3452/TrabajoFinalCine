@@ -9,6 +9,7 @@ namespace CineBack.AccesoDatos.Interfaz
 {
     public interface IUsuarioRepository
     {
-        Task<Usuarios> GetUserByName(string Nombre);
+        Task<Usuarios> GetUserByName(string Usuario);
+        Task<Usuarios> PutUser(string Usuario, string Contraseña, string Mail);
     }
 }

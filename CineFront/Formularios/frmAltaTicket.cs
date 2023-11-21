@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace Front.Formularios
         decimal totalPrecios = 0;
         public frmAltaTicket(int datoSeleccionado)
         {
+
             InitializeComponent();
             Ticket = new TicketFactura();
             this.idClienteSeleccionado = datoSeleccionado; // Guarda el ID del cliente seleccionado
@@ -53,11 +55,13 @@ namespace Front.Formularios
         }
 
 
-        private void frmAltaTicket_Load(object sender, EventArgs e)
+        private async void frmAltaTicket_Load(object sender, EventArgs e)
         {
-            cargarlosclientes();
-            CargarLasFormasDePago();
-            CargarLasPeliculas();
+            await cargarlosclientes();
+            await CargarLasFormasDePago();
+            await CargarLasPeliculas();
+            ProximoIDticket();
+            lblNOMBRE.Text += 
             dgvTICKET.AllowUserToAddRows = false;
             cmbPeliculas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFormaPago.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -75,7 +79,13 @@ namespace Front.Formularios
 
 
         }
-        private bool validar()
+        private async void ProximoIDticket()
+        {
+            int num = await ProximoID();
+            lblTICKET.Text = "GENERAR TICKET NRO: " + num;
+        }
+
+            private bool validar()
         {
 
             if (String.IsNullOrEmpty(txtVALOR.Text))
@@ -130,6 +140,14 @@ namespace Front.Formularios
             cboButaca.DisplayMember = "numero";
             cboButaca.ValueMember = "id_butaca";
 
+
+        }
+        private async Task<int> ProximoID()
+        {
+            string url = "https://localhost:7180/ProximoID";
+            var data = await ClientSingleton.GetInstancia().GetAsync(url);
+            var forma = JsonConvert.DeserializeObject<int>(data);
+            return forma;
 
         }
 
@@ -211,7 +229,9 @@ namespace Front.Formularios
 
             cmbFormaPago.DataSource = forma;
             cmbFormaPago.DisplayMember = "descripcion";
-            cmbFormaPago.ValueMember = "forma";
+            cmbFormaPago.ValueMember = "id_formapago";
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -284,13 +304,13 @@ namespace Front.Formularios
             {
                 await InsertarTicket();
 
-                //foreach (DataGridViewRow row in dgvTICKET.Rows)
-                //{
-                //    if (!row.IsNewRow) // Para evitar la fila de inserción (new row)
-                //    {
-                //        Ticket.QuitarDetalle(row.Index);
-                //    }
-                //}
+
+
+                Ticket.Detalle.Clear();
+                ProximoIDticket();
+
+
+                dgvTICKET.Rows.Clear();
 
 
             }
@@ -312,7 +332,7 @@ namespace Front.Formularios
 
                 if (e.ColumnIndex == 0 && e.RowIndex != -1)
                 {
-                   
+
 
                     if (dgvTICKET.Rows[e.RowIndex].Cells["VALOR"].Value != null && decimal.TryParse(dgvTICKET.Rows[e.RowIndex].Cells["VALOR"].Value.ToString(), out decimal valor))
                     {
@@ -327,7 +347,7 @@ namespace Front.Formularios
 
 
                         dgvTICKET.Rows.RemoveAt(e.RowIndex);
-                        
+
 
 
                     }
@@ -338,6 +358,11 @@ namespace Front.Formularios
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -82,3 +82,17 @@ C:\Users\brand\Documents\TrabajoFinalPrograTest\TrabajoFinalCine\CineBack\obj\De
 C:\Users\brand\Documents\TrabajoFinalPrograTest\TrabajoFinalCine\CineBack\obj\Debug\net6.0\refint\CineBack.dll
 C:\Users\brand\Documents\TrabajoFinalPrograTest\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.pdb
 C:\Users\brand\Documents\TrabajoFinalPrograTest\TrabajoFinalCine\CineBack\obj\Debug\net6.0\ref\CineBack.dll
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\bin\Debug\net6.0\CineBack.deps.json
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\bin\Debug\net6.0\CineBack.dll
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\bin\Debug\net6.0\CineBack.pdb
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.Properties.Resources.resources
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.AssemblyInfo.cs
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.dll
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\refint\CineBack.dll
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\CineBack.pdb
+C:\Users\Usuario\Documents\DEFINITIVO\TrabajoFinalCine\CineBack\obj\Debug\net6.0\ref\CineBack.dll

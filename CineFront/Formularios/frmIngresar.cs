@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CineBack.Entidades;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CineFront
 {
@@ -19,7 +20,16 @@ namespace CineFront
         {
             InitializeComponent();
         }
+        private bool validar()
+        {
+            if (String.IsNullOrEmpty(txtUsuario.Text) || String.IsNullOrEmpty(txtContraseña.Text))
+            {
+                MessageBox.Show("ERROR. Algun campo se encuentra vacio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
 
+        }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             txtUsuario.Clear();
@@ -28,44 +38,55 @@ namespace CineFront
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+            frmInicio.GetInstancia().Show();  
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
+        private async void btnIngresar_Click(object sender, EventArgs e)
+        { 
+            
+            if (validar())
+            
+            {
+
+                string usuario = txtUsuario.Text;
+                string contraseña = txtContraseña.Text;
+
+                Usuarios credenciales = new Usuarios
+                {
+                    Usuario = usuario,
+                    Contraseña = contraseña,
+                    mail = ""
+                };
+                await Verificar(credenciales);
+            }
+           
+           
+        }
+        private async Task Verificar(Usuarios usuario)
         {
-            //// Obtener el usuario y la contraseña desde los campos de texto en el formulario
-            //string usuario = txtUsuario.Text;
-            //string contraseña = txtContraseña.Text;
 
-            //// Crear una instancia de HttpClient, que se utiliza para realizar solicitudes HTTP
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    // Crear una instancia de la clase Usuarios y asignarle el usuario y la contraseña
-            //    Usuarios credenciales = new Usuarios
-            //    {
-            //        Usuario = usuario,
-            //        Contraseña = contraseña
-            //    };
 
-            //    // Realizar una solicitud HTTP POST al endpoint "https://tuapiruta/api/usuarios/verificar"
-            //    // y enviar las credenciales en el cuerpo de la solicitud en formato JSON
-            //    HttpResponseMessage response = await client.PostAsJsonAsync("https://tuapiruta/api/usuarios/verificar", credenciales);
+            string url = "https://localhost:7180/api/Usuario/Auth";
+            string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(usuario);
 
-            //    // Verificar si la solicitud fue exitosa (código de estado HTTP 2xx)
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        // Ingresa a la pagina de inicio
-            //        PaginaPrincipal frm = new PaginaPrincipal();
-            //        frm.Show();
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        // Mostrar un mensaje de error si las credenciales no son válidas
-            //        MessageBox.Show("Usuario no encontrado");
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            //    }
-            //}
+            using (HttpClient client = new HttpClient())
+            {
+                var result = await client.PostAsync(url, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Bienvenido " + usuario.Usuario);
+                    PaginaPrincipal frm = new PaginaPrincipal();
+                    frm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Datos de usuario o contraseña incorrecto");
+                }
+            }
         }
 
         private void Usuario_Click(object sender, EventArgs e)
@@ -75,6 +96,7 @@ namespace CineFront
 
         private void frmIngresar_Load(object sender, EventArgs e)
         {
+            txtContraseña.UseSystemPasswordChar = true;
 
         }
     }

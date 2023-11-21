@@ -128,26 +128,15 @@ namespace CineFront.Formularios
             }
 
 
-            foreach (DataGridViewRow row in dtvFunciones.Rows)
+            foreach (Funciones fun in listaDeFunciones)
             {
-
-
-                string fechaCelda = row.Cells["FECHA"].Value?.ToString(); // Obtener valor de la celda FECHA como string
-                string horaCelda = row.Cells["HORA"].Value?.ToString(); // Obtener valor de la celda HORA como string
-                int salaCelda = Convert.ToInt32(row.Cells["ID_SALA"].Value); // Obtener valor de la celda SALA como entero
-                object idSeleccionado = cboSalas.SelectedValue;
-                int id = (int)idSeleccionado;
-
-
-                DateTime fechaPicker = dtPICKER.Value.Date; // Obtener fecha del DateTimePicker
-                string horaTxt = txtHORA.Text; // Obtener hora del TextBox (asumiendo que txtHORA.Text es un string)
-
-                // Comparar los valores después de convertirlos a los tipos de datos apropiados
-                if (fechaCelda == fechaPicker.ToString("yyyy-MM-dd") && horaCelda == horaTxt && salaCelda == id)
+                if (fun.HoraPeli == txtHORA.Text && dtPICKER.Value == fun.fecha && (int)cboSalas.SelectedValue == fun.id_sala)
                 {
-                    MessageBox.Show("ERROR. No puede poner dos veces la misma función con el mismo horario/fecha/sala", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("YA HAY UNA PELICULA EN ESE DIA, HORARIO Y SALA", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+
+               
             }
 
 
@@ -223,6 +212,7 @@ namespace CineFront.Formularios
         private void button1_Click(object sender, EventArgs e)
         {
             InsertarFunciones(listaDeFunciones);
+            dtvFunciones.Rows.Clear();
 
         }
 

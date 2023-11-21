@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineBack.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,20 @@ namespace CineFront
 {
     public partial class frmInicio : Form
     {
+        private static frmInicio instancia;
+        
+
+       
+        public static frmInicio GetInstancia()
+        {
+            if (instancia == null)
+                instancia = new frmInicio();
+            return instancia;
+        }
+
+
+
+
         public frmInicio()
         {
             InitializeComponent();
@@ -21,6 +36,7 @@ namespace CineFront
         {
             frmIngresar frm = new frmIngresar();
             frm.Show();
+            this.Hide();
 
         }
 

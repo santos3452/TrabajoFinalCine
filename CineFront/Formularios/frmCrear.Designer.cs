@@ -104,6 +104,7 @@
             btnAceptar.TabIndex = 8;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // btnVolver
             // 
@@ -138,6 +139,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(383, 100);
             panel1.TabIndex = 11;
+            panel1.Paint += panel1_Paint;
             // 
             // label3
             // 

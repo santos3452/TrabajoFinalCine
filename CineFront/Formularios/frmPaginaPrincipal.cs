@@ -96,7 +96,7 @@ namespace Front.Formularios
 
         private void btnTicket_Click(object sender, EventArgs e)
         {
-            lstNostros.Items.Clear();
+
             frmAltaDeCliente frm = new frmAltaDeCliente();
             frm.Show();
             esconderMenu();
@@ -106,7 +106,7 @@ namespace Front.Formularios
         private void btnNosotros_Click(object sender, EventArgs e)
         {
             mostrarsubmenu(panelsubmenu1);
-            lstNostros.Items.Clear();
+
             esconderMenu();
 
 
@@ -115,7 +115,7 @@ namespace Front.Formularios
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            lstNostros.Items.Clear();
+
             SeleccionarELCliente frm = new SeleccionarELCliente();
             frm.Show();
             esconderMenu();
@@ -137,14 +137,7 @@ namespace Front.Formularios
             string[] integrantes = nosotros.Split(new string[] { " -[" }, StringSplitOptions.RemoveEmptyEntries);
 
 
-            lstNostros.Items.Clear();
 
-
-            foreach (string integrante in integrantes)
-            {
-                lstNostros.Items.Add("-[" + integrante);
-            }
-            esconderMenu();
         }
 
         private void panelsubmenu1_Paint(object sender, PaintEventArgs e)

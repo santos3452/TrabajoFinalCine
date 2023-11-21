@@ -17,6 +17,7 @@ namespace CineApi.Controllers
     [ApiController]
     public class UsuarioController : Controller
     {
+
         private IUsuarioService service;
 
         public UsuarioController(IUsuarioService _service)
@@ -24,8 +25,8 @@ namespace CineApi.Controllers
             service = _service;
         }
 
-    
-        [HttpPost("Auth")]    
+
+        [HttpPost("Auth")]
         public async Task<ActionResult<bool>> Login([FromBody] Usuarios credenciales)
         {
             //Verificar que el usuario y la contraseña sean correctos para iniciar sesion 
@@ -46,7 +47,30 @@ namespace CineApi.Controllers
             {
                 return BadRequest("Credenciales inválidas");
             }
+
         }
-       
+        [HttpPost("creation")]
+        public async Task<ActionResult<bool>> Start([FromBody] Usuarios creacion)
+        {
+            //Verificar que el usuario y la contraseña sean correctos para Crear Usuario
+            string result = "";
+            bool resultado = false;
+
+            if (creacion != null)
+            {
+                resultado = await service.Start(creacion);
+            }
+
+            // Si el resultado es true, entonces es valido para Crear Usuario
+            if (resultado)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest("Credenciales inválidas");
+            }
+
+        }
     }
 }

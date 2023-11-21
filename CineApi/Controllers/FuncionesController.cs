@@ -18,26 +18,26 @@ namespace CineApi.Controllers
         }
 
         [HttpGet("/Peliculas1")]
-        public IActionResult GetPeliculas()
+        public async Task<IActionResult> GetPeliculas()
         {
-            return Ok(gestor.getPeliculas());
+            return Ok(await gestor.getPeliculas());
         }
 
         [HttpGet("/ObtenerSalas")]
-        public IActionResult GetSalas()
+        public async Task<IActionResult> GetSalas()
         {
-            return Ok(gestor.getConsultarSalas());
+            return Ok(await gestor.getConsultarSalas());
         }
 
         [HttpPost("/InsertarFunciones")]
-        public IActionResult PostCliente(List<Funciones> listaFunciones)
+        public async Task<IActionResult> PostCliente(List<Funciones> listaFunciones)
         {
             try
             {
                 if (listaFunciones == null)
                     return BadRequest("Error al dar de alta al cliente.");
 
-                return Ok(gestor.getInsertarFunciones(listaFunciones));
+                return Ok(await gestor.getInsertarFunciones(listaFunciones));
             }
             catch (Exception e)
             {
@@ -46,7 +46,7 @@ namespace CineApi.Controllers
         }
 
         [HttpDelete("/EliminarFuncion")]
-        public IActionResult EliminarCliente(int id)
+        public async Task<IActionResult> EliminarCliente(int id)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace CineApi.Controllers
                 {
                     return BadRequest("error ");
                 }
-                return Ok(gestor.getEliminarFuncion(id));
+                return Ok(await gestor.getEliminarFuncion(id));
             }
             catch (Exception)
             {
@@ -66,13 +66,13 @@ namespace CineApi.Controllers
         [HttpGet("/ConsultarFunciones")]
         public async Task<IActionResult> GetFunciones()
         {
-            return Ok(gestor.getConsultarFunciones());
+            return Ok(await gestor.getConsultarFunciones());
         }
 
         [HttpGet("/ConsultarFuncionesALL")]
         public async Task<IActionResult> GetFuncionesALL()
         {
-            return Ok(gestor.getConsultarFuncionesALL());
+            return Ok(await gestor.getConsultarFuncionesALL());
         }
 
     }

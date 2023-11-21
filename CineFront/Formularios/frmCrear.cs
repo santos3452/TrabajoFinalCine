@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineBack.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,7 @@ namespace CineFront
         {
             txtUsuario.Clear();
             txtContraseña.Clear();
-            
+
             txtMail.Clear();
 
         }
@@ -34,6 +35,49 @@ namespace CineFront
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private async void btnAceptar_Click(object sender, EventArgs e)
+        {
+            string usuario = txtUsuario.Text;
+            string contraseña = txtContraseña.Text;
+            string mail = txtMail.Text;
+
+            Usuarios creacion = new Usuarios
+            {
+                Usuario = usuario,
+                Contraseña = contraseña,
+                mail = mail
+            };
+            await Verificar(creacion);
+        }
+
+
+        private async Task Verificar(Usuarios usuario)
+        {
+            string url = "https://localhost:7180/api/Usuario/creation";
+            string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(usuario);
+
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            using (HttpClient client = new HttpClient())
+            {
+                var result = await client.PostAsync(url, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Usuario creado Correctamente");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Colocar otro Usuario");
+                }
+            }
         }
     }
 }
