@@ -64,15 +64,18 @@ Cancelación de funciones
 
 # Capturas de Pantalla
 # # Pantalla Principal
+
 ![image](https://github.com/user-attachments/assets/78d13b57-ca94-4d5a-ac4f-14fae9206bca)
 
 
 # # Menú principal de la aplicación con acceso a los diferentes módulos
 Selección de Cliente
+
 ![image](https://github.com/user-attachments/assets/f125fd4b-3350-489a-b830-9a1a852a867d)
 
 # # Formulario para la búsqueda y selección de clientes por DNI
 Generación de Ticket
+
 ![image](https://github.com/user-attachments/assets/f695ff25-d39e-400a-b7db-f23c3d510af4)
 
 # # Selección de película para la generación de un nuevo ticket
@@ -120,11 +123,17 @@ Alta de Ticket
 Muestra un proceso guiado para la generación de tickets con:
 
 Información del cliente seleccionado
+
 Selector de película con lista desplegable
+
 Selector de función con horario y fecha
+
 Selector de butaca disponible
+
 Forma de pago (Efectivo, Tarjeta, etc.)
+
 Resumen de la selección en una tabla con opción para quitar elementos
+
 Cálculo automático del total
 
 Administración de Funciones
@@ -132,7 +141,12 @@ Permite programar nuevas funciones para las películas, asignar salas y establec
 El diseño visual del sistema utiliza elementos como:
 
 Iconos intuitivos
+
 Paleta de colores corporativa
+
 Tablas para mostrar información de manera organizada
+
 Campos de selección desplegables
+
 Botones claramente identificados para las acciones principales
+
